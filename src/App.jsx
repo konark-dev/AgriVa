@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import BlueScreen from './pages/BlueScreen';
 import { AppProvider, useApp } from './context/AppContext';
 import Navbar from './components/Navbar';
@@ -33,6 +33,13 @@ function MainLayout() {
   });
   const [activeRequirement, setActiveRequirement] = useState(null);
   const [showMakeOffer, setShowMakeOffer] = useState(false);
+
+  // Reset to dashboard when user/role changes
+  useEffect(() => {
+    setActiveTab('dashboard');
+    setActiveRequirement(null);
+    setShowMakeOffer(false);
+  }, [currentUser?.uid]);
 
   if (!isAuthenticated) {
     return (

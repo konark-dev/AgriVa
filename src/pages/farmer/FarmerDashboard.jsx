@@ -27,6 +27,7 @@ import {
 
 export default function FarmerDashboard() {
   // Context
+  const isUnverified = currentUser?.role === 'farmer' && currentUser?.sellerBadge === 'New Seller';
   const {
     listings,
     bids,
@@ -147,6 +148,7 @@ export default function FarmerDashboard() {
         </button>
       </div>
 
+      {!isUnverified && (<>
       {/* ---------- CTA: Sell My Crop ---------- */}
       <div className="p-4 bg-white rounded-2xl border-2 border-[#1B5E20] shadow-sm flex flex-col space-y-3 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-24 h-24 bg-green-50 rounded-full -mr-8 -mt-8 z-0"></div>
@@ -166,6 +168,8 @@ export default function FarmerDashboard() {
           </button>
         </div>
       </div>
+
+      </>)}
 
       {/* ---------- Net Realization / Verification Card ---------- */}
       {currentUser.role === 'farmer' && currentUser.sellerBadge === 'New Seller' ? (
@@ -207,6 +211,7 @@ export default function FarmerDashboard() {
         </div>
       )}
 
+      {!isUnverified && (<>
       {/* ---------- Mandi Alert Card ---------- */}
       <div className="p-3 bg-orange-50 rounded-xl border border-orange-200 flex items-start space-x-3 shadow-sm">
         <div className="w-8 h-8 rounded-full bg-orange-100 flex items-center justify-center shrink-0 mt-0.5">
@@ -423,6 +428,8 @@ export default function FarmerDashboard() {
           <CheckCircle2 className="w-5 h-5 mr-2" /> पास का गोदाम बुक करें
         </button>
       </div>
+
+      </>)}
 
       {/* ---------- Modals ---------- */}
       {showAddModal && <AddListingModal onClose={() => setShowAddModal(false)} />}
