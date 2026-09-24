@@ -1,0 +1,160 @@
+/**
+ * aiService.js
+ * 
+ * Production-ready interaction with Google Gemini Generative AI API via REST.
+ * Supports multi-model fallback (gemini-3.5-flash, gemini-3.5-flash-lite, gemini-3.6-flash),
+ * agricultural domain grounding, bilingual voice parsing, and voice narration.
+ */
+
+const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY || "YOUR_API_KEY_HERE";
+const FALLBACK_MODELS = [
+  'gemini-3.5-flash',
+  'gemini-3.5-flash-lite',
+  'gemini-3.6-flash',
+  'gemini-flash-latest'
+];
+
+/**
+ * Generic Gemini API caller with automatic model fallback
+ */
+async function callGemini(contents, generationConfig = {}) {
+  if (!GEMINI_API_KEY) {
+    throw new Error("Missing Gemini API Key. Please provide VITE_GEMINI_API_KEY.");
+  }
+
+  let lastError = null;
+
+  for (const model of FALLBACK_MODELS) {
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${GEMINI_API_KEY}`;
+    try {
+      const response = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          contents,
+          generationConfig: {
+            temperature: 0.3,
+            maxOutputTokens: 250,
+            ...generationConfig
+          }
+        })
+      });
+
+      if (!response.ok) {
+        const errJson = await response.json().catch(() => ({}));
+        console.warn(`[Gemini ${model}] failed with status ${response.status}:`, errJson.error?.message);
+        lastError = new Error(errJson.error?.message || `HTTP ${response.status}`);
+        continue; // Try next model
+      }
+
+      const data = await response.json();
+      if (data.candidates && data.candidates.length > 0) {
+        const text = data.candidates[0].content?.parts?.[0]?.text;
+        if (text) return text.trim();
+      }
+    } catch (err) {
+      console.warn(`[Gemini ${model}] network exception:`, err.message);
+      lastError = err;
+    }
+  }
+
+  throw lastError || new Error("All Gemini model endpoints failed.");
+}
+
+/**
+ * Conversational agricultural assistant response
+ */
+export const askGemini = async (query, contextData = {}) => {
+  const isHindi = contextData.language === 'hi';
+
+  const contextString = `
+You are the official AI Assistant for "AgriVa" (एग्रीवा), an Indian digital agricultural marketplace.
+Audience: Indian farmers, FPOs, traders, transporters, and mandi operators.
+Tone: Respectful, very concise (1-2 sentences maximum), helpful, and direct.
+
+CRITICAL INSTRUCTIONS:
+1. ONLY answer questions related to agriculture, AgriVa, the user's platform data (bids, listings, loans, etc.), or supply chain. If the user asks an unrelated question (e.g. general knowledge, politics, coding), politely refuse and state you can only help with AgriVa.
+2. If the user asks about their bids, orders, listings, or market prices, ALWAYS use the data provided in the "Screen Context" JSON below to give a specific, accurate answer. Do not hallucinate or give incomplete answers.
+
+Current User Context:
+- Role: ${contextData.role || 'farmer'}
+- Name: ${contextData.name || 'User'}
+- Preferred Language: ${isHindi ? 'Hindi' : 'English'}
+- Screen Context (LIVE APP DATA): ${JSON.stringify(contextData.screenData || {})}
+
+Always answer in ${isHindi ? 'simple conversational Hindi (Devanagari script)' : 'clear English'}. If user asks in Hindi, answer in Hindi.
+`;
+
+  const contents = [
+    {
+      role: "user",
+      parts: [
+        { text: contextString },
+        { text: `User Query: ${query}` }
+      ]
+    }
+  ];
+
+  return await callGemini(contents);
+};
+
+/**
+ * Parse spoken input into structured registration / profile fields
+ */
+export const parseVoiceToFields = async (voiceTranscript, targetRole = 'farmer') => {
+  const prompt = `
+Extract structured user profile fields from this spoken Indian audio transcript.
+Target Role: ${targetRole}
+Spoken text: "${voiceTranscript}"
+
+Respond ONLY with a valid JSON object without markdown formatting. Format:
+{
+  "name": string or null,
+  "district": string or null,
+  "state": string or null,
+  "village": string or null,
+  "crop": string or null,
+  "quantity": number or null,
+  "aadhaar": string or null,
+  "vehicleReg": string or null
+}
+`;
+
+  try {
+    const raw = await callGemini([
+      { role: "user", parts: [{ text: prompt }] }
+    ], { temperature: 0.1 });
+
+    // Clean JSON response
+    const cleanedJson = raw.replace(/```json/g, '').replace(/```/g, '').trim();
+    return JSON.parse(cleanedJson);
+  } catch (e) {
+    console.warn("parseVoiceToFields fallback to simple regex:", e.message);
+    return { name: voiceTranscript.slice(0, 40) };
+  }
+};
+
+/**
+ * Generates natural narration text for speech synthesis
+ */
+export const narrateScreen = (stepName, language = 'hi') => {
+  const narrations = {
+    hi: {
+      language: "एग्रीवा में आपका स्वागत है। कृपया अपनी पसंदीदा भाषा चुनें और आगे बढ़ें।",
+      phone: "कृपया अपना 10 अंकों का मोबाइल नंबर दर्ज करें। हम सत्यापन के लिए सुरक्षित ओटीपी भेजेंगे।",
+      otp: "एसएमएस द्वारा प्राप्त 6 अंकों का ओटीपी दर्ज करें या बोलकर बताएं।",
+      role: "मंडी परिवेश में अपनी भूमिका चुनें: किसान, एफपीओ, व्यापारी, थोक खरीदार, या ट्रांसपोर्टर।",
+      profile: "कृपया अपनी बुनियादी प्रोफ़ाइल जानकारी भरें या माइक दबाकर बोलें।"
+    },
+    en: {
+      language: "Welcome to AgriVa. Please choose your preferred language to continue.",
+      phone: "Please enter your 10-digit mobile number for secure verification.",
+      otp: "Enter the 6-digit OTP received via SMS or use demo verification.",
+      role: "Select your role in the marketplace: Farmer, FPO, Buyer, or Logistics Partner.",
+      profile: "Please complete your registration profile or speak into the microphone."
+    }
+  };
+
+  const lang = language === 'hi' ? 'hi' : 'en';
+  return narrations[lang][stepName] || narrations[lang]['profile'];
+};

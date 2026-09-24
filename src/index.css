@@ -1,0 +1,71 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: 'Inter', sans-serif;
+    -webkit-tap-highlight-color: transparent;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Outfit', sans-serif;
+  }
+}
+
+/* Custom Design Tokens & Utility Classes */
+.bg-glass {
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.bg-glass-card {
+  background: rgba(30, 41, 59, 0.7);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.gradient-emerald {
+  background: linear-gradient(135deg, #059669 0%, #047857 50%, #064e3b 100%);
+}
+
+.gradient-amber {
+  background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+}
+
+.gradient-accent {
+  background: linear-gradient(135deg, #10b981 0%, #0284c7 100%);
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, #34d399 0%, #38bdf8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Touch-friendly Tap Targets & Animations */
+.btn-touch {
+  min-height: 48px;
+  min-width: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  touch-action: manipulation;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+.btn-touch:active {
+  transform: scale(0.96);
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.5);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(51, 65, 85, 0.8);
+  border-radius: 9999px;
+}

@@ -1,0 +1,17 @@
+{
+  "name": "AgriVa",
+  "short_name": "AgriVa",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f9f8f3",
+  "theme_color": "#1B5E20",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
