@@ -1249,27 +1249,45 @@ export default function Onboarding({ onComplete }) {
              </div>
           )}
 
-          {/* Fallback Mandi / Lab Profile details */}
-          {(selectedRole === 'mandi' || selectedRole === 'lab') && (
+          {/* Dynamic Profile Details for Mandi, Lab, Warehouse, Lender */}
+          {['mandi', 'lab', 'warehouse', 'lender'].includes(selectedRole) && (
              <div className="bg-white rounded-2xl p-4 border border-slate-200 space-y-3 shadow-sm">
                 <div>
-                   <label className="text-xs font-bold text-slate-700">संस्था का नाम *</label>
+                   <label className="text-xs font-bold text-slate-700 flex justify-between">
+                     <span>Name / \u0928\u093E\u092E *</span>
+                     <button type="button" onClick={() => startFieldVoiceInput('name')} className="text-emerald-700 flex items-center text-[10px]">
+                        <Mic className="w-3 h-3 mr-0.5" /> Speak
+                     </button>
+                   </label>
                    <input 
                      type="text"
                      value={formData.name}
                      onChange={e => handleFormChange('name', e.target.value)}
-                     className="w-full mt-1 p-3 rounded-xl border border-slate-200 text-sm font-bold text-slate-800"
-                     placeholder={selectedRole === 'mandi' ? 'आज़ादपुर APMC मंडी' : 'एग्री टेस्ट लैब'}
+                     className="w-full mt-1 p-3 rounded-xl border border-slate-200 text-sm font-bold text-slate-800 focus:outline-none focus:border-emerald-600"
+                     placeholder={
+                       selectedRole === 'mandi' ? 'APMC Mandi Name' :
+                       selectedRole === 'lab' ? 'AgriCert Quality Lab' :
+                       selectedRole === 'warehouse' ? 'Kisan Warehouse Storage' : 'Agri Credit Finance'
+                     }
                    />
                 </div>
                 <div>
-                   <label className="text-xs font-bold text-slate-700">प्रमाणपत्र / अधिकृत लाइसेंस संख्या *</label>
+                   <label className="text-xs font-bold text-slate-700">Registration / License Number *</label>
                    <input 
                      type="text"
-                     value={selectedRole === 'mandi' ? 'APMC-DL-2024-001' : 'NABL-AGRI-2024-889'}
-                     className="w-full mt-1 p-3 rounded-xl border border-slate-200 text-sm font-mono font-bold text-slate-800"
+                     value={
+                       selectedRole === 'mandi' ? 'APMC-DL-2024-001' :
+                       selectedRole === 'lab' ? 'NABL-AGRI-2024-889' :
+                       selectedRole === 'warehouse' ? 'WDRA-WH-2024-554' : 'NBFC-FIN-2024-112'
+                     }
+                     className="w-full mt-1 p-3 rounded-xl border border-slate-200 text-sm font-mono font-bold text-slate-500 bg-slate-50"
                      readOnly
                    />
+                   <p className="text-[10px] text-slate-500 mt-1">
+                     {selectedRole === 'mandi' ? 'APMC ID is auto-verified.' :
+                      selectedRole === 'lab' ? 'NABL Certification is auto-verified.' :
+                      selectedRole === 'warehouse' ? 'WDRA Registration is auto-verified.' : 'NBFC License is auto-verified.'}
+                   </p>
                 </div>
              </div>
           )}
