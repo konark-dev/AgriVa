@@ -29,7 +29,7 @@ export const initSpeechRecognition = (onResult, onError, onEnd, lang = 'hi-IN', 
   
   recognition.continuous = continuous;
   recognition.lang = lang; // 'hi-IN' or 'en-IN'
-  recognition.interimResults = false;
+  recognition.interimResults = true; // Set to true to keep Android Chrome mic alive longer
   recognition.maxAlternatives = 1;
 
     recognition.onresult = (event) => {
@@ -42,7 +42,9 @@ export const initSpeechRecognition = (onResult, onError, onEnd, lang = 'hi-IN', 
     if (finalTranscript.trim() !== '') {
       if (onResult) onResult(finalTranscript.trim());
       // Auto-stop after getting a final result to behave like a single command
-      if (continuous) recognition.stop();
+      if (continuous) {
+        try { recognition.stop(); } catch(e) {}
+      }
     }
   };
 
