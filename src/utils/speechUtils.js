@@ -85,6 +85,7 @@ export const stopListening = (recognitionInstance) => {
 // --- Text to Speech (Speaking) ---
 
 export const speakText = (text, lang = 'hi-IN', onEnd) => {
+  window._activeUtterance = null;
   if (!isSpeechSynthesisSupported()) {
     console.warn("Speech Synthesis API not supported.");
     if (onEnd) onEnd();
@@ -117,6 +118,7 @@ export const speakText = (text, lang = 'hi-IN', onEnd) => {
   }
 
   utterance.onend = () => {
+    window._activeUtterance = null;
     if (onEnd) onEnd();
   };
 
@@ -125,6 +127,7 @@ export const speakText = (text, lang = 'hi-IN', onEnd) => {
     if (onEnd) onEnd();
   };
 
+  window._activeUtterance = utterance;
   window.speechSynthesis.speak(utterance);
 };
 
