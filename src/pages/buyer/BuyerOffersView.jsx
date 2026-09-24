@@ -60,7 +60,7 @@ export default function BuyerOffersView({ requirement, onBack }) {
           </button>
           <h1 className="font-bold text-lg text-slate-800">AgriVa / Offers</h1>
         </div>
-        <button className="bg-[#F57F17] text-white px-3 py-1.5 rounded-full text-xs font-semibold flex items-center gap-1" onClick={() => speakText('किसानों द्वारा दिए गए प्रस्ताव यहां देखें। सबसे बेहतर ऑफर को स्वीकार करें।', 'hi-IN')}>
+        <button className="bg-[#F57F17] text-white px-3 py-1.5 rounded-full text-xs font-semibold flex items-center gap-1" onClick={() => speakText('\u0915\u093f\u0938\u093e\u0928\u094b\u0902 \u0926\u094d\u0935\u093e\u0930\u093e \u0926\u093f\u090f \u0917\u090f \u092a\u094d\u0930\u0938\u094d\u0924\u093e\u0935 \u092f\u0939\u093e\u0902 \u0926\u0947\u0916\u0947\u0902\u0964 \u0938\u092c\u0938\u0947 \u092c\u0947\u0939\u0924\u0930 \u0911\u092b\u0930 \u0915\u094b \u0938\u094d\u0935\u0940\u0915\u093e\u0930 \u0915\u0930\u0947\u0902\u0964', 'hi-IN')}>
           <Volume2 className="w-4 h-4" />
           बोल कर सुनें
         </button>

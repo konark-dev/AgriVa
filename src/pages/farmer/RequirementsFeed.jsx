@@ -73,7 +73,7 @@ export default function RequirementsFeed({ onMakeOffer }) {
           <h1 className="font-bold text-lg text-slate-900">AgriVa ⬢ मांग फीड</h1>
           <p className="text-xs text-slate-500">Requirements Near You</p>
         </div>
-        <button className="bg-orange-50 text-[#F57F17] flex items-center gap-1 px-3 py-1.5 rounded-full text-sm font-medium" onClick={() => speakText('आपके आस पास खरीददारों की सक्रिय मांग उपलब्ध है। नीचे दी गई सूची से अपनी फसल के लिए बोली लगाएं।', 'hi-IN')}>
+        <button className="bg-orange-50 text-[#F57F17] flex items-center gap-1 px-3 py-1.5 rounded-full text-sm font-medium" onClick={() => speakText('\u0906\u092a\u0915\u0947 \u0906\u0938 \u092a\u093e\u0938 \u0916\u0930\u0940\u0926\u0926\u093e\u0930\u094b\u0902 \u0915\u0940 \u0938\u0915\u094d\u0930\u093f\u092f \u092e\u093e\u0902\u0917 \u0909\u092a\u0932\u092c\u094d\u0927 \u0939\u0948\u0964 \u0928\u0940\u091a\u0947 \u0926\u0940 \u0917\u0908 \u0938\u0942\u091a\u0940 \u0938\u0947 \u0905\u092a\u0928\u0940 \u092b\u0938\u0932 \u0915\u0947 \u0932\u093f\u090f \u092c\u094b\u0932\u0940 \u0932\u0917\u093e\u090f\u0902\u0964', 'hi-IN')}>
           <Volume2 size={16} />
           <span>बोल कर सुनें</span>
         </button>
