@@ -16,7 +16,9 @@ export default function PersonaSwitcher() {
     { key: 'mandi', label: '🏛️ Mandi APMC', match: (u) => u.role === 'mandi' },
     { key: 'lab', label: '🔬 Quality Lab', match: (u) => u.role === 'lab' },
     { key: 'admin', label: '🛡️ Admin (Supervision)', match: (u) => u.role === 'admin' },
-    { key: 'lender', label: '🏦 Lender (Credit)', match: (u) => u.role === 'lender' }
+    { key: 'warehouse', label: 'Warehouse Owner', match: (u) => u.role === 'warehouse' },
+    { key: 'lender', label: '🏦 Lender (Credit)', match: (u) => u.role === 'lender' },
+    { key: 'warehouse', label: '🏢 Warehouse Owner', match: (u) => u.role === 'warehouse' }
   ];
 
   return (

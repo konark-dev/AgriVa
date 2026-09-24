@@ -148,6 +148,7 @@ export const AppProvider = ({ children }) => {
       lender: INITIAL_REGISTERED_USERS[8], // NABARD Agri-Finance Desk
       mandi: { uid: "usr-mandi-1", name: "Azadpur Mandi Operator", role: "mandi", mandiName: "Azadpur APMC", phone: "+91 98333 44455" },
       lab: { uid: "usr-lab-1", name: "AgriCert Quality Labs", role: "lab", labName: "AgriCert Quality Labs", phone: "+91 98444 55566" },
+      warehouse: { uid: "usr-warehouse-1", name: "Manoj Warehouse & Storage", role: "warehouse", village: "Ujjain District", sellerBadge: "WDRA Verified", phone: "+91 91234 56789" },
       middleman: { uid: "usr-middleman-1", name: "Vikram Trading & Transport", role: "middleman", phone: "+91 98555 66677", vehicleReg: "DL-01-XY-9999", capacityKg: 3500 }
     };
 

@@ -22,6 +22,7 @@ import LabDashboard from './pages/lab/LabDashboard';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import MiddlemanDashboard from './pages/middleman/MiddlemanDashboard';
 import LenderDashboard from './pages/lender/LenderDashboard';
+import WarehouseDashboard from './pages/warehouse/WarehouseDashboard';
 import SettingsPage from './pages/SettingsPage';
 
 function MainLayout() {
