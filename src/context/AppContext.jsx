@@ -575,6 +575,16 @@ export const AppProvider = ({ children }) => {
       });
     }
 
+    const listingMatch = listings.find(l => l.id === deliveryOrLotId);
+    if (listingMatch) {
+      await updateDocumentFields('listings', deliveryOrLotId, { 
+        qualityFlag: !evaluation.isVerified,
+        labCertificateId: certId,
+        qualityGrade: grainGrade,
+        qualityNotes: evaluation.notes
+      });
+    }
+
     triggerToast(`Quality certificate generated: ${evaluation.resultStatus}`, "Quality Certified", evaluation.isVerified ? "success" : "warning");
     return newCert;
   };

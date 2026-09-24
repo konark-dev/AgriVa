@@ -256,8 +256,8 @@ export default function FarmerDashboard() {
         <div className="flex flex-col md:grid md:grid-cols-2 md:gap-4 md:space-y-0 space-y-4">
           {filteredListings.length === 0 ? (
             <EmptyState
-              title="कोई सूची नहीं"
-              description="फ़सल सूची जोड़ने के लिए ऊपर के ‘फ़सल सूची जोड़ें’ बटन का प्रयोग करें।"
+              title={t(language, "noActiveListings")}
+              description={t(language, "clickToAdd")}
             />
           ) : (
             filteredListings.map(item => {
@@ -278,6 +278,14 @@ export default function FarmerDashboard() {
                       <span className="text-base font-bold text-[#1B5E20]">₹{item.price || 0}/kg</span>
                     </div>
                   </div>
+
+                  {item.qualityFlag && (
+                    <div className="mt-2 mb-2 p-2 bg-rose-100 text-rose-800 rounded-md text-xs font-bold border border-rose-200">
+                      {t(language, 'qualityAlert')}
+                      {item.qualityGrade && <span className="block text-[10px] text-rose-600 font-normal mt-1">Assayer Grade: {item.qualityGrade}</span>}
+                      {item.qualityNotes && <span className="block text-[10px] text-rose-600 font-normal mt-0.5">Notes: {item.qualityNotes}</span>}
+                    </div>
+                  )}
 
                   {/* No‑bid suggestion */}
                   {hasNoBids && (
@@ -361,7 +369,7 @@ export default function FarmerDashboard() {
       {activeTab === 'sales' && (
         <div className="flex flex-col md:grid md:grid-cols-2 md:gap-4 md:space-y-0 space-y-4">
           {sales.length === 0 ? (
-            <EmptyState title="कोई सक्रिय बिक्री नहीं" description="एक बोली स्वीकार करने पर बिक्री सक्रिय होगी।" />
+            <EmptyState title={t(language, "noActiveListings")} description={t(language, "clickToAdd")} />
           ) : (
             sales.map(item => {
               const acceptedBid = bids.find(b => b.id === item.acceptedBidId) || { price: item.price || 0 };
@@ -389,8 +397,10 @@ export default function FarmerDashboard() {
                   </div>
                   <VisualStepper currentStatus={item.status} deliveryMode={item.deliveryMode || 'direct'} />
                   {item.qualityFlag && (
-                    <div className="mt-2 p-2 bg-rose-100 text-rose-800 rounded-md text-xs">
-                      गुणवत्ता समस्या: री‑नेगोशिएशन आवश्यक
+                    <div className="mt-2 mb-2 p-2 bg-rose-100 text-rose-800 rounded-md text-xs font-bold border border-rose-200">
+                      {t(language, 'qualityAlert')}
+                      {item.qualityGrade && <span className="block text-[10px] text-rose-600 font-normal mt-1">Assayer Grade: {item.qualityGrade}</span>}
+                      {item.qualityNotes && <span className="block text-[10px] text-rose-600 font-normal mt-0.5">Notes: {item.qualityNotes}</span>}
                     </div>
                   )}
                   {(item.status === 'Payment Done' || item.status === 'Delivered') && (

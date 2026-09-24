@@ -99,7 +99,7 @@ export default function LabDashboard() {
 
         <div className="grid grid-cols-2 gap-2">
           <div>
-            <label className="text-slate-600 font-semibold mb-1 block">Lot / Delivery ID</label>
+            <label className="text-slate-600 font-semibold mb-1 block">Listing ID / Delivery ID</label>
             <input
               type="text"
               value={testForm.deliveryId}
