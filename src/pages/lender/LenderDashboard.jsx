@@ -1,3 +1,4 @@
+import ProfileHeader from '../../components/ProfileHeader';
 import React, { useState } from 'react';
 import { useApp } from '../../context/AppContext';
 import { 
@@ -542,6 +543,8 @@ export default function LenderDashboard() {
 
   return (
     <div className="min-h-screen bg-[#f9f8f3] p-4 md:p-8">
+      <ProfileHeader />
+
       <div className="max-w-7xl mx-auto">
         {activeView === 'dashboard' && renderDashboard()}
         {activeView === 'application_review' && renderApplicationReview()}

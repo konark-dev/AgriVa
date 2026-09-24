@@ -1,3 +1,4 @@
+import ProfileHeader from '../../components/ProfileHeader';
 import React, { useState } from 'react';
 import { useApp } from '../../context/AppContext';
 import VisualStepper from '../../components/VisualStepper';
@@ -30,6 +31,8 @@ export default function MiddlemanDashboard() {
 
   return (
     <div className="space-y-4 p-4 pb-24">
+      <ProfileHeader />
+
       <div className="flex items-center justify-between">
         <div>
           <h2 className="text-base font-bold text-slate-800 flex items-center space-x-2">

@@ -1,4 +1,5 @@
-﻿import React, { useState } from 'react';
+﻿import ProfileHeader from '../../components/ProfileHeader';
+import React, { useState } from 'react';
 import { useApp } from '../../context/AppContext';
 import VisualStepper from '../../components/VisualStepper';
 import EmptyState from '../../components/EmptyState';
@@ -41,6 +42,8 @@ export default function BuyerMarketplace() {
 
   return (
     <div className="space-y-4 p-4 pb-24 max-w-4xl mx-auto">
+      <ProfileHeader />
+
       {/* Top Header */}
       <div className="flex items-center justify-between">
         <div>

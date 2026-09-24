@@ -1,3 +1,4 @@
+import ProfileHeader from '../../components/ProfileHeader';
 import React, { useState } from 'react';
 import { useApp } from '../../context/AppContext';
 import EmptyState from '../../components/EmptyState';
@@ -57,6 +58,8 @@ export default function MandiDashboard() {
 
   return (
     <div className="space-y-4 p-4 pb-24">
+      <ProfileHeader />
+
       {/* Top Header */}
       <div className="flex items-center justify-between">
         <div>

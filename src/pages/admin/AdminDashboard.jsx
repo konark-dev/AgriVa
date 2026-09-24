@@ -1,3 +1,4 @@
+import ProfileHeader from '../../components/ProfileHeader';
 import React, { useState } from 'react';
 import { useApp } from '../../context/AppContext';
 import EmptyState from '../../components/EmptyState';
@@ -77,6 +78,8 @@ export default function AdminDashboard() {
 
   return (
     <div className="space-y-5 p-4 pb-24 font-sans text-slate-800">
+      <ProfileHeader />
+
       {/* Header & Platform Governance Banner */}
       <div className="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">

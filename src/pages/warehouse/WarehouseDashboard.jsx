@@ -1,3 +1,4 @@
+import ProfileHeader from '../../components/ProfileHeader';
 import React, { useState } from 'react';
 import { useApp } from '../../context/AppContext';
 import { Warehouse, Plus, CheckCircle2, XCircle, MapPin, Box, TrendingUp, IndianRupee } from 'lucide-react';
@@ -34,6 +35,8 @@ export default function WarehouseDashboard() {
 
   return (
     <div className="space-y-4 p-4 pb-24 bg-[#f9f8f3] min-h-screen text-slate-800 max-w-4xl mx-auto">
+      <ProfileHeader />
+
       
       {/* Header */}
       <div className="flex items-center justify-between">

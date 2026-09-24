@@ -1,3 +1,4 @@
+import ProfileHeader from '../../components/ProfileHeader';
 import React, { useState } from 'react';
 import { useApp } from '../../context/AppContext';
 import EmptyState from '../../components/EmptyState';
@@ -39,6 +40,8 @@ export default function LabDashboard() {
   if (currentLabReg.verificationStatus === 'pending') {
     return (
       <div className="bg-white border border-slate-200 rounded-3xl p-6 text-center space-y-4 my-8 shadow-2xl">
+      <ProfileHeader />
+
         <div className="w-16 h-16 rounded-full bg-amber-950/80 border border-amber-800 flex items-center justify-center mx-auto text-amber-400">
           <Clock className="w-8 h-8 animate-spin" style={{ animationDuration: '4s' }} />
         </div>
