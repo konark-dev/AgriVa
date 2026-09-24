@@ -108,6 +108,9 @@ function MainLayout() {
       case 'lender':
         return <LenderDashboard />;
 
+      case 'warehouse':
+        return <WarehouseDashboard />;
+
       default:
         return <FarmerDashboard />;
     }
