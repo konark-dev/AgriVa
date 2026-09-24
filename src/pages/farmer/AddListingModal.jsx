@@ -3,9 +3,10 @@ import { useApp } from '../../context/AppContext';
 import { X, Mic, MicOff, PlusCircle, Calendar, MapPin, Tag, Weight } from 'lucide-react';
 import { initSpeechRecognition, stopListening } from '../../utils/speechUtils';
 import NetRealizationWidget from '../../components/NetRealizationWidget';
+import { t } from '../../utils/translations';
 
 export default function AddListingModal({ onClose }) {
-  const { createListing, checkUnderpricing } = useApp();
+  const { createListing, checkUnderpricing, language } = useApp();
 
   const [form, setForm] = useState({
     crop: 'Wheat',
@@ -87,7 +88,7 @@ export default function AddListingModal({ onClose }) {
         <div className="p-4 border-b border-slate-200 flex items-center justify-between bg-[#1B5E20] text-white">
           <div className="flex items-center space-x-2">
             <PlusCircle className="w-5 h-5" />
-            <h3 className="font-bold text-sm">Add New Crop Listing</h3>
+            <h3 className="font-bold text-sm">{t(language, 'addListing')}</h3>
           </div>
           <button onClick={onClose} className="p-1 rounded-full hover:bg-white/20 transition-colors">
             <X className="w-5 h-5" />
@@ -96,10 +97,10 @@ export default function AddListingModal({ onClose }) {
 
         {/* Form Body */}
         <form onSubmit={handleSubmit} className="p-4 space-y-3 overflow-y-auto flex-1 text-xs">
-          {/* Crop Type Select */}
+          {/* {t(language, 'cropType')} Select */}
           <div>
             <label className="text-slate-600 font-semibold mb-1 flex items-center justify-between">
-              <span>Crop Type</span>
+              <span>{t(language, 'cropType')}</span>
               <button type="button" onClick={() => startVoiceInput('crop')} className="focus:outline-none">
                 {activeMicField === 'crop' ? <MicOff className="w-3.5 h-3.5 text-rose-400 animate-pulse" /> : <Mic className="w-3.5 h-3.5 text-[#1B5E20] opacity-80" />}
               </button>
@@ -122,7 +123,7 @@ export default function AddListingModal({ onClose }) {
           <div className="grid grid-cols-2 gap-2.5">
             <div>
               <label className="text-slate-600 font-semibold mb-1 flex items-center justify-between">
-                <span>Quantity (kg)</span>
+                <span>{t(language, 'quantityKg')}</span>
                 <button type="button" onClick={() => startVoiceInput('quantity')} className="focus:outline-none">
                   {activeMicField === 'quantity' ? <MicOff className="w-3.5 h-3.5 text-rose-400 animate-pulse" /> : <Mic className="w-3.5 h-3.5 text-[#1B5E20] opacity-80" />}
                 </button>
@@ -141,7 +142,7 @@ export default function AddListingModal({ onClose }) {
 
             <div>
               <label className="text-slate-600 font-semibold mb-1 flex items-center justify-between">
-                <span>Price (₹/kg)</span>
+                <span>{t(language, 'priceKg')}</span>
                 <button type="button" onClick={() => startVoiceInput('price')} className="focus:outline-none">
                   {activeMicField === 'price' ? <MicOff className="w-3.5 h-3.5 text-rose-400 animate-pulse" /> : <Mic className="w-3.5 h-3.5 text-[#1B5E20] opacity-80" />}
                 </button>
@@ -161,7 +162,7 @@ export default function AddListingModal({ onClose }) {
 
           {/* Quality Grade */}
           <div>
-            <label className="text-slate-600 font-semibold mb-1 block">Expected Quality Grade</label>
+            <label className="text-slate-600 font-semibold mb-1 block">{t(language, 'expectedQuality')}</label>
             <div className="relative">
               <select
                 value={form.qualityGrade}
@@ -169,9 +170,9 @@ export default function AddListingModal({ onClose }) {
                 className="w-full px-3 py-2.5 rounded-xl bg-slate-50 text-slate-700 border border-slate-200 text-slate-800 font-medium focus:outline-none focus:border-emerald-500 appearance-none"
               >
                 <option value="Grade A">Grade A (Premium / &lt;10% Moisture)</option>
-                <option value="Grade B">Grade B (Standard)</option>
-                <option value="Grade C">Grade C (Low Grade)</option>
-                <option value="Processing">Processing Grade (Industrial)</option>
+                <option value="Grade B">{t(language, 'gradeB')}</option>
+                <option value="Grade C">{t(language, 'gradeC')}</option>
+                <option value="Processing">{t(language, 'processingGrade')}</option>
               </select>
             </div>
           </div>
@@ -181,13 +182,13 @@ export default function AddListingModal({ onClose }) {
           {checkUnderpricing(form.crop, form.price) && (
             <div className="bg-amber-50 border border-amber-200 text-amber-800 text-xs font-bold p-3 rounded-xl flex items-start gap-2 shadow-sm">
               <span className="text-amber-500 mt-0.5">⚠️</span>
-              <span>This price is below the typical mandi rate for this crop.</span>
+              <span>{t(language, 'belowMandiRate')}</span>
             </div>
           )}
 
-          {/* Harvest Ready Date */}
+          {/* {t(language, 'harvestReadyDate')} */}
           <div>
-            <label className="text-slate-600 font-semibold mb-1 block">Harvest Ready Date</label>
+            <label className="text-slate-600 font-semibold mb-1 block">{t(language, 'harvestReadyDate')}</label>
             <input
               type="date"
               value={form.harvestDate}
@@ -199,7 +200,7 @@ export default function AddListingModal({ onClose }) {
           {/* Pickup Location */}
           <div>
             <label className="text-slate-600 font-semibold mb-1 flex items-center justify-between">
-              <span>Pickup Farm Location</span>
+              <span>{t(language, 'pickupLocation')}</span>
               <button type="button" onClick={() => startVoiceInput('pickupLocation')} className="focus:outline-none">
                   {activeMicField === 'pickupLocation' ? <MicOff className="w-3.5 h-3.5 text-rose-400 animate-pulse" /> : <Mic className="w-3.5 h-3.5 text-[#1B5E20] opacity-80" />}
               </button>
@@ -218,7 +219,7 @@ export default function AddListingModal({ onClose }) {
             type="submit"
             className="w-full btn-touch py-3 rounded-xl bg-[#1B5E20] text-white font-bold text-sm shadow-lg mt-3"
           >
-            Publish Listing
+            {t(language, 'publishListing')}
           </button>
         </form>
       </div>
