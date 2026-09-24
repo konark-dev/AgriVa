@@ -93,7 +93,7 @@ export default function BuyerMarketplace() {
                   className={`px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all border ${
                     selectedCropFilter === crop
                       ? 'bg-[#1B5E20] text-white shadow'
-                      : 'bg-slate-50 text-slate-700 text-slate-600 hover:bg-slate-700'
+                      : 'bg-slate-50 text-slate-600 border border-slate-200 hover:bg-emerald-50 hover:text-emerald-800'
                   }`}
                 >{crop === 'All' ? t(language, 'all') : t(language, crop.toLowerCase()) === crop.toLowerCase() ? crop : t(language, crop.toLowerCase())}</button>
               ))}
