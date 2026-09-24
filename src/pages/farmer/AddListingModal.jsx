@@ -174,7 +174,7 @@ export default function AddListingModal({ onClose }) {
             </div>
           </div>
 
-          <NetRealizationWidget price={form.price} quantity={form.quantity} grade={form.qualityGrade} />
+          <NetRealizationWidget price={form.price} quantity={form.quantity} grade={form.qualityGrade} crop={form.crop} />
 
           {checkUnderpricing(form.crop, form.price) && (
             <div className="bg-amber-50 border border-amber-200 text-amber-800 text-xs font-bold p-3 rounded-xl flex items-start gap-2 shadow-sm">
