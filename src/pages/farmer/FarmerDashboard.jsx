@@ -270,6 +270,10 @@ export default function FarmerDashboard() {
                       <div className="flex items-center space-x-2">
                         <span className="font-extrabold text-sm text-[#1B5E20]">{item.crop}</span>
                         <span className="px-2 py-0.5 bg-slate-100 text-slate-600 rounded-full text-xs">{item.quantity} kg</span>
+                        {item.targetAvenue === 'fpo' && <span className="px-2 py-0.5 bg-blue-100 text-blue-700 rounded-full text-[10px] font-bold">🎯 Target: FPO</span>}
+                        {item.targetAvenue === 'mandi' && <span className="px-2 py-0.5 bg-orange-100 text-orange-700 rounded-full text-[10px] font-bold">🎯 Target: Mandi</span>}
+                        {item.targetAvenue === 'bulk' && <span className="px-2 py-0.5 bg-purple-100 text-purple-700 rounded-full text-[10px] font-bold">🎯 Target: Bulk Buyer</span>}
+
                       </div>
                       <p className="text-xs text-slate-500">स्थान: {item.location?.name || 'सोनिपत फ़ार्म'}</p>
                       <p className="text-xs text-slate-500">भुगतान अपेक्षित: ₹{item.price || 0}/kg</p>

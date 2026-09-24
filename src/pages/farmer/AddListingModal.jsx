@@ -20,6 +20,7 @@ export default function AddListingModal({ onClose }) {
 
   const [errors, setErrors] = useState({});
   const [activeMicField, setActiveMicField] = useState(null);
+  const [selectedAvenue, setSelectedAvenue] = useState(null);
   const recognitionRef = React.useRef(null);
 
   const startVoiceInput = (field) => {
@@ -72,7 +73,8 @@ export default function AddListingModal({ onClose }) {
       price: Number(form.price),
       grade: form.qualityGrade,
       harvestDate: form.harvestDate,
-      location: { name: form.pickupLocation, lat: form.lat, lng: form.lng }
+      location: { name: form.pickupLocation, lat: form.lat, lng: form.lng },
+      targetAvenue: selectedAvenue
     });
 
     onClose();
@@ -174,7 +176,7 @@ export default function AddListingModal({ onClose }) {
             </div>
           </div>
 
-          <NetRealizationWidget price={form.price} quantity={form.quantity} grade={form.qualityGrade} crop={form.crop} />
+          <NetRealizationWidget price={form.price} quantity={form.quantity} grade={form.qualityGrade} crop={form.crop} selectedAvenue={selectedAvenue} onSelectAvenue={setSelectedAvenue} />
 
           {checkUnderpricing(form.crop, form.price) && (
             <div className="bg-amber-50 border border-amber-200 text-amber-800 text-xs font-bold p-3 rounded-xl flex items-start gap-2 shadow-sm">
