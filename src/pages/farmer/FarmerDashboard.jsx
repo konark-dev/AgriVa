@@ -6,6 +6,7 @@ import VisualStepper from '../../components/VisualStepper';
 import EmptyState from '../../components/EmptyState';
 import AddListingModal from './AddListingModal';
 import LiveMandiPrices from '../shared/LiveMandiPrices';
+import FpoIntelligenceWidget from '../../components/FpoIntelligenceWidget';
 import RatingStars from '../../components/RatingStars';
 import { calculatePayoutBreakdown } from '../../utils/qualityEngine';
 import { speakText, initSpeechRecognition } from '../../utils/speechUtils';
@@ -88,6 +89,18 @@ export default function FarmerDashboard() {
 
   return (
     <div className="space-y-4 p-4 pb-24 bg-[#f9f8f3] min-h-screen text-slate-800 max-w-4xl mx-auto">
+
+      {/* ---------- FPO Dashboard Additions ---------- */}
+      {currentUser?.role === 'fpo' && (
+        <div className="mb-6">
+          <h2 className="text-lg font-black text-slate-800 mb-3 flex items-center">
+            <span className="w-2 h-6 bg-emerald-600 rounded-full mr-2"></span>
+            FPO Cluster Intelligence
+          </h2>
+          <FpoIntelligenceWidget />
+        </div>
+      )}
+  
 
       {/* ---------- Header with ticker ---------- */}
       <div className="flex items-center justify-between p-3 bg-white rounded-2xl border border-slate-200 shadow-sm">
