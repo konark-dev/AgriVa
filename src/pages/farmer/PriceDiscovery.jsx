@@ -117,25 +117,25 @@ export default function PriceDiscovery() {
       </div>
 
       {/* Rule-Based "Best Mandi" Recommendation Section */}
-      <div className="bg-gradient-to-r from-emerald-950/80 to-slate-900 border border-emerald-800/60 rounded-2xl p-3.5 space-y-2 shadow-lg">
+      <div className="bg-emerald-50 border border-emerald-200 rounded-2xl p-4 space-y-3 shadow-sm">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">
-            <Award className="w-5 h-5 text-amber-400" />
-            <h3 className="text-xs font-bold text-slate-800 uppercase tracking-wide">
-              Rule-Based Best Mandi Recommendation
+            <Award className="w-6 h-6 text-emerald-600" />
+            <h3 className="text-sm font-bold text-emerald-900 uppercase tracking-wide">
+              Smart Mandi Recommendation
             </h3>
           </div>
-          <span className="text-[10px] bg-emerald-50 text-emerald-300 px-2 py-0.5 rounded border border-emerald-200">
-            Net Yield Ranked
+          <span className="text-[10px] bg-emerald-600 text-white px-2 py-0.5 rounded-full font-bold shadow-sm">
+            Best Payout
           </span>
         </div>
-        <p className="text-[11px] text-slate-600 leading-relaxed">
-          Calculated via <code className="text-[#1B5E20] font-mono text-[10px]">netPrice = mandiPrice − transportCost(distance)</code>
+        <p className="text-[11px] text-emerald-700 leading-relaxed font-medium">
+          Automatically ranks Mandis by taking the live market price and deducting estimated transport costs for your distance.
         </p>
 
         <div className="space-y-2 pt-1">
           {bestMandis.map((mandi, idx) => (
-            <div key={mandi.id} className="bg-white border border-slate-200 rounded-xl p-2.5 flex items-center justify-between text-xs">
+            <div key={mandi.id} className="bg-white border border-emerald-200 rounded-xl p-3 flex items-center justify-between text-xs shadow-sm mb-2">
               <div>
                 <div className="font-bold text-slate-800 flex items-center space-x-1">
                   <span className="text-amber-400 font-extrabold">#{idx + 1}</span>
@@ -161,14 +161,13 @@ export default function PriceDiscovery() {
         
         {filteredPrices.length === 0 ? (
           /* Fallback state-average card when crop not found */
-          <div className="bg-white border border-amber-800/60 rounded-2xl p-4 text-center space-y-2">
-            <div className="text-amber-400 text-xs font-bold uppercase tracking-wide">State-Average Price Placeholder</div>
-            <p className="text-xs text-slate-600">
-              No live mandi prices reported today for <strong className="text-white">{selectedCrop}</strong>. Showing Haryana state benchmark average.
+          <div className="bg-amber-50 border border-amber-200 rounded-2xl p-6 text-center space-y-2 shadow-sm mt-4">
+            <div className="text-amber-700 text-sm font-bold uppercase tracking-wide">No Live Prices Found</div>
+            <p className="text-xs text-amber-800 font-medium">
+              No live mandi prices reported today for <strong className="text-amber-900">{selectedCrop}</strong>. Showing state benchmark average instead.
             </p>
-            <div className="text-xl font-bold text-[#1B5E20] py-1">₹28.50 / kg (Avg)</div>
-          </div>
-        ) : (
+            <div className="text-2xl font-black text-amber-600 pt-2">₹28.50 <span className="text-sm font-semibold">/ kg (Avg)</span></div>
+          </div>        ) : (
           filteredPrices.map((item) => (
             <div key={item.id} className="bg-white rounded-2xl p-3.5 border border-slate-200 flex items-center justify-between shadow-md">
               <div className="space-y-1">
