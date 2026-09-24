@@ -200,7 +200,7 @@ export default function AIAssistantModal() {
                 <button
                   key={idx}
                   onClick={() => handleQuickQuestion(q)}
-                  className="px-2.5 py-1 rounded-full bg-slate-50 text-slate-700 hover:bg-slate-700 text-[11px] font-medium text-slate-600 whitespace-nowrap border border-slate-200 transition"
+                  className="px-3 py-1.5 rounded-full bg-white text-slate-600 hover:bg-emerald-50 hover:text-emerald-800 hover:border-emerald-200 text-[11px] font-bold whitespace-nowrap border border-slate-200 transition-colors"
                 >
                   {q}
                 </button>
