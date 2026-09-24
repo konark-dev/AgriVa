@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useApp } from '../../context/AppContext';
+import GlobalVoiceNavigator from '../../components/GlobalVoiceNavigator';
 import VisualStepper from '../../components/VisualStepper';
 import EmptyState from '../../components/EmptyState';
 import AddListingModal from './AddListingModal';
@@ -156,7 +157,7 @@ export default function FarmerDashboard() {
               0% कमीशन
             </span>
           </div>
-          <p className="text-xs text-slate-500 mb-3">आज का सर्वोत्तम मंडी भाव पाएं / Best Mandi Rate</p>
+          <p className="text-xs text-slate-500 mb-3"></p>
           <button
             onClick={() => setShowAddModal(true)}
             className="w-full py-3 bg-[#1B5E20] text-white rounded-xl font-bold shadow flex justify-center items-center"
@@ -173,7 +174,7 @@ export default function FarmerDashboard() {
             <div>
               <p className="text-xs font-bold text-rose-700 uppercase tracking-wider">⚠️ e-KYC Pending / सत्यापन शेष</p>
               <p className="text-[10px] text-rose-600 mb-1 leading-snug mt-1">
-                You cannot receive instant Escrow payments directly to your bank until you complete Aadhaar verification.
+                
               </p>
             </div>
           </div>
@@ -213,7 +214,7 @@ export default function FarmerDashboard() {
         </div>
         <div>
           <p className="font-bold text-sm text-orange-900">मंडी बंदी सूचना / Mandi Alert</p>
-          <p className="text-xs text-orange-700 leading-snug mt-0.5">आज शाम 5 बजे तक मंडी बंद रहेगी। कृपया समय-सीमा में अपने लेन-देन निपटायें।</p>
+          <p className="text-xs text-orange-700 leading-snug mt-0.5"></p>
         </div>
       </div>
 
@@ -391,7 +392,22 @@ export default function FarmerDashboard() {
         </div>
       )}
 
-      {/* ---------- Warehouse Booking Card ---------- */}
+            {activeTab === 'warehouse_booking' && (
+        <div className="p-4 bg-amber-50 rounded-2xl border border-amber-200 shadow-sm flex flex-col space-y-3 mt-2">
+          <div className="flex items-center justify-between mb-1">
+            <h3 className="text-lg font-extrabold text-amber-900">भंडारण / Warehouse</h3>
+            <span className="px-2 py-0.5 bg-amber-200 text-amber-900 border border-amber-300 rounded-full text-[10px] font-bold">WDRA Approved</span>
+          </div>
+          <button
+            onClick={() => triggerToast('Booking...', 'Booking Started', 'info')}
+            className="w-full py-4 bg-amber-600 hover:bg-amber-700 text-white rounded-xl font-bold shadow flex justify-center items-center transition-colors"
+          >
+            <CheckCircle2 className="w-6 h-6 mr-2" /> सुरक्षित गोदाम बुक करें
+          </button>
+        </div>
+      )}
+
+      {/* ---------- Help Center Card ---------- */}
       <div className="p-4 bg-amber-50 rounded-2xl border border-amber-200 shadow-sm flex flex-col space-y-3 mt-2">
         <div className="flex items-center justify-between mb-1">
           <h3 className="text-lg font-extrabold text-amber-900">भंडारण / Warehouse Booking</h3>
@@ -444,6 +460,8 @@ export default function FarmerDashboard() {
           </div>
         </div>
       )}
+
+      <GlobalVoiceNavigator setActiveTab={setActiveTab} setShowAddModal={setShowAddModal} />
 
       {payoutModal && (
         <div className="fixed inset-0 z-50 bg-black/30 flex items-center justify-center p-4">

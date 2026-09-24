@@ -158,3 +158,39 @@ export const narrateScreen = (stepName, language = 'hi') => {
   const lang = language === 'hi' ? 'hi' : 'en';
   return narrations[lang][stepName] || narrations[lang]['profile'];
 };
+
+
+/**
+ * Parse spoken input into an app navigation route
+ */
+export const parseVoiceNavigation = async (voiceTranscript) => {
+  const prompt = `
+Map the following spoken text (in Hindi/English) to exactly ONE of these internal app routes based on the user's intent:
+- 'warehouse' (user wants space, godown, storage, rent, rakhne ki jagah)
+- 'prices' (user wants market prices, bhav, rate, mandi)
+- 'feed' (user wants to see buyer requirements, demand, mang, kharidar)
+- 'add_listing' (user wants to sell crop, fasal bechni hai, add)
+- 'sales' (user wants to see active sales, orders, payment, khata)
+- 'dashboard' (default/home/profile/back)
+
+Spoken text: "${voiceTranscript}"
+
+Respond ONLY with the exact route string in lowercase without quotes or markdown.`;
+
+  try {
+    const raw = await callGemini([
+      { role: "user", parts: [{ text: prompt }] }
+    ], { temperature: 0.1 });
+    const route = raw.trim().toLowerCase();
+    const validRoutes = ['warehouse', 'prices', 'feed', 'add_listing', 'sales', 'dashboard'];
+    
+    // Check if the exact response is in valid routes or if the AI output contains one
+    for (const vr of validRoutes) {
+      if (route.includes(vr)) return vr;
+    }
+    return 'dashboard';
+  } catch (e) {
+    console.warn("parseVoiceNavigation error:", e);
+    return 'dashboard';
+  }
+};
