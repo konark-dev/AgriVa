@@ -7,10 +7,11 @@ import RatingStars from '../../components/RatingStars';
 import TrackingMapModal from '../../components/TrackingMapModal';
 import PaymentGatewayModal from '../../components/PaymentGatewayModal';
 import { calculateSurplusRescue } from '../../utils/qualityEngine';
+import { t } from '../../utils/translations';
 import { Search, Filter, ShoppingBag, Clock, ShieldCheck, Tag, DollarSign, CheckCircle2, Map, AlertOctagon } from 'lucide-react';
 
 export default function BuyerMarketplace() {
-  const { listings, deliveries, bids, placeBid, confirmBuyerDelivery, raiseDispute, currentUser, triggerToast } = useApp();
+  const { listings, deliveries, bids, placeBid, confirmBuyerDelivery, raiseDispute, currentUser, triggerToast, language } = useApp();
   const [selectedCropFilter, setSelectedCropFilter] = useState('All');
   const [activeTab, setActiveTab] = useState('browse'); // browse | my_orders
   const [biddingListing, setBiddingListing] = useState(null);
@@ -49,7 +50,7 @@ export default function BuyerMarketplace() {
         <div>
           <h2 className="text-base font-bold text-slate-800 flex items-center space-x-2">
             <ShoppingBag className="w-5 h-5 text-[#1B5E20]" />
-            <span>Buyer Marketplace</span>
+            <span>{t(language, 'buyerMarketplace')}</span>
           </h2>
           <p className="text-xs text-slate-500">Direct FPO/Farmer Bidding & Consumer Batching</p>
         </div>
@@ -82,7 +83,7 @@ export default function BuyerMarketplace() {
           <div className="bg-white rounded-2xl p-3 border border-slate-200 space-y-2">
             <div className="flex items-center space-x-2 text-xs">
               <Filter className="w-4 h-4 text-[#1B5E20]" />
-              <span className="font-semibold text-slate-600">Filter Crop:</span>
+              <span className="font-semibold text-slate-600">{t(language, 'filterCrop')}</span>
             </div>
             <div className="flex space-x-1.5 overflow-x-auto no-scrollbar">
               {['All', 'Wheat', 'Rice', 'Tomato', 'Potato', 'Onion'].map((crop) => (
@@ -106,19 +107,19 @@ export default function BuyerMarketplace() {
             <div className="flex items-center justify-between text-xs">
               <div className="flex items-center space-x-2 font-bold text-sky-800">
                 <Clock className="w-4 h-4 text-sky-600 animate-spin" style={{ animationDuration: '6s' }} />
-                <span>Consumer Area Collection Window</span>
+                <span>{t(language, 'consumerCollectionWindow')}</span>
               </div>
               <span className="px-2 py-0.5 rounded bg-sky-100 text-sky-800 text-[10px] font-bold border border-sky-300">
                 Closing in 04h 25m
               </span>
             </div>
             <p className="text-[11px] text-slate-700 leading-relaxed">
-              "Your order joins others in your area. Dispatches automatically once the minimum batch size (500kg) is reached."
+              {t(language, 'batchFillStatus')}
             </p>
             {/* Visual Batch Fill Bar */}
             <div className="space-y-1 pt-1">
               <div className="flex justify-between text-[10px] text-slate-600">
-                <span>Current Batch Fill: 380kg / 500kg</span>
+                <span>{t(language, 'currentBatchFill')} 380kg / 500kg</span>
                 <span className="text-[#1B5E20] font-bold">76% Full</span>
               </div>
               <div className="w-full bg-white rounded-full h-2 overflow-hidden border border-slate-200">
@@ -159,19 +160,19 @@ export default function BuyerMarketplace() {
                           <div className="flex flex-col items-end">
                             <span className="text-[10px] text-slate-400 line-through">₹{item.price || 0}/kg</span>
                             <span className="text-base font-extrabold text-rose-600">₹{finalPrice}/kg</span>
-                            <span className="text-[9px] font-bold text-rose-500 bg-rose-50 px-1 rounded">-{surplusCheck.discountPct}% OFF</span>
+                            <span className="text-[9px] font-bold text-rose-500 bg-rose-50 px-1 rounded">-{surplusCheck.discountPct}% {t(language, 'off')}</span>
                           </div>
                         ) : (
                           <span className="text-base font-extrabold text-[#1B5E20]">₹{finalPrice}/kg</span>
                         )}
-                        <div className="text-[10px] font-semibold text-slate-500">{item.quantity} kg available</div>
+                        <div className="text-[10px] font-semibold text-slate-500">{item.quantity} kg {t(language, 'available')}</div>
                       </div>
                     </div>
 
                     <div className="pt-2 border-t border-slate-200 flex items-center justify-between">
                       <span className="text-xs text-slate-500 flex flex-col">
                         <span>Harvest Date: {item.harvestDate}</span>
-                        {isSurplus && <span className="text-[9px] text-rose-500 font-bold">Expires in {surplusCheck.remainingDays} days</span>}
+                        {isSurplus && <span className="text-[9px] text-rose-500 font-bold">{t(language, 'expiresIn')} {surplusCheck.remainingDays} {t(language, 'days')}</span>}
                       </span>
                       <button
                         onClick={() => {

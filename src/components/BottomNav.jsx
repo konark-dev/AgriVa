@@ -1,57 +1,62 @@
 import React from 'react';
 import { useApp } from '../context/AppContext';
-import { Home, Store, Bell, User, Truck, Building2, Microscope, ShieldCheck, BarChart3 } from 'lucide-react';
+import { Home, Store, Bell, User, Truck, Building2, Microscope, ShieldCheck, BarChart3, AlertCircle } from 'lucide-react';
+import { t } from '../utils/translations';
 
 export default function BottomNav({ activeTab, setActiveTab }) {
-  const { currentUser } = useApp();
+  const { currentUser, language } = useApp();
 
+  // Unified translation mapping for bottom nav
   const getNavItems = () => {
     switch (currentUser.role) {
       case 'farmer':
+      case 'fpo':
         return [
-          { id: 'dashboard', label: 'होम', sublabel: 'Home', icon: Home },
-          { id: 'feed', label: 'मांग फ़ीड', sublabel: 'Feed', icon: Bell },
-          { id: 'prices', label: 'बेचें', sublabel: 'Sell', icon: Store },
-          { id: 'settings', label: 'प्रोफ़ाइल', sublabel: 'Profile', icon: User }
+          { id: 'dashboard', label: t(language, 'home'), icon: Home },
+          { id: 'feed', label: t(language, 'feed'), icon: Bell },
+          { id: 'prices', label: t(language, 'sell'), icon: Store },
+          { id: 'settings', label: t(language, 'profile'), icon: User }
         ];
       case 'buyer':
+      case 'consumer':
+      case 'bulk_buyer':
         return [
-          { id: 'dashboard', label: 'होम', sublabel: 'Home', icon: Home },
-          { id: 'postReq', label: 'मांग', sublabel: 'My Posts', icon: Bell },
-          { id: 'offers', label: 'बोलियां', sublabel: 'Offers', icon: Store },
-          { id: 'settings', label: 'प्रोफ़ाइल', sublabel: 'Profile', icon: User }
+          { id: 'dashboard', label: t(language, 'home'), icon: Home },
+          { id: 'postReq', label: t(language, 'postReq'), icon: Bell },
+          { id: 'offers', label: t(language, 'offers'), icon: Store },
+          { id: 'settings', label: t(language, 'profile'), icon: User }
         ];
       case 'transporter':
         return [
-          { id: 'dashboard', label: 'पिकअप', sublabel: 'Pickups', icon: Truck },
-          { id: 'route', label: 'रूट', sublabel: 'Route', icon: BarChart3 },
-          { id: 'notifications', label: 'अलर्ट', sublabel: 'Alerts', icon: Bell },
-          { id: 'settings', label: 'प्रोफ़ाइल', sublabel: 'Profile', icon: User }
+          { id: 'dashboard', label: t(language, 'pickups'), icon: Truck },
+          { id: 'route_comparison', label: t(language, 'smartRoute'), icon: BarChart3 },
+          { id: 'notifications', label: t(language, 'alerts'), icon: Bell },
+          { id: 'settings', label: t(language, 'profile'), icon: User }
         ];
       case 'mandi':
         return [
-          { id: 'dashboard', label: 'होम', sublabel: 'Home', icon: Home },
-          { id: 'gate', label: 'गेट', sublabel: 'Gate', icon: Building2 },
-          { id: 'notifications', label: 'अलर्ट', sublabel: 'Alerts', icon: Bell },
-          { id: 'settings', label: 'प्रोफ़ाइल', sublabel: 'Profile', icon: User }
+          { id: 'dashboard', label: t(language, 'home'), icon: Home },
+          { id: 'gate', label: 'Gate', icon: Building2 }, // Optional: Add gate to translations if needed
+          { id: 'notifications', label: t(language, 'alerts'), icon: Bell },
+          { id: 'settings', label: t(language, 'profile'), icon: User }
         ];
       case 'lab':
         return [
-          { id: 'dashboard', label: 'परीक्षण', sublabel: 'Tests', icon: Microscope },
-          { id: 'notifications', label: 'अलर्ट', sublabel: 'Alerts', icon: Bell },
-          { id: 'settings', label: 'प्रोफ़ाइल', sublabel: 'Profile', icon: User }
+          { id: 'dashboard', label: t(language, 'tests'), icon: Microscope },
+          { id: 'notifications', label: t(language, 'alerts'), icon: Bell },
+          { id: 'settings', label: t(language, 'profile'), icon: User }
         ];
       case 'admin':
         return [
-          { id: 'dashboard', label: 'सत्यापन', sublabel: 'Verify', icon: ShieldCheck },
-          { id: 'notifications', label: 'अलर्ट', sublabel: 'Alerts', icon: Bell },
-          { id: 'settings', label: 'प्रोफ़ाइल', sublabel: 'Profile', icon: User }
+          { id: 'dashboard', label: t(language, 'home'), icon: ShieldCheck },
+          { id: 'notifications', label: t(language, 'alerts'), icon: Bell },
+          { id: 'settings', label: t(language, 'profile'), icon: User }
         ];
       default:
         return [
-          { id: 'dashboard', label: 'होम', sublabel: 'Home', icon: Home },
-          { id: 'notifications', label: 'अलर्ट', sublabel: 'Alerts', icon: Bell },
-          { id: 'settings', label: 'प्रोफ़ाइल', sublabel: 'Profile', icon: User }
+          { id: 'dashboard', label: t(language, 'home'), icon: Home },
+          { id: 'notifications', label: t(language, 'alerts'), icon: Bell },
+          { id: 'settings', label: t(language, 'profile'), icon: User }
         ];
     }
   };
@@ -79,9 +84,6 @@ export default function BottomNav({ activeTab, setActiveTab }) {
             </div>
             <span className={`text-[10px] mt-0.5 font-bold leading-tight ${isActive ? 'text-[#1B5E20]' : 'text-slate-500'}`}>
               {item.label}
-            </span>
-            <span className={`text-[8px] font-medium leading-tight ${isActive ? 'text-[#1B5E20]' : 'text-slate-500'}`}>
-              {item.sublabel}
             </span>
           </button>
         );
