@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useApp } from '../../context/AppContext';
+import { t } from '../../utils/translations';
 import GlobalVoiceNavigator from '../../components/GlobalVoiceNavigator';
 import VisualStepper from '../../components/VisualStepper';
 import EmptyState from '../../components/EmptyState';
@@ -33,7 +34,8 @@ export default function FarmerDashboard() {
     acceptBid,
     currentUser,
     labRegistrations,
-    triggerToast
+    triggerToast,
+    language
   } = useApp();
   const isUnverified = currentUser?.role === 'farmer' && currentUser?.sellerBadge === 'New Seller';
 
@@ -118,7 +120,7 @@ export default function FarmerDashboard() {
                 </span>
               ) : (
                 <span className="ml-2 px-1.5 py-0.5 bg-emerald-100 text-emerald-800 rounded text-[9px] font-bold uppercase tracking-wider border border-emerald-200">
-                  ✓ Verified
+                  {t(language, 'verified')}
                 </span>
               )
             )}
@@ -133,7 +135,7 @@ export default function FarmerDashboard() {
       <div className="relative">
         <input
           type="text"
-          placeholder="Search (Wheat, Potato)..."
+          placeholder={t(language, "searchPlaceholder")}
           value={searchTerm}
           onChange={e => setSearchTerm(e.target.value)}
           className="w-full pl-4 pr-12 py-2 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-[#1B5E20]"
@@ -172,11 +174,11 @@ export default function FarmerDashboard() {
             className="w-full py-5 bg-white text-[#1B5E20] rounded-xl font-black text-xl shadow-lg flex flex-col justify-center items-center transform transition active:scale-95"
           >
             <PlusCircle className="w-12 h-12 mb-2 text-[#F57F17]" />
-            SELL CROP
+            {t(language, 'sellCrop')}
           </button>
           <div className="mt-3 inline-flex items-center px-3 py-1 bg-green-800 text-green-100 rounded-full text-xs font-bold border border-green-600">
             <Tag className="w-3.5 h-3.5 mr-1.5" />
-            0% Platform Fee
+            {t(language, 'platformFee')}
           </div>
         </div>
       </div>      </>)}
@@ -196,7 +198,7 @@ export default function FarmerDashboard() {
             onClick={() => triggerToast('e-KYC Verification process started via e-NAM Gateway.', 'Verification Started', 'info')}
             className="w-full py-2 bg-rose-600 text-white rounded-xl text-xs font-bold shadow-sm"
           >
-            Start Aadhaar e-KYC Now
+            {t(language, 'startKyc')}
           </button>
         </div>
       ) : (
@@ -204,7 +206,7 @@ export default function FarmerDashboard() {
           <div>
             <p className="text-xs font-bold text-slate-500 uppercase tracking-wider">इस महीने की कुल बैंक प्राप्ति</p>
             <div className="flex items-center gap-2 mb-1">
-              <p className="text-[10px] text-slate-500">Direct Bank Deposit</p>
+              <p className="text-[10px] text-slate-500">{t(language, 'directBankDeposit')}</p>
               <button onClick={() => setHideBalance(!hideBalance)} className="text-slate-400 hover:text-slate-600 transition">
                 {hideBalance ? <EyeOff className="w-3.5 h-3.5" /> : <Eye className="w-3.5 h-3.5" />}
               </button>
@@ -341,7 +343,7 @@ export default function FarmerDashboard() {
                                 onClick={() => setSelectedBidModal({ listing: item, bid: b })}
                                 className={`w-full py-2 rounded-lg text-xs font-bold transition-colors ${idx === 0 ? 'bg-[#1B5E20] text-white hover:bg-[#144718]' : 'bg-white border border-[#1B5E20] text-[#1B5E20] hover:bg-emerald-50'}`}
                               >
-                                {idx === 0 ? 'Accept Best Offer' : 'Accept This Offer'}
+                                {idx === 0 ? t(language, 'accept') + ' ⭐' : t(language, 'accept')}
                               </button>
                             )}
                           </div>
