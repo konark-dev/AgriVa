@@ -14,6 +14,7 @@ import PriceDiscovery from './pages/farmer/PriceDiscovery';
 import RequirementsFeed from './pages/farmer/RequirementsFeed';
 import MakeOfferModal from './pages/farmer/MakeOfferModal';
 import BuyerMarketplace from './pages/buyer/BuyerMarketplace';
+import BulkBuyerDashboard from './pages/buyer/BulkBuyerDashboard';
 import PostRequirementForm from './pages/buyer/PostRequirementForm';
 import BuyerOffersView from './pages/buyer/BuyerOffersView';
 import TransporterDashboard from './pages/transporter/TransporterDashboard';
