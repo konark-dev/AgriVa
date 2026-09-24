@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { speakText, stopSpeaking } from '../../utils/speechUtils';
 import { 
   MapPin, 
   Clock, 
@@ -72,7 +73,7 @@ export default function RequirementsFeed({ onMakeOffer }) {
           <h1 className="font-bold text-lg text-slate-900">AgriVa ⬢ मांग फीड</h1>
           <p className="text-xs text-slate-500">Requirements Near You</p>
         </div>
-        <button className="bg-orange-50 text-[#F57F17] flex items-center gap-1 px-3 py-1.5 rounded-full text-sm font-medium">
+        <button className="bg-orange-50 text-[#F57F17] flex items-center gap-1 px-3 py-1.5 rounded-full text-sm font-medium" onClick={() => speakText('आपके आस पास खरीददारों की सक्रिय मांग उपलब्ध है। नीचे दी गई सूची से अपनी फसल के लिए बोली लगाएं।', 'hi-IN')}>
           <Volume2 size={16} />
           <span>बोल कर सुनें</span>
         </button>

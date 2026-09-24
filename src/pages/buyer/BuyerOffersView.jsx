@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { speakText, stopSpeaking } from '../../utils/speechUtils';
 import { 
   ArrowLeft, Star, MapPin, CheckCircle, ChevronDown, 
   Filter, Volume2, Zap, TrendingUp, Square, CheckSquare 
@@ -59,7 +60,7 @@ export default function BuyerOffersView({ requirement, onBack }) {
           </button>
           <h1 className="font-bold text-lg text-slate-800">AgriVa / Offers</h1>
         </div>
-        <button className="bg-[#F57F17] text-white px-3 py-1.5 rounded-full text-xs font-semibold flex items-center gap-1">
+        <button className="bg-[#F57F17] text-white px-3 py-1.5 rounded-full text-xs font-semibold flex items-center gap-1" onClick={() => speakText('किसानों द्वारा दिए गए प्रस्ताव यहां देखें। सबसे बेहतर ऑफर को स्वीकार करें।', 'hi-IN')}>
           <Volume2 className="w-4 h-4" />
           बोल कर सुनें
         </button>
