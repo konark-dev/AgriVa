@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import { Check, Clock, AlertTriangle, ShieldCheck } from 'lucide-react';
 
 export default function VisualStepper({ currentStatus, deliveryMode = 'direct', qualityFlag = false }) {
@@ -28,55 +28,80 @@ export default function VisualStepper({ currentStatus, deliveryMode = 'direct', 
   };
 
   const currentIndex = getStepIndex(currentStatus);
+  const scrollRef = useRef(null);
+  const totalSteps = Math.max(1, baseSteps.length - 1);
+  const progressPercent = (currentIndex / totalSteps) * 100;
+
+  // Auto-scroll to current step on mount
+  useEffect(() => {
+    if (scrollRef.current) {
+      const activeStep = scrollRef.current.querySelector('.active-step');
+      if (activeStep) {
+        activeStep.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      }
+    }
+  }, [currentIndex]);
 
   return (
-    <div className="w-full py-3 px-2">
-      <div className="flex items-center justify-between relative">
-        {/* Background Connecting Line */}
-        <div className="absolute left-4 right-4 top-4 h-0.5 bg-slate-50 text-slate-700 -z-0" />
-        
-        {/* Progress Fill Line */}
-        <div
-          className="absolute left-4 top-4 h-0.5 bg-[#1B5E20] transition-all duration-500 -z-0"
-          style={{ width: `${(currentIndex / Math.max(1, baseSteps.length - 1)) * 100}%` }}
-        />
+    <div className="w-full py-1">
+      {/* Scrollable Container to prevent mobile squishing */}
+      <div 
+        ref={scrollRef}
+        className="overflow-x-auto no-scrollbar pb-2 pt-3 mask-image-fade"
+      >
+        <div className="flex items-start justify-between relative min-w-[550px] px-4">
+          
+          {/* Background Connecting Line */}
+          <div className="absolute left-8 right-8 top-4 h-0.5 bg-slate-200 -z-0" />
+          
+          {/* Progress Fill Line */}
+          <div
+            className="absolute left-8 top-4 h-0.5 bg-emerald-600 transition-all duration-500 -z-0"
+            style={{ width: "calc(" + progressPercent + "% - " + (progressPercent / 100 * 32) + "px)" }}
+          />
 
-        {baseSteps.map((step, idx) => {
-          const isCompleted = idx < currentIndex;
-          const isCurrent = idx === currentIndex;
-          const isFlagged = isCurrent && qualityFlag;
+          {baseSteps.map((step, idx) => {
+            const isCompleted = idx < currentIndex;
+            const isCurrent = idx === currentIndex;
+            const isFlagged = isCurrent && qualityFlag;
 
-          return (
-            <div key={step.key} className="flex flex-col items-center z-10 space-y-1">
-              <div
-                className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-all shadow-md ${
-                  isFlagged
-                    ? 'bg-amber-500 text-slate-950 ring-4 ring-amber-500/30 animate-pulse'
-                    : isCurrent
-                    ? 'bg-[#1B5E20] text-white ring-4 ring-emerald-500/30 scale-110'
-                    : isCompleted
-                    ? 'bg-emerald-600 text-white'
-                    : 'bg-slate-50 text-slate-700 text-slate-500 border border-slate-200'
-                }`}
+            return (
+              <div 
+                key={step.key} 
+                className={"flex flex-col items-center z-10 w-12 shrink-0 " + (isCurrent ? 'active-step' : '')}
               >
-                {isFlagged ? (
-                  <AlertTriangle className="w-4 h-4" />
-                ) : isCompleted ? (
-                  <Check className="w-4 h-4" />
-                ) : step.isLab ? (
-                  <ShieldCheck className="w-4 h-4" />
-                ) : isCurrent ? (
-                  <Clock className="w-4 h-4 animate-spin" style={{ animationDuration: '3s' }} />
-                ) : (
-                  <span>{idx + 1}</span>
-                )}
+                <div
+                  className={"w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-all shadow-sm " + (
+                    isFlagged
+                      ? 'bg-amber-500 text-slate-950 ring-4 ring-amber-500/30 animate-pulse'
+                      : isCurrent
+                      ? 'bg-emerald-700 text-white ring-4 ring-emerald-500/30 scale-110 shadow-md'
+                      : isCompleted
+                      ? 'bg-emerald-600 text-white'
+                      : 'bg-white text-slate-400 border border-slate-200'
+                  )}
+                >
+                  {isFlagged ? (
+                    <AlertTriangle className="w-4 h-4" />
+                  ) : isCompleted ? (
+                    <Check className="w-4 h-4" />
+                  ) : step.isLab ? (
+                    <ShieldCheck className="w-4 h-4" />
+                  ) : isCurrent ? (
+                    <Clock className="w-4 h-4 animate-spin" style={{ animationDuration: '3s' }} />
+                  ) : (
+                    <span>{idx + 1}</span>
+                  )}
+                </div>
+                <span className={"text-[10px] text-center font-medium mt-1.5 leading-tight " + (
+                  isCurrent ? 'text-emerald-800 font-bold' : isCompleted ? 'text-slate-600' : 'text-slate-400'
+                )}>
+                  {step.label}
+                </span>
               </div>
-              <span className={`text-[10px] text-center font-medium ${isCurrent ? 'text-[#1B5E20] font-bold' : isCompleted ? 'text-slate-600' : 'text-slate-500'}`}>
-                {step.label}
-              </span>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
       </div>
     </div>
   );
