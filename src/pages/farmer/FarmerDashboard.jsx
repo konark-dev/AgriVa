@@ -391,13 +391,21 @@ export default function FarmerDashboard() {
         </div>
       )}
 
-      {/* ---------- Help Center Card ---------- */}
-      <div className="p-4 bg-white rounded-2xl border border-slate-200 shadow-sm flex items-center space-x-3">
-        <svg className="w-6 h-6 text-[#1B5E20]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18 8a6 6 0 11-12 0 6 6 0 0112 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-4.35-4.35" /></svg>
-        <div>
-          <h4 className="font-bold text-[#1B5E20]">मंडी मित्र सहायता केंद्र</h4>
-          <p className="text-sm text-slate-600">हेल्पलाइन: 1800-180-1551</p>
+      {/* ---------- Warehouse Booking Card ---------- */}
+      <div className="p-4 bg-amber-50 rounded-2xl border border-amber-200 shadow-sm flex flex-col space-y-3 mt-2">
+        <div className="flex items-center justify-between mb-1">
+          <h3 className="text-lg font-extrabold text-amber-900">भंडारण / Warehouse Booking</h3>
+          <span className="px-2 py-0.5 bg-amber-200 text-amber-900 border border-amber-300 rounded-full text-[10px] font-bold">
+            WDRA Approved
+          </span>
         </div>
+        <p className="text-xs text-amber-700">फसल रखने की जगह नहीं है? पास का सुरक्षित गोदाम (Warehouse) बुक करें।</p>
+        <button
+          onClick={() => triggerToast('गोदाम बुकिंग सुविधा जल्द आ रही है / Warehouse booking coming soon', 'Booking Started', 'info')}
+          className="w-full py-3 bg-amber-600 hover:bg-amber-700 text-white rounded-xl font-bold shadow-sm flex justify-center items-center transition-colors"
+        >
+          <CheckCircle2 className="w-5 h-5 mr-2" /> पास का गोदाम बुक करें
+        </button>
       </div>
 
       {/* ---------- Modals ---------- */}
