@@ -27,7 +27,6 @@ import {
 
 export default function FarmerDashboard() {
   // Context
-  const isUnverified = currentUser?.role === 'farmer' && currentUser?.sellerBadge === 'New Seller';
   const {
     listings,
     bids,
@@ -36,6 +35,7 @@ export default function FarmerDashboard() {
     labRegistrations,
     triggerToast
   } = useApp();
+  const isUnverified = currentUser?.role === 'farmer' && currentUser?.sellerBadge === 'New Seller';
 
   // UI state
   const [activeTab, setActiveTab] = useState('crops'); // crops | sales
