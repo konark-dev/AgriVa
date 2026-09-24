@@ -2,6 +2,20 @@ import React, { useState, useEffect } from 'react';
 import { useApp } from '../../context/AppContext';
 import { ArrowLeft, TrendingUp, TrendingDown, Minus, Clock, MapPin, Activity } from 'lucide-react';
 
+
+const getCropEmoji = (cropName) => {
+  const name = (cropName || '').toLowerCase();
+  if (name.includes('wheat')) return '🌾';
+  if (name.includes('rice') || name.includes('paddy')) return '🍚';
+  if (name.includes('tomato')) return '🍅';
+  if (name.includes('potato')) return '🥔';
+  if (name.includes('onion')) return '🧅';
+  if (name.includes('cotton')) return '☁️';
+  if (name.includes('soybean')) return '🌱';
+  if (name.includes('maize') || name.includes('corn')) return '🌽';
+  return '📦';
+};
+
 export default function LiveMandiPrices({ onBack }) {
   const { priceSnapshots } = useApp();
   const [selectedSnapshot, setSelectedSnapshot] = useState(null);
@@ -51,17 +65,17 @@ export default function LiveMandiPrices({ onBack }) {
         <div className="p-4 space-y-4">
           <div className="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm text-center">
             <p className="text-sm text-slate-500 font-bold mb-1">Live Mandi Rate</p>
-            <div className="text-4xl font-black text-[#1B5E20]">?{selectedSnapshot.pricePerUnit}</div>
+            <div className="text-4xl font-black text-[#1B5E20]">₹{selectedSnapshot.pricePerUnit}</div>
             
             <div className="mt-3 flex items-center justify-center">
               {isToday ? (
                 diff > 0 ? (
                   <span className="flex items-center text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-full text-sm font-bold">
-                    <TrendingUp className="w-4 h-4 mr-1" /> +?{diff.toFixed(1)} (+{diffPct}%)
+                    <TrendingUp className="w-4 h-4 mr-1" /> +₹{diff.toFixed(1)} (+{diffPct}%)
                   </span>
                 ) : diff < 0 ? (
                   <span className="flex items-center text-rose-600 bg-rose-50 px-2.5 py-1 rounded-full text-sm font-bold">
-                    <TrendingDown className="w-4 h-4 mr-1" /> ?{Math.abs(diff).toFixed(1)} ({diffPct}%)
+                    <TrendingDown className="w-4 h-4 mr-1" /> ₹{Math.abs(diff).toFixed(1)} ({diffPct}%)
                   </span>
                 ) : (
                   <span className="flex items-center text-slate-600 bg-slate-100 px-2.5 py-1 rounded-full text-sm font-bold">
@@ -91,7 +105,7 @@ export default function LiveMandiPrices({ onBack }) {
                 const heightPct = Math.max(10, ((val - minH) / range) * 100);
                 return (
                   <div key={i} className="flex flex-col items-center flex-1 group">
-                    <div className="text-[9px] text-slate-400 mb-1 opacity-0 group-hover:opacity-100 transition-opacity">?{val}</div>
+                    <div className="text-[9px] text-slate-400 mb-1 opacity-0 group-hover:opacity-100 transition-opacity">₹{val}</div>
                     <div 
                       className="w-full bg-emerald-200 rounded-t-sm group-hover:bg-emerald-400 transition-colors" 
                       style={{ height: `${heightPct}%` }}
@@ -134,7 +148,7 @@ export default function LiveMandiPrices({ onBack }) {
             return (
               <div key={`tick-${item.id}`} className="flex items-center space-x-1.5 font-medium">
                 <span className="text-slate-300">{item.crop}</span>
-                <span className="font-bold text-white">?{item.pricePerUnit}</span>
+                <span className="font-bold text-white">₹{item.pricePerUnit}</span>
                 {up ? <TrendingUp className="w-3 h-3 text-emerald-400" /> : 
                  down ? <TrendingDown className="w-3 h-3 text-rose-400" /> : 
                  <Minus className="w-3 h-3 text-slate-500" />}
@@ -165,7 +179,7 @@ export default function LiveMandiPrices({ onBack }) {
             >
               <div className="flex items-center space-x-3">
                 <div className="w-10 h-10 rounded-full bg-orange-50 flex items-center justify-center border border-orange-100">
-                  <span className="text-lg">??</span>
+                  <span className="text-xl">{getCropEmoji(snap.crop)}</span>
                 </div>
                 <div>
                   <h4 className="font-bold text-slate-800 text-sm">{snap.crop}</h4>
@@ -176,7 +190,7 @@ export default function LiveMandiPrices({ onBack }) {
               </div>
 
               <div className="text-right">
-                <div className="font-black text-slate-800 text-base">?{snap.pricePerUnit}</div>
+                <div className="font-black text-slate-800 text-base">₹{snap.pricePerUnit}</div>
                 {isToday ? (
                   up ? (
                     <div className="text-emerald-600 text-[11px] font-bold flex items-center justify-end">
