@@ -604,64 +604,80 @@ export default function Onboarding({ onComplete }) {
   // STEP 4: Role Selection (STRUCTURAL RULE: NO ADMIN)
   // ----------------------------------------------------
   const renderRoleStep = () => {
-    const roles = [
-      {
-        id: 'farmer',
-        title: 'व्यक्तिगत किसान (Individual Farmer)',
-        sub: '12-अंक आधार, पारदर्शी मूल्य खोज, बिना मात्रा सीमा',
-        icon: Tractor,
-        badge: 'आधार Verhoeff',
-        color: 'emerald'
-      },
-      {
-        id: 'fpo',
-        title: 'FPO (Farmer Producer Org)',
-        sub: 'कंपनी अधिनियम CIN / कार्यालय संस्था पंजीकरण, सदस्य किसान संख्या',
-        icon: Building2,
-        badge: 'MCA CIN सत्यापन',
-        color: 'blue'
-      },
-      {
-        id: 'consumer',
-        title: 'उपभोक्ता (Retail Buyer / Consumer)',
-        sub: 'न्यूनतम KYC: केवल फोन OTP, तत्काल पहुँच, सुरक्षित भुगतान',
-        icon: ShoppingCart,
-        badge: 'केवल OTP',
-        color: 'purple'
-      },
-      {
-        id: 'bulk_buyer',
-        title: 'थोक व्यापारी (Bulk Trader / Mill)',
-        sub: '15-अंक GSTIN, अग्रिम भुगतान (Upfront MVP), एडमिन अनुमोदन',
-        icon: Store,
-        badge: 'GSTIN + एडमिन जाँच',
-        color: 'amber'
-      },
-      {
-        id: 'transporter',
-        title: 'लॉजिस्टिक्स पार्टनर (Transporter / Driver)',
-        sub: 'ड्राइविंग लाइसेंस, वाहन RC, क्षमता टन, लोकेशन नियम',
-        icon: Truck,
-        badge: 'DL + RC सत्यापन',
-        color: 'indigo'
-      },
-      {
-        id: 'mandi',
-        title: 'मंडी संचालक (Mandi Operator)',
-        sub: 'APMC लाइसेंस अधिकृत, नीलामी व तौलान सत्यापन',
-        icon: Scale,
-        badge: 'APMC अधिकृत',
-        color: 'teal'
-      },
-      {
-        id: 'lab',
-        title: 'गुणवत्ता परीक्षण प्रयोगशाला (Quality Testing Lab)',
-        sub: 'NABL मान्यता प्राप्त, नमूना व ग्रेड प्रमाणपत्र जारीकर्ता',
-        icon: FlaskConical,
-        badge: 'NABL प्रमाणपत्र',
-        color: 'cyan'
-      }
-    ];
+          const roles = [
+        {
+          id: 'farmer',
+          title: 'Farmer / \u0915\u093F\u0938\u093E\u0928',
+          sub: '12-digit Aadhaar, direct market access, crop listings.',
+          icon: Tractor,
+          badge: 'Aadhaar Verhoeff',
+          color: 'emerald'
+        },
+        {
+          id: 'fpo',
+          title: 'FPO (Farmer Producer Org)',
+          sub: 'MCA CIN verification, manage group of farmers.',
+          icon: Building2,
+          badge: 'CIN Required',
+          color: 'blue'
+        },
+        {
+          id: 'consumer',
+          title: 'Retail Buyer / \u0916\u0941\u0926\u0930\u093E \u0916\u0930\u0940\u0926\u093E\u0930',
+          sub: 'Basic KYC via OTP, place consumer requirements.',
+          icon: ShoppingCart,
+          badge: 'OTP Verified',
+          color: 'purple'
+        },
+        {
+          id: 'bulk_buyer',
+          title: 'Bulk Trader / \u0925\u094B\u0915 \u0935\u094D\u092F\u093E\u092A\u093E\u0930\u0940',
+          sub: '15-digit GSTIN, upfront payments, bulk bidding.',
+          icon: Store,
+          badge: 'GSTIN + PAN',
+          color: 'amber'
+        },
+        {
+          id: 'transporter',
+          title: 'Logistics Partner / \u091F\u094D\u0930\u093E\u0902\u0938\u092A\u094B\u0930\u094D\u091F\u0930',
+          sub: 'Driver License and Vehicle RC verification.',
+          icon: Truck,
+          badge: 'DL + RC Check',
+          color: 'indigo'
+        },
+        {
+          id: 'mandi',
+          title: 'Mandi APMC / \u092E\u0902\u0921\u0940 \u0938\u092E\u093F\u0924\u093F',
+          sub: 'Gate pass management and Mandi price dashboard.',
+          icon: Building2,
+          badge: 'APMC ID',
+          color: 'cyan'
+        },
+        {
+          id: 'lab',
+          title: 'Quality Lab / \u0932\u0948\u092C',
+          sub: 'Quality assaying, soil testing and certifications.',
+          icon: FlaskConical,
+          badge: 'NABL Certified',
+          color: 'rose'
+        },
+        {
+          id: 'warehouse',
+          title: 'Warehouse Owner / \u0917\u094B\u0926\u093E\u092E \u092E\u093E\u0932\u093F\u0915',
+          sub: 'Rent storage space to farmers and manage inventory.',
+          icon: Store,
+          badge: 'WDRA Approved',
+          color: 'orange'
+        },
+        {
+          id: 'lender',
+          title: 'Lender / \u090B\u0923\u0926\u093E\u0924\u093E',
+          sub: 'Provide micro-credit and crop loans to verified farmers.',
+          icon: Scale,
+          badge: 'NBFC/Bank ID',
+          color: 'teal'
+        }
+      ];
 
     return (
       <div className={`flex flex-col min-h-screen ${bgMain} font-sans`}>
