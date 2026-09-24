@@ -151,6 +151,35 @@ export default function Onboarding({ onComplete }) {
     }
   };
 
+  const startFullFormVoiceInput = () => {
+    setIsVoiceInputActive(true);
+    triggerToast("सुन रहे हैं... अपना पूरा विवरण बोलें (जैसे: मेरा नाम रमेश है, आधार नंबर...)", "AI Listening", "info");
+
+    const rec = initSpeechRecognition(
+      async (transcript) => {
+        setIsVoiceInputActive(false);
+        triggerToast("AI द्वारा जानकारी निकाली जा रही है...", "Processing", "info");
+        try {
+          const parsed = await parseVoiceToFields(transcript, selectedRole);
+          setFormData(prev => ({ ...prev, ...parsed }));
+          triggerToast("फॉर्म भर दिया गया है / Form auto-filled!", "Success", "success");
+        } catch (error) {
+          triggerToast("आवाज़ स्पष्ट नहीं थी, कृपया दोबारा प्रयास करें।", "Error", "error");
+        }
+      },
+      (err) => {
+        console.warn("Full form speech error:", err);
+        setIsVoiceInputActive(false);
+      },
+      () => setIsVoiceInputActive(false),
+      selectedLang === 'hi' ? 'hi-IN' : 'en-IN'
+    );
+
+    if (rec) {
+      try { rec.start(); } catch (e) { console.warn(e); }
+    }
+  };
+
   // Screen Narration Toggle
   const handleToggleNarration = () => {
     if (isNarrating) {
@@ -737,6 +766,16 @@ export default function Onboarding({ onComplete }) {
         </div>
 
         <div className="px-4 pb-28 space-y-4 mt-4">
+          {/* Global Voice Auto-fill Button */}
+          <button 
+            type="button" 
+            onClick={startFullFormVoiceInput} 
+            className={`w-full py-3.5 mb-2 rounded-xl border-2 shadow-sm font-bold flex items-center justify-center transition-all ${isVoiceInputActive ? 'bg-rose-100 border-rose-300 text-rose-700 animate-pulse' : 'bg-emerald-50 border-emerald-500 text-emerald-800'}`}
+          >
+            <Mic className={`w-5 h-5 mr-2 ${isVoiceInputActive ? 'animate-bounce' : ''}`} />
+            {isVoiceInputActive ? 'सुन रहे हैं... (Listening...)' : 'बोलकर पूरा फॉर्म भरें / Auto-fill by Voice'}
+          </button>
+
           {errorMsg && (
              <div className="bg-red-50 border-2 border-red-200 text-red-700 p-3.5 rounded-xl text-xs font-bold flex items-start">
                 <AlertTriangle className="w-5 h-5 mr-2 shrink-0 mt-0.5 text-red-600" />
