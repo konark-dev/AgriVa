@@ -123,7 +123,13 @@ export default function Onboarding({ onComplete }) {
 
     const rec = initSpeechRecognition(
       (transcript) => {
-        handleFormChange(fieldName, transcript);
+        if (fieldName === 'phone') {
+          // Keep only digits for phone number
+          const digits = transcript.replace(/\D/g, '').slice(0, 10);
+          setPhone(digits);
+        } else {
+          handleFormChange(fieldName, transcript);
+        }
         setIsVoiceInputActive(false);
         setActiveVoiceField(null);
         triggerToast(`Captured: "${transcript}"`, "Voice Recorded", "success");
