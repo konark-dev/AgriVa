@@ -268,7 +268,7 @@ export default function AIAssistantModal() {
                     value={inputValue}
                     onChange={(e) => setInputValue(e.target.value)}
                     placeholder={isListening ? "Listening... बोलिए..." : (language === 'hi' ? "अपना प्रश्न पूछें या माइक दबाएं..." : "Type or speak your question...")}
-                    className="flex-1 bg-transparent px-4 py-3 text-sm text-white focus:outline-none placeholder:text-slate-500"
+                    className="flex-1 bg-transparent px-4 py-3 text-sm text-slate-800 font-medium focus:outline-none placeholder:text-slate-400"
                     disabled={isProcessing}
                   />
                   <button 
