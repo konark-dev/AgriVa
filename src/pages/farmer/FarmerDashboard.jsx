@@ -133,7 +133,7 @@ export default function FarmerDashboard() {
       <div className="relative">
         <input
           type="text"
-          placeholder="फसल या भाव खोजें (या माइक दबाएँ)..."
+          placeholder="Search (Wheat, Potato)..."
           value={searchTerm}
           onChange={e => setSearchTerm(e.target.value)}
           className="w-full pl-4 pr-12 py-2 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-[#1B5E20]"
@@ -161,27 +161,25 @@ export default function FarmerDashboard() {
       </div>
 
       {!isUnverified && (<>
-      {/* ---------- CTA: Sell My Crop ---------- */}
-      <div className="p-4 bg-white rounded-2xl border-2 border-[#1B5E20] shadow-sm flex flex-col space-y-3 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-24 h-24 bg-green-50 rounded-full -mr-8 -mt-8 z-0"></div>
-        <div className="relative z-10">
-          <div className="flex items-center justify-between mb-1">
-            <h3 className="text-lg font-extrabold text-[#1B5E20]">मेरी फसल बेचें / Sell My Crop</h3>
-            <span className="px-2 py-0.5 bg-green-100 text-green-800 border border-green-200 rounded-full text-[10px] font-bold">
-              0% कमीशन
-            </span>
-          </div>
-          <p className="text-xs text-slate-500 mb-3"></p>
+      {/* ---------- CTA: Sell My Crop (Icon Heavy) ---------- */}
+      <div className="p-4 bg-[#1B5E20] rounded-2xl shadow-md flex flex-col relative overflow-hidden items-center justify-center text-center">
+        <div className="absolute top-0 right-0 w-32 h-32 bg-white opacity-10 rounded-full -mr-10 -mt-10 z-0"></div>
+        <div className="absolute bottom-0 left-0 w-24 h-24 bg-white opacity-10 rounded-full -ml-8 -mb-8 z-0"></div>
+        
+        <div className="relative z-10 flex flex-col items-center w-full">
           <button
             onClick={() => setShowAddModal(true)}
-            className="w-full py-3 bg-[#1B5E20] text-white rounded-xl font-bold shadow flex justify-center items-center"
+            className="w-full py-5 bg-white text-[#1B5E20] rounded-xl font-black text-xl shadow-lg flex flex-col justify-center items-center transform transition active:scale-95"
           >
-            <PlusCircle className="w-5 h-5 mr-2" /> फसल सूची जोड़ें / Add Listing
+            <PlusCircle className="w-12 h-12 mb-2 text-[#F57F17]" />
+            SELL CROP
           </button>
+          <div className="mt-3 inline-flex items-center px-3 py-1 bg-green-800 text-green-100 rounded-full text-xs font-bold border border-green-600">
+            <Tag className="w-3.5 h-3.5 mr-1.5" />
+            0% Platform Fee
+          </div>
         </div>
-      </div>
-
-      </>)}
+      </div>      </>)}
 
       {/* ---------- Net Realization / Verification Card ---------- */}
       {currentUser.role === 'farmer' && currentUser.sellerBadge === 'New Seller' ? (
@@ -198,7 +196,7 @@ export default function FarmerDashboard() {
             onClick={() => triggerToast('e-KYC Verification process started via e-NAM Gateway.', 'Verification Started', 'info')}
             className="w-full py-2 bg-rose-600 text-white rounded-xl text-xs font-bold shadow-sm"
           >
-            Start Aadhaar e-KYC Now →
+            Start Aadhaar e-KYC Now
           </button>
         </div>
       ) : (

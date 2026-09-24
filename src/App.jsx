@@ -130,8 +130,8 @@ function MainLayout() {
         {/* Bottom Role-Aware Navigation Bar */}
         <BottomNav activeTab={activeTab} setActiveTab={setActiveTab} />
 
-        {/* Floating AI Assistant Trigger & Modal */}
-        <AIAssistantModal />
+        {/* Floating AI Assistant Trigger & Modal (Disabled for now) */}
+        {/* <AIAssistantModal /> */}
       </div>
     </div>
   );
