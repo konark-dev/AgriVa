@@ -17,7 +17,7 @@ export const isSpeechSynthesisSupported = () => {
 
 let activeRecognition = null;
 
-export const initSpeechRecognition = (onResult, onError, onEnd, lang = 'hi-IN') => {
+export const initSpeechRecognition = (onResult, onError, onEnd, lang = 'hi-IN', continuous = true) => {
   if (!isSpeechRecognitionSupported()) {
     console.warn("Speech Recognition API not supported in this browser.");
     if (onError) onError("Browser microphone not supported. Please type your input.");
@@ -27,15 +27,22 @@ export const initSpeechRecognition = (onResult, onError, onEnd, lang = 'hi-IN') 
   const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
   const recognition = new SpeechRecognition();
   
-  recognition.continuous = false;
+  recognition.continuous = continuous;
   recognition.lang = lang; // 'hi-IN' or 'en-IN'
   recognition.interimResults = false;
   recognition.maxAlternatives = 1;
 
-  recognition.onresult = (event) => {
-    if (event.results && event.results[0] && event.results[0][0]) {
-      const transcript = event.results[0][0].transcript;
-      if (onResult) onResult(transcript);
+    recognition.onresult = (event) => {
+    let finalTranscript = '';
+    for (let i = event.resultIndex; i < event.results.length; ++i) {
+      if (event.results[i].isFinal) {
+        finalTranscript += event.results[i][0].transcript;
+      }
+    }
+    if (finalTranscript.trim() !== '') {
+      if (onResult) onResult(finalTranscript.trim());
+      // Auto-stop after getting a final result to behave like a single command
+      if (continuous) recognition.stop();
     }
   };
 
