@@ -140,11 +140,11 @@ Respond ONLY with a valid JSON object without markdown formatting. Format:
 export const narrateScreen = (stepName, language = 'hi') => {
   const narrations = {
     hi: {
-      language: "एग्रीवा में आपका स्वागत है। कृपया अपनी पसंदीदा भाषा चुनें और आगे बढ़ें।",
-      phone: "कृपया अपना 10 अंकों का मोबाइल नंबर दर्ज करें। हम सत्यापन के लिए सुरक्षित ओटीपी भेजेंगे।",
-      otp: "एसएमएस द्वारा प्राप्त 6 अंकों का ओटीपी दर्ज करें या बोलकर बताएं।",
-      role: "मंडी परिवेश में अपनी भूमिका चुनें: किसान, एफपीओ, व्यापारी, थोक खरीदार, या ट्रांसपोर्टर।",
-      profile: "कृपया अपनी बुनियादी प्रोफ़ाइल जानकारी भरें या माइक दबाकर बोलें।"
+      language: '\u090F\u0917\u094D\u0930\u0940\u0935\u093E \u092E\u0947\u0902 \u0906\u092A\u0915\u093E \u0938\u094D\u0935\u093E\u0917\u0924 \u0939\u0948\u0964 \u0915\u0943\u092A\u092F\u093E \u0905\u092A\u0928\u0940 \u092D\u093E\u0937\u093E \u091A\u0941\u0928\u0947\u0902\u0964',
+      phone: '\u0938\u0924\u094D\u092F\u093E\u092A\u0928 \u0915\u0947 \u0932\u093F\u090F \u0905\u092A\u0928\u093E \u0926\u0938 \u0905\u0902\u0915\u094b\u0902 \u0915\u093E \u092E\u094B\u092C\u093E\u0907\u0932 \u0928\u0902\u092C\u0930 \u0926\u0930\u094D\u091C \u0915\u0930\u0947\u0902\u0964',
+      otp: '\u091B\u0939 \u0905\u0902\u0915\u094b\u0902 \u0915\u093E \u0913 \u091F\u0940 \u092A\u0940 \u0926\u0930\u094D\u091C \u0915\u0930\u0947\u0902\u0964',
+      role: '\u0905\u092A\u0928\u0940 \u092D\u0942\u092E\u093F\u0915\u093E \u091A\u0941\u0928\u0947\u0902\u0964',
+      profile: '\u0905\u092A\u0928\u0940 \u092A\u094D\u0930\u094B\u092B\u093E\u0907\u0932 \u092A\u0942\u0930\u0940 \u0915\u0930\u0947\u0902, \u092F\u093E \u092E\u093E\u0907\u0915 \u092E\u0947\u0902 \u092C\u094B\u0932\u0947\u0902\u0964'
     },
     en: {
       language: "Welcome to AgriVa. Please choose your preferred language to continue.",
@@ -159,8 +159,7 @@ export const narrateScreen = (stepName, language = 'hi') => {
   return narrations[lang][stepName] || narrations[lang]['profile'];
 };
 
-
-/**
+  /**
  * Parse spoken input into an app navigation route
  */
 export const parseVoiceNavigation = async (voiceTranscript) => {
