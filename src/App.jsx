@@ -130,8 +130,10 @@ function MainLayout() {
         {/* Bottom Role-Aware Navigation Bar */}
         <BottomNav activeTab={activeTab} setActiveTab={setActiveTab} />
 
-        {/* Floating AI Assistant Trigger & Modal (Disabled for now) */}
-        {/* <AIAssistantModal /> */}
+        {/* Floating AI Assistant Trigger & Modal (Only for specific roles) */}
+        {currentUser && ['buyer', 'consumer', 'bulk_buyer', 'admin', 'mandi', 'middleman', 'lender'].includes(currentUser.role) && (
+          <AIAssistantModal />
+        )}
       </div>
     </div>
   );
