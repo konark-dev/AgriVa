@@ -1250,7 +1250,7 @@ export default function Onboarding({ onComplete }) {
           )}
 
           {/* Dynamic Profile Details for Mandi, Lab, Warehouse, Lender */}
-          {['mandi', 'lab', 'warehouse', 'lender'].includes(selectedRole) && (
+          {['mandi', 'lab', 'lender'].includes(selectedRole) && (
              <div className="bg-white rounded-2xl p-4 border border-slate-200 space-y-3 shadow-sm">
                 <div>
                    <label className="text-xs font-bold text-slate-700 flex justify-between">
@@ -1267,7 +1267,7 @@ export default function Onboarding({ onComplete }) {
                      placeholder={
                        selectedRole === 'mandi' ? 'APMC Mandi Name' :
                        selectedRole === 'lab' ? 'AgriCert Quality Lab' :
-                       selectedRole === 'warehouse' ? 'Kisan Warehouse Storage' : 'Agri Credit Finance'
+                       'Agri Credit Finance'
                      }
                    />
                 </div>
@@ -1278,7 +1278,7 @@ export default function Onboarding({ onComplete }) {
                      value={
                        selectedRole === 'mandi' ? 'APMC-DL-2024-001' :
                        selectedRole === 'lab' ? 'NABL-AGRI-2024-889' :
-                       selectedRole === 'warehouse' ? 'WDRA-WH-2024-554' : 'NBFC-FIN-2024-112'
+                       'NBFC-FIN-2024-112'
                      }
                      className="w-full mt-1 p-3 rounded-xl border border-slate-200 text-sm font-mono font-bold text-slate-500 bg-slate-50"
                      readOnly
@@ -1286,8 +1286,119 @@ export default function Onboarding({ onComplete }) {
                    <p className="text-[10px] text-slate-500 mt-1">
                      {selectedRole === 'mandi' ? 'APMC ID is auto-verified.' :
                       selectedRole === 'lab' ? 'NABL Certification is auto-verified.' :
-                      selectedRole === 'warehouse' ? 'WDRA Registration is auto-verified.' : 'NBFC License is auto-verified.'}
+                      'NBFC License is auto-verified.'}
                    </p>
+                </div>
+             </div>
+          )}
+
+          {/* ----------------- ACTOR: WAREHOUSE OWNER (EXPANDED) ----------------- */}
+          {selectedRole === 'warehouse' && (
+             <div className="space-y-4">
+                <div className="bg-orange-50 border border-orange-200 rounded-xl p-3 text-xs text-orange-900">
+                   <div className="flex items-center font-bold text-sm mb-1 text-orange-800">
+                      <Store className="w-4 h-4 mr-1.5" /> गोदाम मालिक सत्यापन विनिर्देश
+                   </div>
+                   <p>⬢ WDRA (वेयरहाउस डेवलपमेंट एंड रेगुलेटरी अथॉरिटी) पंजीकरण अनिवार्य।</p>
+                   <p>⬢ भंडारण प्रकार, क्षमता, और दर दर्ज करना आवश्यक।</p>
+                   <p>⬢ एडमिन सत्यापन के बाद सक्रिय (Pending → Verified → Active)।</p>
+                </div>
+
+                <div className="bg-white rounded-2xl p-4 border border-slate-200 space-y-3 shadow-sm">
+                   <div>
+                      <label className="text-xs font-bold text-slate-700 flex justify-between">
+                        <span>गोदाम / वेयरहाउस का नाम *</span>
+                        <button type="button" onClick={() => startFieldVoiceInput('name')} className="text-emerald-700 flex items-center text-[10px]">
+                           <Mic className="w-3 h-3 mr-0.5" /> बोलें
+                        </button>
+                      </label>
+                      <input 
+                        type="text"
+                        value={formData.name}
+                        onChange={e => handleFormChange('name', e.target.value)}
+                        className="w-full mt-1 p-3 rounded-xl border border-slate-200 text-sm font-bold text-slate-800 focus:outline-none focus:border-emerald-600"
+                        placeholder="उदा. मनोज वेयरहाउस एंड स्टोरेज"
+                      />
+                   </div>
+
+                   <div>
+                      <label className="text-xs font-bold text-slate-700 flex justify-between">
+                         <span>WDRA पंजीकरण संख्या *</span>
+                         <span className="text-[10px] text-emerald-600 font-mono">✅ Auto-Verified</span>
+                      </label>
+                      <input 
+                        type="text"
+                        value="WDRA-WH-2024-554"
+                        className="w-full mt-1 p-3 rounded-xl border border-emerald-200 text-sm font-mono font-bold text-emerald-700 bg-emerald-50/30"
+                        readOnly
+                      />
+                   </div>
+
+                   <div>
+                      <label className="text-xs font-bold text-slate-700">गोदाम का पूरा पता (Full Address) *</label>
+                      <input 
+                        type="text"
+                        value={formData.address}
+                        onChange={e => handleFormChange('address', e.target.value)}
+                        className="w-full mt-1 p-3 rounded-xl border border-slate-200 text-sm font-bold text-slate-800 focus:outline-none focus:border-emerald-600"
+                        placeholder="उदा. प्लॉट 12, इंडस्ट्रियल एरिया, उज्जैन"
+                      />
+                   </div>
+
+                   <div className="grid grid-cols-2 gap-3">
+                      <div>
+                         <label className="text-xs font-bold text-slate-700">जिला (District) *</label>
+                         <input 
+                           type="text"
+                           value={formData.district}
+                           onChange={e => handleFormChange('district', e.target.value)}
+                           className="w-full mt-1 p-3 rounded-xl border border-slate-200 text-sm font-bold text-slate-800"
+                           placeholder="उज्जैन"
+                         />
+                      </div>
+                      <div>
+                         <label className="text-xs font-bold text-slate-700">राज्य (State) *</label>
+                         <input 
+                           type="text"
+                           value={formData.state}
+                           onChange={e => handleFormChange('state', e.target.value)}
+                           className="w-full mt-1 p-3 rounded-xl border border-slate-200 text-sm font-bold text-slate-800"
+                           placeholder="मध्य प्रदेश"
+                         />
+                      </div>
+                   </div>
+
+                   <div className="grid grid-cols-2 gap-3">
+                      <div>
+                         <label className="text-xs font-bold text-slate-700">भंडारण प्रकार *</label>
+                         <select className="w-full mt-1 p-3 rounded-xl border border-slate-200 text-sm font-bold text-slate-800" defaultValue="both">
+                           <option value="cold">शीत भंडार (Cold Storage)</option>
+                           <option value="dry">शुष्क भंडार (Dry Storage)</option>
+                           <option value="both">दोनों (Cold + Dry)</option>
+                           <option value="open">खुला / ओपन यार्ड</option>
+                         </select>
+                      </div>
+                      <div>
+                         <label className="text-xs font-bold text-slate-700">कुल क्षमता (MT) *</label>
+                         <input type="number" defaultValue={1500} className="w-full mt-1 p-3 rounded-xl border border-slate-200 text-sm font-bold text-slate-800" placeholder="1500" />
+                      </div>
+                   </div>
+
+                   <div className="grid grid-cols-2 gap-3">
+                      <div>
+                         <label className="text-xs font-bold text-slate-700">दर (₹ / MT / माह) *</label>
+                         <input type="number" defaultValue={120} className="w-full mt-1 p-3 rounded-xl border border-slate-200 text-sm font-bold text-slate-800" placeholder="120" />
+                      </div>
+                      <div>
+                         <label className="text-xs font-bold text-slate-700">संपर्क व्यक्ति *</label>
+                         <input type="text" value={formData.name} onChange={e => handleFormChange('name', e.target.value)} className="w-full mt-1 p-3 rounded-xl border border-slate-200 text-sm font-bold text-slate-800" placeholder="मनोज कुमार" />
+                      </div>
+                   </div>
+
+                   <div>
+                      <label className="text-xs font-bold text-slate-700">बैंक / UPI (भुगतान प्राप्ति हेतु) *</label>
+                      <input type="text" value={formData.upiId} onChange={e => handleFormChange('upiId', e.target.value)} className="w-full mt-1 p-3 rounded-xl border border-slate-200 text-sm font-bold text-slate-800" placeholder="उदा. warehouse@sbi" />
+                   </div>
                 </div>
              </div>
           )}
