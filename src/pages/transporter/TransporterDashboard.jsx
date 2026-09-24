@@ -128,10 +128,76 @@ export default function TransporterDashboard() {
       {activeTab === 'pickups' && (
         <div className="space-y-3">
           {deliveries.length === 0 ? (
-            <EmptyState
-              title="No Jobs Assigned Yet"
-              description="Assigned crop transport pickups will appear here."
-            />
+            
+            <div className="space-y-4">
+              <div className="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm relative overflow-hidden">
+                <div className="absolute top-0 right-0 bg-[#1B5E20] text-white text-[9px] font-black px-3 py-1 rounded-bl-xl tracking-wider uppercase">
+                  My Fleet
+                </div>
+                <h3 className="font-bold text-sm text-slate-800 mb-3 flex items-center">
+                  <Truck className="w-4 h-4 mr-1.5 text-emerald-600" />
+                  Register Logistics Vehicle
+                </h3>
+                <form className="space-y-3" onSubmit={(e) => { e.preventDefault(); triggerToast('Vehicle DL-1M-4321 successfully registered in Fleet!', 'Vehicle Added', 'success'); }}>
+                  <div>
+                    <label className="text-xs font-semibold text-slate-600 block mb-1">Vehicle Type</label>
+                    <select className="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs font-medium focus:border-emerald-500 outline-none">
+                      <option>Tata Ace (Small Commercial - 750kg)</option>
+                      <option>Eicher Pro (Light Duty - 5 Tons)</option>
+                      <option>Ashok Leyland (Heavy Duty - 15 Tons)</option>
+                      <option>Refrigerated Cold Truck (Perishables)</option>
+                    </select>
+                  </div>
+                  <div className="grid grid-cols-2 gap-2">
+                    <div>
+                      <label className="text-xs font-semibold text-slate-600 block mb-1">Reg. Number (RC)</label>
+                      <input type="text" placeholder="e.g. HR-38-V-1234" className="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs font-medium focus:border-emerald-500 outline-none" required />
+                    </div>
+                    <div>
+                      <label className="text-xs font-semibold text-slate-600 block mb-1">Capacity (Tons)</label>
+                      <input type="number" placeholder="Tons" className="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs font-medium focus:border-emerald-500 outline-none" required />
+                    </div>
+                  </div>
+                  <button type="submit" className="w-full py-2 bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-xl text-xs font-bold hover:bg-emerald-100 transition-colors">
+                    + Add Vehicle to Fleet
+                  </button>
+                </form>
+              </div>
+
+              {/* Load Board Dummy */}
+              <div className="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm">
+                <h3 className="font-bold text-sm text-slate-800 mb-3 flex items-center">
+                  <Map className="w-4 h-4 mr-1.5 text-blue-600" />
+                  Live Load Board (Nearby)
+                </h3>
+                
+                <div className="space-y-2">
+                  <div className="border border-slate-100 rounded-xl p-3 bg-slate-50 relative">
+                    <span className="absolute top-2 right-2 bg-rose-100 text-rose-700 text-[9px] font-bold px-1.5 py-0.5 rounded">Urgent</span>
+                    <h4 className="font-bold text-xs text-slate-800">120 Tons Wheat (Bulk Order)</h4>
+                    <p className="text-[10px] text-slate-500 mb-2">Panipat Hub &rarr; Britannia Mills, Delhi</p>
+                    <div className="flex justify-between items-center text-xs">
+                      <span className="font-black text-[#1B5E20]">₹14,500</span>
+                      <button onClick={() => triggerToast('Bid submitted for Load #8902', 'Bid Placed', 'success')} className="px-3 py-1 bg-[#1B5E20] text-white rounded font-semibold text-[10px]">
+                        Accept Load
+                      </button>
+                    </div>
+                  </div>
+
+                  <div className="border border-slate-100 rounded-xl p-3 bg-slate-50">
+                    <h4 className="font-bold text-xs text-slate-800">40 Tons Tomato (Requires Cold Storage)</h4>
+                    <p className="text-[10px] text-slate-500 mb-2">Karnal Farms &rarr; Azadpur Mandi</p>
+                    <div className="flex justify-between items-center text-xs">
+                      <span className="font-black text-[#1B5E20]">₹5,200</span>
+                      <button onClick={() => triggerToast('Bid submitted for Load #8903', 'Bid Placed', 'success')} className="px-3 py-1 bg-[#1B5E20] text-white rounded font-semibold text-[10px]">
+                        Accept Load
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
           ) : (
             deliveries.map((del) => {
               const transportFee = Math.round(45 * 1.5 * (del.quantity / 100)); // distance * rate * quintals
