@@ -140,7 +140,19 @@ export default function FarmerDashboard() {
         />
         <button
           onClick={() => {
-            initSpeechRecognition((t) => setSearchTerm(t), null, null, 'hi-IN').start();
+            triggerToast("Listening... Speak now", "Voice Input", "info");
+            const rec = initSpeechRecognition(
+              (t) => {
+                 setSearchTerm(t);
+                 triggerToast("Found: " + t, "Success", "success");
+              }, 
+              (err) => triggerToast("Mic Error: " + err, "Error", "error"), 
+              null, 
+              'hi-IN'
+            );
+            if (rec) {
+              try { rec.start(); } catch(e) { console.warn(e); }
+            }
           }}
           className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center justify-center w-8 h-8 bg-[#F57F17] rounded-full text-white"
         >
