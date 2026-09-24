@@ -157,12 +157,12 @@ export default function BuyerMarketplace() {
                       <div className="text-right mt-3">
                         {isSurplus ? (
                           <div className="flex flex-col items-end">
-                            <span className="text-[10px] text-slate-400 line-through">â‚¹{item.price || 0}/kg</span>
-                            <span className="text-base font-extrabold text-rose-600">â‚¹{finalPrice}/kg</span>
+                            <span className="text-[10px] text-slate-400 line-through">₹{item.price || 0}/kg</span>
+                            <span className="text-base font-extrabold text-rose-600">₹{finalPrice}/kg</span>
                             <span className="text-[9px] font-bold text-rose-500 bg-rose-50 px-1 rounded">-{surplusCheck.discountPct}% OFF</span>
                           </div>
                         ) : (
-                          <span className="text-base font-extrabold text-[#1B5E20]">â‚¹{finalPrice}/kg</span>
+                          <span className="text-base font-extrabold text-[#1B5E20]">₹{finalPrice}/kg</span>
                         )}
                         <div className="text-[10px] font-semibold text-slate-500">{item.quantity} kg available</div>
                       </div>
@@ -211,7 +211,7 @@ export default function BuyerMarketplace() {
                     <div>
                       <h4 className="font-bold text-sm text-slate-800">{item.crop} Delivery</h4>
                       <p className="text-xs text-slate-500">
-                        {item.quantity} kg @ â‚¹{userBid ? userBid.price : (item.price || 0)}/kg
+                        {item.quantity} kg @ ₹{userBid ? userBid.price : (item.price || 0)}/kg
                       </p>
                     </div>
 
@@ -284,11 +284,11 @@ export default function BuyerMarketplace() {
           <form onSubmit={handlePlaceBid} className="bg-white border border-slate-200 rounded-t-2xl sm:rounded-2xl w-full max-w-md p-5 space-y-4 shadow-2xl">
             <h3 className="font-bold text-base text-slate-800">Place Bid for {biddingListing.crop}</h3>
             <p className="text-xs text-slate-600">
-              Target Price: <strong className="text-[#1B5E20]">â‚¹{biddingListing.price}/kg</strong> ({biddingListing.quantity}kg available)
+              Target Price: <strong className="text-[#1B5E20]">₹{biddingListing.price}/kg</strong> ({biddingListing.quantity}kg available)
             </p>
 
             <div>
-              <label className="text-xs font-semibold text-slate-600 mb-1 block">Your Offer Bid Price (â‚¹/kg)</label>
+              <label className="text-xs font-semibold text-slate-600 mb-1 block">Your Offer Bid Price (₹/kg)</label>
               <input
                 type="number"
                 value={bidAmount}
@@ -311,15 +311,15 @@ export default function BuyerMarketplace() {
                 <div className={`p-3 rounded-xl border ${isInefficient ? 'bg-rose-50 border-rose-200' : 'bg-slate-50 border-slate-200'}`}>
                   <div className="flex justify-between items-center text-xs mb-1">
                     <span className="text-slate-600">Batched Delivery Fee (Est.)</span>
-                    <span className="font-bold">â‚¹{batchedDeliveryFee.toFixed(2)}</span>
+                    <span className="font-bold">₹{batchedDeliveryFee.toFixed(2)}</span>
                   </div>
                   {isInefficient ? (
                     <p className="text-[10px] text-rose-600 font-bold mt-1">
-                      âš ï¸ Add more items to make this order more efficient to deliver. (Delivery exceeds 25% of order value)
+                      ⚠️ Add more items to make this order more efficient to deliver. (Delivery exceeds 25% of order value)
                     </p>
                   ) : (
                     <p className="text-[9px] text-slate-500 mt-1">
-                      Calculated as Base Fee (â‚¹{baseFee}) ÷ Orders in your zone ({estimatedOrdersInZone})
+                      Calculated as Base Fee (₹{baseFee}) ÷ Orders in your zone ({estimatedOrdersInZone})
                     </p>
                   )}
                 </div>
