@@ -90,14 +90,12 @@ export default function BuyerMarketplace() {
                 <button
                   key={crop}
                   onClick={() => setSelectedCropFilter(crop)}
-                  className={`px-3 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-colors ${
+                  className={`px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all border ${
                     selectedCropFilter === crop
                       ? 'bg-[#1B5E20] text-white shadow'
                       : 'bg-slate-50 text-slate-700 text-slate-600 hover:bg-slate-700'
                   }`}
-                >
-                  {crop}
-                </button>
+                >{crop === 'All' ? t(language, 'all') : t(language, crop.toLowerCase()) === crop.toLowerCase() ? crop : t(language, crop.toLowerCase())}</button>
               ))}
             </div>
           </div>
