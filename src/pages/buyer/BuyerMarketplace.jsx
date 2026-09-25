@@ -9,7 +9,7 @@ import PaymentGatewayModal from '../../components/PaymentGatewayModal';
 import { calculateSurplusRescue } from '../../utils/qualityEngine';
 import { t } from '../../utils/translations';
 import OrderDetailScreen from '../shared/OrderDetailScreen';
-import { Search, Filter, ShoppingBag, Clock, ShieldCheck, Tag, DollarSign, CheckCircle2, Map, AlertOctagon } from 'lucide-react';
+import { Search, Filter, ShoppingBag, Clock, ShieldCheck, Tag, DollarSign, CheckCircle2, Map, AlertOctagon, CheckCircle, AlertTriangle } from 'lucide-react';
 
 export default function BuyerMarketplace() {
   const { listings, orders, deliveries, bids, placeBid, confirmBuyerDelivery, raiseDispute, currentUser, triggerToast, language } = useApp();
@@ -157,7 +157,18 @@ export default function BuyerMarketplace() {
                       <div>
                         <h3 className="font-extrabold text-sm text-slate-800">{item.crop}</h3>
                         <p className="text-xs text-slate-600 mt-0.5">Farmer: {item.farmerName}</p>
-                                                <p className="text-[11px] text-slate-500">Location: {item.location?.name || 'Sonipat Farm'}</p>
+                                                                        <p className="text-[11px] text-slate-500">Location: {item.location?.name || 'Sonipat Farm'}</p>
+                        <div className="flex flex-col space-y-1 mt-2">
+                          <span className="inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-slate-100 text-slate-600 border border-slate-200 w-max">
+                            Self-Declared: {item.grade || (item.quality?.grade) || 'N/A'}
+                          </span>
+                          {item.inspectorVerification && (
+                            <span className={"inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold border w-max " + (item.verificationStatus === 'verified_match' ? 'bg-emerald-50 text-emerald-700 border-emerald-200' : 'bg-amber-50 text-amber-700 border-amber-200')}>
+                              {item.verificationStatus === 'verified_match' ? <CheckCircle className="w-3 h-3 mr-1" /> : <AlertTriangle className="w-3 h-3 mr-1" />}
+                              Inspector-Verified: {item.inspectorVerification.inspectorGrade}
+                            </span>
+                          )}
+                        </div>
                         <div className="flex flex-col space-y-1 mt-2">
                           <span className="inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-slate-100 text-slate-600 border border-slate-200 w-max">
                             Self-Declared: {item.grade || (item.quality?.grade) || 'N/A'}
@@ -461,6 +472,7 @@ export default function BuyerMarketplace() {
     </div>
   );
 }
+
 
 
 

@@ -196,6 +196,8 @@ export default function LabDashboard() {
           </div>
         </div>
       )}
+      </div>
+      )}
     </div>
   );
 }
