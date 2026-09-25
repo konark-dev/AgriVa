@@ -198,6 +198,30 @@ export default function LabDashboard() {
       )}
       </div>
       )}
+
+        {activeTab === 'inspections' && (
+          <div className="space-y-4">
+            {farmerLots.filter(l => l.status === 'pending_grading' || l.status === 'active_listed').length === 0 ? (
+              <EmptyState title="No Pending Inspections" description="There are no lots waiting for physical verification." />
+            ) : (
+              farmerLots.filter(l => l.status === 'pending_grading' || l.status === 'active_listed').map(lot => (
+                <div key={lot.id} className="bg-white rounded-2xl p-4 border border-slate-200 shadow-md">
+                  <div className="flex justify-between items-center border-b border-slate-200 pb-2 mb-3">
+                    <div>
+                      <h4 className="font-bold text-sm text-[#2E7D32]">Lot #{lot.id}</h4>
+                      <p className="text-xs text-slate-500">{lot.crop} - {lot.quantity} kg</p>
+                    </div>
+                    <span className="bg-amber-100 text-amber-700 text-[10px] font-bold px-2 py-1 rounded-full">Pending</span>
+                  </div>
+                  <button onClick={() => setInspectingLot(lot)} className="w-full py-2 bg-slate-100 hover:bg-emerald-50 hover:text-[#2E7D32] text-slate-700 text-xs font-bold rounded-xl border border-slate-200 transition-colors">
+                    Perform Physical Verification
+                  </button>
+                </div>
+              ))
+            )}
+          </div>
+        )}
     </div>
   );
 }
+
