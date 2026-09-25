@@ -404,6 +404,60 @@ export default function MandiDashboard() {
           </div>
         </div>
       )}
+
+      {/* Active Auction Modal */}
+      {activeAuctionLot && (
+        <div className="fixed inset-0 z-50 bg-white/90 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="bg-white border border-slate-200 rounded-2xl w-full max-w-md p-5 space-y-4 shadow-2xl text-xs">
+            <div className="flex justify-between items-start border-b border-slate-200 pb-3">
+              <div>
+                <h3 className="font-extrabold text-base text-slate-800">Live Auction: Lot #{activeAuctionLot.lotId}</h3>
+                <p className="text-[11px] text-slate-500">{activeAuctionLot.crop} • {activeAuctionLot.actualWeight} kg</p>
+              </div>
+              <span className="px-2 py-1 bg-rose-100 text-rose-700 rounded text-[10px] font-bold flex items-center animate-pulse">
+                <span className="w-1.5 h-1.5 bg-rose-500 rounded-full mr-1"></span> LIVE
+              </span>
+            </div>
+
+            <div className="p-3 bg-slate-50 border border-slate-200 rounded-xl space-y-2">
+              <div className="flex justify-between">
+                <span className="text-slate-500">Current Highest Bidder:</span>
+                <span className="font-bold text-slate-800">{activeAuctionLot.winningBuyer || 'None'}</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-slate-500">Highest Bid:</span>
+                <span className="font-bold text-[#2E7D32]">₹{activeAuctionLot.winningBid || 0}/kg</span>
+              </div>
+            </div>
+
+            <div className="pt-2">
+              <label className="text-slate-600 font-semibold mb-1 block">Place New Bid (₹/kg)</label>
+              <div className="flex items-center space-x-2">
+                <input
+                  type="number"
+                  value={auctionBidInput}
+                  onChange={(e) => setAuctionBidInput(e.target.value)}
+                  className="flex-1 px-3 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm font-bold focus:outline-none"
+                  placeholder="Enter bid amount"
+                />
+                <button
+                  onClick={() => handlePlaceAuctionBid(activeAuctionLot)}
+                  className="px-4 py-2.5 bg-[#2E7D32] hover:bg-green-800 text-white rounded-xl font-bold shadow transition"
+                >
+                  Place Bid
+                </button>
+              </div>
+            </div>
+
+            <button
+              onClick={() => setActiveAuctionLot(null)}
+              className="w-full mt-2 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl font-semibold transition"
+            >
+              Cancel / Close
+            </button>
+          </div>
+        </div>
+      )}
         </>
       )}
     </div>

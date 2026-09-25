@@ -3,9 +3,11 @@ import { useApp } from '../../context/AppContext';
 import { recommendBestMandis } from '../../utils/priceTrends';
 import { TrendingUp, TrendingDown, Minus, Filter, Sparkles, MapPin, Award, RefreshCw } from 'lucide-react';
 import { t } from '../../utils/translations';
+import { INITIAL_MANDI_PRICES } from '../../firebase/seedData';
 
 export default function PriceDiscovery() {
   const { mandiPrices, currentUser, language } = useApp();
+  const effectiveMandiPrices = mandiPrices.length > 0 ? mandiPrices : INITIAL_MANDI_PRICES;
 
   const [selectedCrop, setSelectedCrop] = useState('All');
   const [maxDistanceKm, setMaxDistanceKm] = useState(100);
@@ -20,10 +22,10 @@ export default function PriceDiscovery() {
     farmerLocation,
     selectedCrop === 'All' ? 'Tomato' : selectedCrop,
     1000,
-    mandiPrices
+    effectiveMandiPrices
   );
 
-  const filteredPrices = mandiPrices.filter((item) => {
+  const filteredPrices = effectiveMandiPrices.filter((item) => {
     const cropMatch = selectedCrop === 'All' || item.crop.toLowerCase() === selectedCrop.toLowerCase();
     return cropMatch;
   });

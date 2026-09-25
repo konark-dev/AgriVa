@@ -1,4 +1,4 @@
-﻿import ProfileHeader from '../../components/ProfileHeader';
+import ProfileHeader from '../../components/ProfileHeader';
 import React, { useState } from 'react';
 import { useApp } from '../../context/AppContext';
 import VisualStepper from '../../components/VisualStepper';
@@ -8,12 +8,14 @@ import TrackingMapModal from '../../components/TrackingMapModal';
 import PaymentGatewayModal from '../../components/PaymentGatewayModal';
 import { calculateSurplusRescue } from '../../utils/qualityEngine';
 import { t } from '../../utils/translations';
+import OrderDetailScreen from '../shared/OrderDetailScreen';
 import { Search, Filter, ShoppingBag, Clock, ShieldCheck, Tag, DollarSign, CheckCircle2, Map, AlertOctagon } from 'lucide-react';
 
 export default function BuyerMarketplace() {
-  const { listings, deliveries, bids, placeBid, confirmBuyerDelivery, raiseDispute, currentUser, triggerToast, language } = useApp();
+  const { listings, orders, deliveries, bids, placeBid, confirmBuyerDelivery, raiseDispute, currentUser, triggerToast, language } = useApp();
   const [selectedCropFilter, setSelectedCropFilter] = useState('All');
-  const [activeTab, setActiveTab] = useState('browse'); // browse | my_orders
+  const [activeTab, setActiveTab] = useState('browse');
+  const [selectedOrder, setSelectedOrder] = useState(null);
   const [biddingListing, setBiddingListing] = useState(null);
   const [bidAmount, setBidAmount] = useState('');
   const [escrowStates, setEscrowStates] = useState({}); // { [listingId]: 'pending' | 'escrow_held' | 'released' }
@@ -41,6 +43,10 @@ export default function BuyerMarketplace() {
     setPayingListing(null);
   };
 
+  if (selectedOrder) {
+    return <OrderDetailScreen order={selectedOrder} onBack={() => setSelectedOrder(null)} onDispute={(ord) => setDisputeListing(ord)} />;
+  }
+  
   return (
     <div className="space-y-4 p-4 pb-24 max-w-4xl mx-auto">
       <ProfileHeader />
@@ -194,7 +200,21 @@ export default function BuyerMarketplace() {
       {/* TAB 2: MY ORDERS & ESCROW */}
       {activeTab === 'my_orders' && (
         <div className="flex flex-col space-y-4">
-          {listings.filter(l => l.status !== 'Listed').length === 0 ? (
+                      {orders && orders.filter(o => o.buyerId === currentUser.uid).map(order => (
+              <div key={order.id} className="bg-white rounded-2xl p-4 border border-slate-200 shadow-md">
+                <div className="flex items-center justify-between border-b border-slate-200 pb-2 mb-3">
+                  <div>
+                    <h4 className="font-bold text-sm text-slate-800">Order #{order.id}</h4>
+                    <p className="text-xs text-slate-500">{order.crop} - {order.qty} kg</p>
+                  </div>
+                  <span className="bg-[#2E7D32] text-white text-[10px] font-bold px-2 py-1 rounded-full">{order.status}</span>
+                </div>
+                <button onClick={() => setSelectedOrder(order)} className="w-full py-2 bg-slate-100 hover:bg-slate-200 text-[#2E7D32] text-xs font-bold rounded-xl border border-slate-200">
+                  Track Delivery & Payments
+                </button>
+              </div>
+            ))}
+            {listings.filter(l => l.status !== 'Listed').length === 0 && orders.filter(o => o.buyerId === currentUser.uid).length === 0 ? (
             <EmptyState
               title="No Orders Placed Yet"
               description="Place a bid on any listing in the Browse tab to activate your delivery order."
@@ -430,3 +450,4 @@ export default function BuyerMarketplace() {
     </div>
   );
 }
+
