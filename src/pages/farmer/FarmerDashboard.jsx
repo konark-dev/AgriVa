@@ -329,7 +329,7 @@ export default function FarmerDashboard() {
                             });
                             return { ...b, payout };
                           })
-                          .sort((a, b) => b.payout.netRealization - a.payout.netRealization)
+                          .sort((a, b) => b.payout.finalPayout - a.payout.finalPayout)
                           .map((b, idx) => (
                           <div key={b.id} className={`p-3 rounded-xl border ${idx === 0 ? 'bg-emerald-50 border-emerald-300' : 'bg-slate-50 border-slate-200'} shadow-sm`}>
                             <div className="flex items-center justify-between mb-2">
@@ -343,7 +343,7 @@ export default function FarmerDashboard() {
                                 <p className="text-xs text-slate-500">Gross Bid: ₹{b.price}/kg</p>
                               </div>
                               <div className="text-right">
-                                <span className="block text-lg font-black text-[#1B5E20]">₹{b.payout.netRealization.toLocaleString('en-IN')}</span>
+                                <span className="block text-lg font-black text-[#1B5E20]">₹{b.payout.finalPayout.toLocaleString('en-IN')}</span>
                                 <span className="text-[10px] text-slate-500 font-bold uppercase">Net Payout</span>
                               </div>
                             </div>
@@ -351,7 +351,7 @@ export default function FarmerDashboard() {
                             <div className="grid grid-cols-3 gap-2 bg-white p-2 rounded-lg border border-slate-200 text-[10px] mb-3">
                               <div className="text-center">
                                 <span className="block text-slate-500">Gross</span>
-                                <span className="font-bold text-slate-700">₹{b.payout.gross.toLocaleString('en-IN')}</span>
+                                <span className="font-bold text-slate-700">₹{b.payout.bidPriceTotal.toLocaleString('en-IN')}</span>
                               </div>
                               <div className="text-center border-l border-slate-100">
                                 <span className="block text-rose-500">Logistics</span>
