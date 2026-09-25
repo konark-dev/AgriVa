@@ -1,11 +1,14 @@
 import ProfileHeader from '../../components/ProfileHeader';
+import InspectorVerificationScreen from '../../components/InspectorVerificationScreen';
 import React, { useState } from 'react';
 import { useApp } from '../../context/AppContext';
 import EmptyState from '../../components/EmptyState';
 import { Microchip, ShieldCheck, AlertCircle, FileCheck, Clock, CheckCircle2, ArrowRight } from 'lucide-react';
 
 export default function LabDashboard() {
-  const { labRegistrations, currentUser, submitQualityLabTest, labCertificates, deliveries } = useApp();
+  const { labRegistrations, currentUser, submitQualityLabTest, labCertificates, deliveries, farmerLots, submitInspectorVerification } = useApp();
+  const [activeTab, setActiveTab] = useState('tests');
+  const [inspectingLot, setInspectingLot] = useState(null);
 
   const currentLabReg = labRegistrations.find(l => l.userId === currentUser.uid) || {
     id: "lab-reg-1",
@@ -77,18 +80,29 @@ export default function LabDashboard() {
   }
 
   // APPROVED LAB DASHBOARD
+  if (inspectingLot) {
+    return <InspectorVerificationScreen lot={inspectingLot} onBack={() => setInspectingLot(null)} onSubmitVerification={(lotId, data) => { submitInspectorVerification(lotId, data); setInspectingLot(null); }} />;
+  }
+
   return (
-    <div className="space-y-4 p-4 pb-24">
-      {/* Top Header */}
+    <div className="space-y-4 p-4 pb-24 max-w-4xl mx-auto">
       <div className="flex items-center justify-between">
         <div>
           <h2 className="text-base font-bold text-slate-800 flex items-center space-x-2">
             <Microchip className="w-5 h-5 text-[#2E7D32]" />
             <span>Quality Verification Dashboard</span>
           </h2>
-          <p className="text-xs text-slate-500">{currentLabReg.labName} • Verified Lab ✅</p>
+          <p className="text-xs text-slate-500">{currentLabReg.labName} ? Verified Lab</p>
         </div>
       </div>
+
+      <div className="flex border-b border-slate-200 space-x-4 mb-4">
+        <button onClick={() => setActiveTab('tests')} className={`py-2 text-sm font-bold ` + (activeTab === 'tests' ? 'text-[#2E7D32] border-b-2 border-[#2E7D32]' : 'text-slate-500')}>Lab Tests</button>
+        <button onClick={() => setActiveTab('inspections')} className={`py-2 text-sm font-bold ` + (activeTab === 'inspections' ? 'text-[#2E7D32] border-b-2 border-[#2E7D32]' : 'text-slate-500')}>Physical Inspections</button>
+      </div>
+
+      {activeTab === 'tests' && (
+        <div className="space-y-4">
 
       {/* Test Entry Form */}
       <form onSubmit={handleTestSubmit} className="bg-white rounded-2xl p-4 border border-slate-200 space-y-3 text-xs shadow-md">

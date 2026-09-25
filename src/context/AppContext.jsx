@@ -373,6 +373,47 @@ export const AppProvider = ({ children }) => {
     triggerToast(`Crop listing for ${listingData.crop} created successfully!`, "Listing Published", "success");
   };
 
+    const submitInspectorVerification = async (lotId, inspectorData) => {
+    const lot = farmerLots.find(l => l.id === lotId);
+    if (!lot) return;
+
+    const crop = lot.crop || 'Wheat';
+    const evaluation = evaluateQualityGrade(crop, Number(inspectorData.moisture), Number(inspectorData.foreignMatter), 'Grade A');
+    
+    // Map self-declared grade string to a comparable number.
+    const getGradeScore = (g) => g === 'A' ? 3 : g === 'B' ? 2 : g === 'C' ? 1 : 0;
+    
+    // Evaluate Inspector Grade based on evaluation object.
+    let inspectorGradeStr = 'B';
+    if (inspectorData.color === 'Excellent' && evaluation.isVerified) inspectorGradeStr = 'A';
+    else if (inspectorData.color === 'Poor' || !evaluation.isVerified) inspectorGradeStr = 'C';
+
+    const selfGradeScore = getGradeScore(lot.quality?.grade || lot.grade);
+    const inspectorGradeScore = getGradeScore(inspectorGradeStr);
+
+    let verificationStatus = 'verified_match';
+    if (Math.abs(selfGradeScore - inspectorGradeScore) >= 1 && selfGradeScore !== inspectorGradeScore) {
+      verificationStatus = 'verified_mismatch';
+    }
+
+    const updatedLot = {
+      ...lot,
+      inspectorVerification: {
+        ...inspectorData,
+        inspectorGrade: inspectorGradeStr,
+        verifiedAt: new Date().toISOString()
+      },
+      verificationStatus
+    };
+
+    await saveDocument('farmerLots', lotId, updatedLot);
+    triggerToast('Inspector verification completed. Match Status: ' + verificationStatus, 'Inspection Saved', 'success');
+
+    if (inspectorData.weightFlag === 'escalated') {
+      await raiseDispute(null, null, lotId, 'Weight Mismatch', `Inspector found weight difference > 15% (Declared: ${lot.quantity}kg vs Verified: ${inspectorData.verifiedWeight}kg). Escalated to admin.`, '');
+    }
+  };
+
   const createLot = async (lotData) => {
     // lotData comes from CreateLotScreen with id already generated
     const lot = {
@@ -985,3 +1026,4 @@ export const useApp = () => {
   }
   return ctx;
 };
+

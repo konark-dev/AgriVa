@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowLeft, Clock, CheckCircle, Package, MapPin, Calendar, Leaf, Award, ShoppingCart, QrCode, X, BarChart2 } from 'lucide-react';
+import { AlertTriangle, ArrowLeft, Clock, CheckCircle, Package, MapPin, Calendar, Leaf, Award, ShoppingCart, QrCode, X, BarChart2 } from 'lucide-react';
 import { QRCodeSVG } from 'qrcode.react';
 import MarketIntelligenceScreen from './MarketIntelligenceScreen';
 
@@ -13,7 +13,7 @@ export default function LotDetailScreen({ lot, onBack }) {
       case 'pending_grading':
         return { color: 'bg-amber-100 text-amber-800 border-amber-200', icon: <Clock className="w-5 h-5 text-amber-600" />, text: 'Awaiting Quality Grading' };
       case 'graded':
-        return { color: 'bg-blue-100 text-blue-800 border-blue-200', icon: <Award className="w-5 h-5 text-blue-600" />, text: `Graded: ${lot.grade || 'N/A'}` };
+        return { color: 'bg-blue-100 text-blue-800 border-blue-200', icon: <Award className="w-5 h-5 text-blue-600" />, text: `Graded: ${(lot.quality?.grade || lot.grade) || 'N/A'}` };
       case 'active_listed':
         return { color: 'bg-green-100 text-green-800 border-green-200', icon: <CheckCircle className="w-5 h-5 text-green-600" />, text: 'Active - Listed on Marketplace' };
       case 'sold':
@@ -108,7 +108,15 @@ export default function LotDetailScreen({ lot, onBack }) {
             </div>
             <div className="flex flex-col">
               <span className="text-xs text-slate-500 flex items-center gap-1 mb-1"><ShoppingCart className="w-3 h-3" /> Quantity</span>
-              <span className="text-sm font-medium text-slate-800">{lot.quantity} kg</span>
+              <span className="text-sm font-medium text-slate-800">
+                {lot.quantity} kg
+                {lot.inspectorVerification?.verifiedWeight && (
+                  <span className="text-xs text-amber-600 ml-2 font-bold block">
+                    (Verified: {lot.inspectorVerification.verifiedWeight} kg)
+                    {lot.inspectorVerification.weightFlag === 'adjusted' && ' *Adjusted'}
+                  </span>
+                )}
+              </span>
             </div>
             <div className="flex flex-col">
               <span className="text-xs text-slate-500 flex items-center gap-1 mb-1"><Calendar className="w-3 h-3" /> Harvest Date</span>
@@ -154,24 +162,64 @@ export default function LotDetailScreen({ lot, onBack }) {
           </div>
         </div>
 
+        {/* Quality Badges */}
+        {((lot.quality?.grade || lot.grade) || lot.inspectorVerification) && (
+          <div className="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm space-y-3">
+            <h2 className="text-sm font-semibold text-slate-800 border-b border-slate-100 pb-2">Quality Verification</h2>
+            <div className="flex flex-col space-y-2">
+              {(lot.quality?.grade || lot.grade) && (
+                <div className="flex justify-between items-center p-2 bg-slate-50 rounded-xl border border-slate-200">
+                  <span className="text-xs text-slate-600 font-medium">Self-Declared Grade:</span>
+                  <span className="font-bold text-slate-800 bg-white px-2 py-1 rounded shadow-sm border border-slate-200">{(lot.quality?.grade || lot.grade)}</span>
+                </div>
+              )}
+                            {lot.inspectorVerification && (
+                <div className={lex justify-between items-center p-2 rounded-xl border }>
+                  <span className="text-xs font-medium flex items-center space-x-1">
+                    {lot.verificationStatus === 'verified_match' ? <CheckCircle className="w-3 h-3 text-emerald-600"/> : <AlertTriangle className="w-3 h-3 text-amber-600" />}
+                    <span className={lot.verificationStatus === 'verified_match' ? 'text-emerald-700' : 'text-amber-700'}>Inspector-Verified:</span>
+                  </span>
+                  <span className={ont-bold px-2 py-1 rounded shadow-sm border bg-white }>{lot.inspectorVerification.inspectorGrade}</span>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+
         {/* Image Gallery */}
         {lot.images && lot.images.length > 0 && (
           <div className="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm">
-            <h2 className="text-sm font-semibold text-slate-800 mb-3 border-b border-slate-100 pb-2">Images ({lot.images.length})</h2>
+                  key={`farm-${idx}`}
             <div className="flex overflow-x-auto gap-3 pb-2 -mx-2 px-2 hide-scrollbar" style={{ scrollbarWidth: 'none' }}>
               {lot.images.map((img, idx) => (
-                <button 
-                  key={idx}
+                  <img src={img} alt={`Lot image ${idx}`} className="w-full h-full object-cover" />
+                  key={`arm-+idx}
                   onClick={() => setSelectedImage(img)}
                   className="flex-shrink-0 w-24 h-24 rounded-xl overflow-hidden border border-slate-200 shadow-sm hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-[#2E7D32]"
                 >
-                  <img src={img} alt={`Lot image ${idx + 1}`} className="w-full h-full object-cover" />
+                  <img src={img} alt={Lot image +idx} className="w-full h-full object-cover" />
                 </button>
               ))}
             </div>
           </div>
         )}
-      </div>
+
+        {lot.inspectorVerification && lot.inspectorVerification.images && lot.inspectorVerification.images.length > 0 && (
+          <div className="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm">
+            <h2 className="text-sm font-semibold text-slate-800 mb-3 border-b border-slate-100 pb-2">Inspector Photos ({lot.inspectorVerification.images.length})</h2>
+            <div className="flex overflow-x-auto gap-3 pb-2 -mx-2 px-2 hide-scrollbar" style={{ scrollbarWidth: 'none' }}>
+              {lot.inspectorVerification.images.map((img, idx) => (
+                <button 
+                  key={insp-+idx}
+                  onClick={() => setSelectedImage(img)}
+                  className="flex-shrink-0 w-24 h-24 rounded-xl overflow-hidden border border-emerald-200 shadow-sm hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-[#2E7D32]"
+                >
+                  <img src={img} alt={Inspector image +idx} className="w-full h-full object-cover" />
+                </button>
+              ))}
+            </div>
+          </div>
+        )}      </div>
 
       {/* Full Image Modal */}
       {selectedImage && (
@@ -192,3 +240,7 @@ export default function LotDetailScreen({ lot, onBack }) {
     </div>
   );
 }
+
+
+
+
