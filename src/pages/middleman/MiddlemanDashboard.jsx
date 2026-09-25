@@ -138,7 +138,7 @@ export default function MiddlemanDashboard() {
             <div className="space-y-2">
               <button
                 onClick={() => handleSelfTransportChoice(promptTransportModal, 'self')}
-                className="w-full p-3 rounded-xl bg-slate-50 text-slate-700 hover:bg-slate-700 border border-slate-200 text-left flex items-center justify-between font-bold text-slate-800"
+                className="w-full p-3 rounded-xl bg-slate-50 text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 hover:border-emerald-200 border border-slate-200 text-left flex items-center justify-between font-bold text-slate-800"
               >
                 <span>Self-Transport (My Vehicle: {currentUser.vehicleReg})</span>
                 <Truck className="w-4 h-4 text-[#2E7D32]" />
@@ -146,7 +146,7 @@ export default function MiddlemanDashboard() {
 
               <button
                 onClick={() => handleSelfTransportChoice(promptTransportModal, 'assign')}
-                className="w-full p-3 rounded-xl bg-slate-50 text-slate-700 hover:bg-slate-700 border border-slate-200 text-left flex items-center justify-between font-bold text-slate-800"
+                className="w-full p-3 rounded-xl bg-slate-50 text-slate-700 hover:bg-emerald-50 hover:text-emerald-700 hover:border-emerald-200 border border-slate-200 text-left flex items-center justify-between font-bold text-slate-800"
               >
                 <span>Assign External Transporter Fleet</span>
                 <Truck className="w-4 h-4 text-sky-400" />

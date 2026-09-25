@@ -16,7 +16,7 @@ export default function EmptyState({ title = "No items found", description = "Th
       {onClearFilters && (
         <button
           onClick={onClearFilters}
-          className="btn-touch mt-2 px-4 py-2 rounded-xl bg-slate-50 text-slate-700 hover:bg-slate-700 text-[#2E7D32] border border-slate-200 text-xs font-semibold flex items-center space-x-1.5"
+          className="btn-touch mt-2 px-4 py-2 rounded-xl bg-slate-50 text-slate-700 hover:bg-emerald-50 hover:border-emerald-200 text-[#2E7D32] border border-slate-200 text-xs font-semibold flex items-center space-x-1.5"
         >
           <FilterX className="w-4 h-4" />
           <span>Clear Filters</span>

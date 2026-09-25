@@ -111,7 +111,7 @@ export default function PriceDiscovery() {
               className={`px-3 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-colors ${
                 selectedCrop === crop
                   ? 'bg-[#2E7D32] text-white shadow-md'
-                  : 'bg-slate-50 text-slate-700 text-slate-600 hover:bg-slate-700'
+                  : 'bg-slate-50 text-slate-600 border border-slate-200 hover:bg-emerald-50 hover:text-emerald-700 hover:border-emerald-200'
               }`}
             >
               {crop}

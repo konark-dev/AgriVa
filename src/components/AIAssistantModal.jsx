@@ -252,7 +252,7 @@ export default function AIAssistantModal() {
                   className={`p-3 rounded-full shrink-0 transition-colors ${
                     isListening 
                       ? 'bg-rose-600 text-white animate-pulse ring-4 ring-rose-500/40' 
-                      : 'bg-slate-50 text-slate-700 text-slate-600 hover:text-[#2E7D32] hover:bg-slate-700'
+                      : 'bg-slate-50 text-slate-700 text-slate-600 hover:text-[#2E7D32] hover:bg-emerald-50'
                   }`}
                   title="Speak into microphone"
                 >
@@ -274,7 +274,7 @@ export default function AIAssistantModal() {
                   <button 
                     type="submit"
                     disabled={!inputValue.trim() || isProcessing}
-                    className="px-4 text-[#2E7D32] disabled:opacity-30 disabled:hover:bg-transparent hover:bg-slate-700 transition-colors"
+                    className="px-4 text-[#2E7D32] disabled:opacity-30 disabled:hover:bg-transparent hover:bg-emerald-50 transition-colors"
                   >
                     <Send className="w-4 h-4" />
                   </button>
