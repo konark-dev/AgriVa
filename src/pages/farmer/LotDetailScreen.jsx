@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import { ArrowLeft, Clock, CheckCircle, Package, MapPin, Calendar, Leaf, Award, ShoppingCart, QrCode, X } from 'lucide-react';
+import { ArrowLeft, Clock, CheckCircle, Package, MapPin, Calendar, Leaf, Award, ShoppingCart, QrCode, X, BarChart2 } from 'lucide-react';
 import { QRCodeSVG } from 'qrcode.react';
+import MarketIntelligenceScreen from './MarketIntelligenceScreen';
 
 export default function LotDetailScreen({ lot, onBack }) {
   const [selectedImage, setSelectedImage] = useState(null);
+  const [showMarketIntel, setShowMarketIntel] = useState(false);
 
   // Status mapping
   const getStatusConfig = (status) => {
@@ -43,6 +45,10 @@ export default function LotDetailScreen({ lot, onBack }) {
   };
   const currentStepIndex = getStepIndex(lot.status);
 
+  if (showMarketIntel) {
+    return <MarketIntelligenceScreen cropType={lot.crop} onBack={() => setShowMarketIntel(false)} />;
+  }
+
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
       {/* Header */}
@@ -70,6 +76,23 @@ export default function LotDetailScreen({ lot, onBack }) {
             <span className="text-sm font-semibold tracking-wide">{lot.id}</span>
           </div>
         </div>
+        
+        {/* Market Intelligence CTA */}
+        <button
+          onClick={() => setShowMarketIntel(true)}
+          className="w-full bg-[#1B5E20] text-white rounded-2xl p-4 flex items-center justify-between shadow-sm shadow-[#1B5E20]/20 active:scale-[0.98] transition-transform"
+        >
+          <div className="flex items-center gap-3">
+            <div className="bg-white/20 p-2 rounded-xl">
+              <BarChart2 className="w-6 h-6 text-white" />
+            </div>
+            <div className="text-left">
+              <h3 className="font-bold text-sm">Nearby Market Intelligence</h3>
+              <p className="text-xs text-green-100 mt-0.5">View {lot.crop} demand & prices near you</p>
+            </div>
+          </div>
+          <ArrowLeft className="w-5 h-5 rotate-180 text-white/80" />
+        </button>
 
         {/* Lot Details Card */}
         <div className="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm">
