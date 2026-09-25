@@ -38,7 +38,9 @@ export default function AddListingModal({ onClose }) {
       // Basic normalization for numbers if needed
       let value = transcript.trim();
       if (field === 'quantity' || field === 'price') {
-        const num = value.match(/\d+/);
+        // Remove commas (e.g. "5,000" -> "5000") before matching digits
+        value = value.replace(/,/g, '');
+        const num = value.match(/\d+(\.\d+)?/);
         if (num) value = num[0];
       }
       setForm(prev => ({ ...prev, [field]: value }));
