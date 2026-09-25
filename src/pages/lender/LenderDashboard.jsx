@@ -21,89 +21,98 @@ export default function LenderDashboard() {
   };
 
   const renderDashboard = () => (
-    <div className="space-y-6">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900">Agricultural Credit Console</h1>
-        <p className="text-gray-500 mt-2">Real-time credit underwriting backed by verified e-NAM mandi trade receivables</p>
+    <div className="space-y-5">
+      {/* Header */}
+      <div>
+        <h1 className="text-xl font-bold text-slate-800 flex items-center">
+          <IndianRupee className="w-5 h-5 mr-2 text-emerald-700" />
+          Agricultural Credit Console
+        </h1>
+        <p className="text-xs text-slate-500 mt-1">Real-time credit underwriting • e-NAM verified receivables</p>
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-8">
-        <div className="bg-white border border-slate-200 rounded-2xl shadow-sm p-4">
-          <p className="text-sm text-gray-500 mb-1">Loan Requests</p>
-          <div className="flex items-end justify-between">
-            <h3 className="text-2xl font-bold text-gray-900">24</h3>
-            <span className="bg-[#F57F17] text-white text-xs px-2 py-1 rounded-full font-medium">+4 this week</span>
+      {/* Stats Grid - 2x3 clean mobile layout */}
+      <div className="grid grid-cols-2 gap-3">
+        <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-3.5">
+          <p className="text-[10px] text-slate-500 uppercase tracking-wider font-bold">Loan Requests</p>
+          <div className="flex items-end justify-between mt-1.5">
+            <span className="text-2xl font-black text-slate-800">24</span>
+            <span className="text-[9px] bg-amber-100 text-amber-700 px-1.5 py-0.5 rounded-md font-bold border border-amber-200">+4 this week</span>
           </div>
         </div>
-        <div className="bg-white border border-slate-200 rounded-2xl shadow-sm p-4">
-          <p className="text-sm text-gray-500 mb-1">Under Review</p>
-          <h3 className="text-2xl font-bold text-gray-900">11</h3>
+        <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-3.5">
+          <p className="text-[10px] text-slate-500 uppercase tracking-wider font-bold">Under Review</p>
+          <span className="text-2xl font-black text-slate-800 mt-1.5 block">11</span>
         </div>
-        <div className="bg-white border border-slate-200 rounded-2xl shadow-sm p-4">
-          <p className="text-sm text-gray-500 mb-1">Approved</p>
-          <h3 className="text-2xl font-bold text-gray-900">8</h3>
+        <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-3.5">
+          <p className="text-[10px] text-slate-500 uppercase tracking-wider font-bold">Approved</p>
+          <span className="text-2xl font-black text-emerald-700 mt-1.5 block">8</span>
         </div>
-        <div className="bg-white border border-slate-200 rounded-2xl shadow-sm p-4">
-          <p className="text-sm text-gray-500 mb-1">Disbursed</p>
-          <h3 className="text-2xl font-bold text-gray-900">37</h3>
+        <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-3.5">
+          <p className="text-[10px] text-slate-500 uppercase tracking-wider font-bold">Disbursed</p>
+          <span className="text-2xl font-black text-slate-800 mt-1.5 block">37</span>
         </div>
-        <div className="bg-white border border-slate-200 rounded-2xl shadow-sm p-4">
-          <p className="text-sm text-gray-500 mb-1">Outstanding Portfolio</p>
-          <h3 className="text-2xl font-bold text-gray-900">₹18.4 L</h3>
+        <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-3.5">
+          <p className="text-[10px] text-slate-500 uppercase tracking-wider font-bold">Outstanding Portfolio</p>
+          <span className="text-2xl font-black text-slate-800 mt-1.5 block">₹18.4L</span>
         </div>
-        <div className="bg-white border border-slate-200 rounded-2xl shadow-sm p-4">
-          <p className="text-sm text-gray-500 mb-1">Active Borrowers</p>
-          <h3 className="text-2xl font-bold text-gray-900">126</h3>
+        <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-3.5">
+          <p className="text-[10px] text-slate-500 uppercase tracking-wider font-bold">Active Borrowers</p>
+          <span className="text-2xl font-black text-slate-800 mt-1.5 block">126</span>
         </div>
       </div>
 
+      {/* Loan Requests Queue */}
       <div>
-        <h2 className="text-xl font-bold text-gray-900 mb-4 flex items-center">
-          <List className="w-5 h-5 mr-2 text-[#F57F17]" />
-          High Priority Loan Requests Queue
+        <h2 className="text-sm font-bold text-slate-800 mb-3 flex items-center">
+          <List className="w-4 h-4 mr-2 text-amber-600" />
+          High Priority Loan Requests
         </h2>
-        <div className="grid gap-4">
+        <div className="space-y-3">
           {safeLoans.length > 0 ? safeLoans.map(loan => (
-            <div key={loan.id} className="bg-white border border-slate-200 rounded-2xl shadow-sm p-6 flex flex-col md:flex-row justify-between items-center hover:shadow-md transition-shadow">
-              <div className="flex-1 mb-4 md:mb-0">
-                <div className="flex items-center gap-3 mb-2">
-                  <h3 className="text-lg font-bold text-gray-900">{loan.borrowerName || 'Jaipur Fresh Growers FPO'}</h3>
-                  <span className="text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded-md border border-slate-200 font-mono">ID: {loan.registrationId || 'REG-99238'}</span>
+            <div key={loan.id} className="bg-white rounded-2xl border border-slate-200 shadow-sm p-4">
+              {/* Borrower name + ID */}
+              <div className="flex items-center justify-between mb-3">
+                <h3 className="text-sm font-bold text-slate-800">{loan.borrowerName || 'Jaipur Fresh Growers FPO'}</h3>
+                <span className="text-[9px] bg-slate-100 text-slate-500 px-1.5 py-0.5 rounded font-mono border border-slate-200">
+                  {loan.registrationId || 'KST-RJ-3029'}
+                </span>
+              </div>
+
+              {/* Key details in 2-column grid */}
+              <div className="grid grid-cols-2 gap-3 mb-3">
+                <div>
+                  <p className="text-[9px] text-slate-400 uppercase tracking-wider font-bold">Credit Requested</p>
+                  <p className="text-sm font-bold text-slate-800 mt-0.5">₹{loan.amount || '5,00,000'}</p>
                 </div>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
-                  <div>
-                    <p className="text-xs text-gray-500 uppercase tracking-wider font-semibold">Requested Credit Limit</p>
-                    <p className="font-bold text-gray-900">₹{loan.amount || '5,00,000'}</p>
-                  </div>
-                  <div>
-                    <p className="text-xs text-gray-500 uppercase tracking-wider font-semibold">Purpose & Commodity</p>
-                    <p className="font-medium text-gray-800">{loan.purpose || 'Working Capital'} • {loan.commodity || 'Wheat'}</p>
-                  </div>
-                  <div>
-                    <p className="text-xs text-gray-500 uppercase tracking-wider font-semibold">Receivables Collateral</p>
-                    <p className="font-medium text-green-700">₹{loan.activeBuyerOrdersValue || '2,70,000'}</p>
-                  </div>
-                  <div>
-                    <p className="text-xs text-gray-500 uppercase tracking-wider font-semibold">Platform Track Record</p>
-                    <div className="flex items-center">
-                      <span className="font-medium text-gray-800 text-sm">42 Orders Completed</span>
-                      <span className="ml-2 text-xs bg-green-100 text-green-800 px-2 py-0.5 rounded-full font-bold">98% Score</span>
-                    </div>
+                <div>
+                  <p className="text-[9px] text-slate-400 uppercase tracking-wider font-bold">Receivable Collateral</p>
+                  <p className="text-sm font-bold text-emerald-700 mt-0.5">₹{loan.activeBuyerOrdersValue || '2,70,000'}</p>
+                </div>
+                <div>
+                  <p className="text-[9px] text-slate-400 uppercase tracking-wider font-bold">Purpose & Commodity</p>
+                  <p className="text-xs font-medium text-slate-700 mt-0.5">{loan.purpose || 'Tomato Harvest, Packing & Cold Transit'}</p>
+                </div>
+                <div>
+                  <p className="text-[9px] text-slate-400 uppercase tracking-wider font-bold">Track Record</p>
+                  <div className="flex items-center mt-0.5 space-x-1.5">
+                    <span className="text-xs font-medium text-slate-700">42 Orders</span>
+                    <span className="text-[9px] bg-emerald-50 text-emerald-700 px-1.5 py-0.5 rounded font-bold border border-emerald-200">98%</span>
                   </div>
                 </div>
               </div>
-              <div className="pl-4 md:border-l md:border-slate-100 h-full flex items-center justify-end w-full md:w-auto">
-                <button 
-                  onClick={() => handleReviewClick(loan)}
-                  className="w-full md:w-auto bg-[#1B5E20] hover:bg-green-900 text-white font-medium py-2 px-6 rounded-xl transition-colors flex items-center justify-center whitespace-nowrap"
-                >
-                  Review Application
-                  <ChevronRight className="w-4 h-4 ml-2" />
-                </button>
-              </div>
+
+              {/* Review Button */}
+              <button 
+                onClick={() => handleReviewClick(loan)}
+                className="w-full py-2.5 bg-[#1B5E20] hover:bg-emerald-800 text-white rounded-xl text-xs font-bold shadow-sm flex items-center justify-center transition-colors"
+              >
+                Review Application
+                <ChevronRight className="w-3.5 h-3.5 ml-1.5" />
+              </button>
             </div>
           )) : (
-            <div className="bg-white border border-slate-200 rounded-2xl shadow-sm p-8 text-center text-gray-500">
+            <div className="bg-white border border-slate-200 rounded-2xl shadow-sm p-8 text-center text-sm text-slate-500">
               No loan requests currently in queue.
             </div>
           )}
@@ -111,6 +120,9 @@ export default function LenderDashboard() {
       </div>
     </div>
   );
+
+
+
 
   const renderApplicationReview = () => (
     <div className="space-y-6">
@@ -542,10 +554,10 @@ export default function LenderDashboard() {
   );
 
   return (
-    <div className="min-h-screen bg-[#f9f8f3] p-4 md:p-8">
+    <div className="min-h-screen bg-[#f9f8f3] p-4 pb-24 max-w-4xl mx-auto">
       <ProfileHeader />
 
-      <div className="max-w-7xl mx-auto">
+      <div>
         {activeView === 'dashboard' && renderDashboard()}
         {activeView === 'application_review' && renderApplicationReview()}
         {activeView === 'activity_assessment' && renderActivityAssessment()}

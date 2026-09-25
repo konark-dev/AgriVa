@@ -135,8 +135,38 @@ export const translations = {
     days: "days",
     autoBuyRescue: "Auto-Buy (Rescue)",
     surplusRescue: "SURPLUS RESCUE",
-    off: "OFF"
-  },
+    off: "OFF",
+    noLivePrices: "No Live Prices Found",
+    noLivePricesDesc: "No live mandi prices reported today for {crop}. Showing state benchmark average instead.",
+    // Warehouse Dashboard strings
+    helloWarehouse: "Hello,",
+    availableSpace: "Available Space",
+    monthlyRevenue: "Monthly Revenue",
+    utilized: "utilized",
+    thisMonth: "this month",
+    addNewStorage: "Add New Storage Space",
+    myGodowns: "My Godowns",
+    bookingRequests: "Booking Requests",
+    registerGodown: "Register New Godown",
+    spaceName: "Space Name",
+    storageType: "Type",
+    capacityMT: "Capacity (MT)",
+    priceMTMonth: "Price (per MT per Month)",
+    cancel: "Cancel",
+    registerBtn: "Register Godown",
+    filled: "Filled",
+    free: "Free",
+    capacityUsed: "capacity used",
+    coldStorage: "Cold Storage",
+    dryStorage: "Dry Storage",
+    pending: "Pending",
+    approved: "Approved",
+    rejected: "Rejected",
+    reject: "Reject",
+    approve: "Approve",
+    duration: "Duration",
+    noRequests: "No new booking requests.",
+    },
   hi: {
     hello: "नमस्ते",
     searchPlaceholder: "खोजें (गेहूं, आलू)...",
@@ -272,7 +302,35 @@ export const translations = {
     days: "दिन",
     autoBuyRescue: "ऑटो-बाय (बचाव)",
     surplusRescue: "अधिशेष बचाव",
-    off: "छूट"
+    off: "छूट",
+    // Warehouse Dashboard strings
+    helloWarehouse: "नमस्ते,",
+    availableSpace: "उपलब्ध स्थान",
+    monthlyRevenue: "मासिक आय",
+    utilized: "उपयोग हो चुका",
+    thisMonth: "इस महीने",
+    addNewStorage: "नया गोदाम स्थान जोड़ें",
+    myGodowns: "मेरे गोदाम",
+    bookingRequests: "बुकिंग अनुरोध",
+    registerGodown: "नया गोदाम दर्ज करें",
+    spaceName: "स्थान का नाम",
+    storageType: "प्रकार",
+    capacityMT: "क्षमता (MT)",
+    priceMTMonth: "मूल्य (₹ / MT / माह)",
+    cancel: "रद्द करें",
+    registerBtn: "गोदाम दर्ज करें",
+    filled: "भरा हुआ",
+    free: "खाली",
+    capacityUsed: "क्षमता उपयोग",
+    coldStorage: "शीत भंडार",
+    dryStorage: "शुष्क भंडार",
+    pending: "लंबित",
+    approved: "स्वीकृत",
+    rejected: "अस्वीकृत",
+    reject: "अस्वीकार करें",
+    approve: "स्वीकार करें",
+    duration: "अवधि",
+    noRequests: "कोई नई बुकिंग अनुरोध नहीं।"
   }
 };
 
@@ -280,3 +338,4 @@ export const t = (lang, key) => {
   const dictionary = translations[lang] || translations['en'];
   return dictionary[key] || translations['en'][key] || key;
 };
+

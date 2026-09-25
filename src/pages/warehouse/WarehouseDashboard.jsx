@@ -1,10 +1,11 @@
 import ProfileHeader from '../../components/ProfileHeader';
 import React, { useState } from 'react';
+import { t } from '../../utils/translations';
 import { useApp } from '../../context/AppContext';
 import { Warehouse, Plus, CheckCircle2, XCircle, Box, TrendingUp, Snowflake, Sun, ArrowRight } from 'lucide-react';
 
 export default function WarehouseDashboard() {
-  const { currentUser, triggerToast } = useApp();
+  const { currentUser, triggerToast, language } = useApp();
   const [activeTab, setActiveTab] = useState('inventory'); // inventory | requests
 
   const [spaces, setSpaces] = useState([
@@ -64,7 +65,7 @@ export default function WarehouseDashboard() {
         <div>
           <h2 className="text-lg font-bold text-slate-800 flex items-center">
             <Warehouse className="w-5 h-5 mr-2 text-emerald-700" />
-            Hello, {currentUser?.name?.split(' ')[0] || 'Warehouse Owner'}
+            {t(language, 'helloWarehouse')} {currentUser?.name?.split(' ')[0] || 'Warehouse Owner'}
           </h2>
           <p className="text-xs text-slate-500 mt-1 flex items-center">
             <span className="text-rose-500 mr-1">📍</span> {currentUser?.village || 'Indore District'} 
@@ -78,7 +79,7 @@ export default function WarehouseDashboard() {
       {/* Stats Cards */}
       <div className="grid grid-cols-2 gap-3">
         <div className="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
-          <p className="text-[10px] text-slate-500 uppercase tracking-wider font-bold">Available Space</p>
+          <p className="text-[10px] text-slate-500 uppercase tracking-wider font-bold">{t(language, 'availableSpace')}</p>
           <div className="flex items-end mt-1.5 space-x-1">
             <span className="text-2xl font-black text-slate-800">{availableSpace}</span>
             <span className="text-sm text-slate-500 mb-0.5 font-medium">MT</span>
@@ -86,11 +87,11 @@ export default function WarehouseDashboard() {
           <div className="w-full bg-slate-100 h-1.5 rounded-full mt-2.5 overflow-hidden">
             <div className="bg-emerald-500 h-full transition-all duration-500 rounded-full" style={{ width: `${utilizationPercent}%` }}></div>
           </div>
-          <p className="text-[9px] text-slate-400 mt-1">{utilizationPercent}% utilized</p>
+          <p className="text-[9px] text-slate-400 mt-1">{t(language, 'utilized')}</p>
         </div>
         
         <div className="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
-          <p className="text-[10px] text-slate-500 uppercase tracking-wider font-bold">Monthly Revenue</p>
+          <p className="text-[10px] text-slate-500 uppercase tracking-wider font-bold">{t(language, 'monthlyRevenue')}</p>
           <div className="flex items-end mt-1.5 space-x-1">
             <span className="text-2xl font-black text-slate-800">₹145.2k</span>
           </div>
@@ -106,41 +107,41 @@ export default function WarehouseDashboard() {
         className="w-full py-3 bg-[#1B5E20] text-white rounded-2xl shadow-sm flex justify-center items-center hover:bg-emerald-800 transition-colors text-sm font-bold"
       >
         <Plus className="w-4 h-4 mr-2" />
-        Add New Storage Space
+        {t(language, 'addNewStorage')}
       </button>
 
       {/* Add Space Form */}
       {showAddForm && (
         <form onSubmit={handleAddSpace} className="bg-white rounded-2xl p-4 border border-emerald-200 shadow-sm space-y-3 animate-in slide-in-from-top-2 duration-200">
-          <h3 className="font-bold text-sm text-slate-800">Register New Godown</h3>
+          <h3 className="font-bold text-sm text-slate-800">{t(language, 'registerGodown')}</h3>
           <div>
-            <label className="text-xs font-semibold text-slate-600 block mb-1">Space Name</label>
+            <label className="text-xs font-semibold text-slate-600 block mb-1">{t(language, 'spaceName')}</label>
             <input name="name" type="text" required placeholder="e.g. Cold Room C" className="w-full px-3 py-2 rounded-xl border border-slate-200 text-sm focus:border-emerald-500 outline-none" />
           </div>
           <div className="grid grid-cols-2 gap-2">
             <div>
-              <label className="text-xs font-semibold text-slate-600 block mb-1">Type</label>
+              <label className="text-xs font-semibold text-slate-600 block mb-1">{t(language, 'storageType')}</label>
               <select name="type" className="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs font-medium focus:border-emerald-500 outline-none">
-                <option>Cold Storage</option>
-                <option>Dry Storage</option>
+                <option>{t(language, 'coldStorage')}</option>
+                <option>{t(language, 'dryStorage')}</option>
                 <option>Mixed / Open</option>
               </select>
             </div>
             <div>
-              <label className="text-xs font-semibold text-slate-600 block mb-1">Capacity (MT)</label>
+              <label className="text-xs font-semibold text-slate-600 block mb-1">{t(language, 'capacityMT')}</label>
               <input name="capacity" type="number" required placeholder="500" className="w-full px-3 py-2 rounded-xl border border-slate-200 text-sm focus:border-emerald-500 outline-none" />
             </div>
           </div>
           <div>
-            <label className="text-xs font-semibold text-slate-600 block mb-1">Price (₹ / MT / Month)</label>
+            <label className="text-xs font-semibold text-slate-600 block mb-1">{t(language, 'priceMTMonth')}</label>
             <input name="price" type="number" required placeholder="150" className="w-full px-3 py-2 rounded-xl border border-slate-200 text-sm focus:border-emerald-500 outline-none" />
           </div>
           <div className="flex space-x-2 pt-1">
             <button type="button" onClick={() => setShowAddForm(false)} className="flex-1 py-2 rounded-xl border border-slate-200 text-slate-600 text-xs font-semibold hover:bg-slate-50">
-              Cancel
+              {t(language, 'cancel')}
             </button>
             <button type="submit" className="flex-1 py-2 rounded-xl bg-[#1B5E20] text-white text-xs font-bold shadow-sm hover:bg-emerald-800">
-              Register Godown
+              {t(language, 'registerBtn')}
             </button>
           </div>
         </form>
@@ -152,13 +153,13 @@ export default function WarehouseDashboard() {
           onClick={() => setActiveTab('inventory')}
           className={"py-2.5 rounded-xl text-xs font-bold transition-colors " + (activeTab === 'inventory' ? 'bg-[#1B5E20] text-white shadow-sm' : 'text-slate-600 hover:bg-slate-50')}
         >
-          My Godowns ({spaces.length})
+          {t(language, 'myGodowns')} ({spaces.length})
         </button>
         <button
           onClick={() => setActiveTab('requests')}
           className={"py-2.5 rounded-xl text-xs font-bold transition-colors " + (activeTab === 'requests' ? 'bg-[#1B5E20] text-white shadow-sm' : 'text-slate-600 hover:bg-slate-50')}
         >
-          Booking Requests ({requests.filter(r => r.status === 'Pending').length})
+          {t(language, 'bookingRequests')} ({requests.filter(r => r.status === 'Pending').length})
         </button>
       </div>
 
@@ -189,15 +190,15 @@ export default function WarehouseDashboard() {
                 </div>
 
                 <div className="flex justify-between items-center text-xs mb-1.5">
-                  <span className="text-slate-500 font-medium">Filled: {space.booked} MT</span>
+                  <span className="text-slate-500 font-medium">{t(language, 'filled')}: {space.booked} MT</span>
                   <span className={isCritical ? "text-rose-600 font-bold" : "text-emerald-700 font-bold"}>
-                    Free: {space.capacity - space.booked} MT
+                    {t(language, 'free')}: {space.capacity - space.booked} MT
                   </span>
                 </div>
                 <div className="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
                   <div className={(isCritical ? "bg-rose-500" : "bg-emerald-500") + " h-full transition-all duration-500 rounded-full"} style={{ width: `${fillPercent}%` }}></div>
                 </div>
-                <p className="text-[9px] text-slate-400 mt-1 text-right">{fillPercent}% capacity used</p>
+                <p className="text-[9px] text-slate-400 mt-1 text-right">{fillPercent}% {t(language, 'capacityUsed')}</p>
               </div>
             );
           })}
@@ -208,7 +209,7 @@ export default function WarehouseDashboard() {
       {activeTab === 'requests' && (
         <div className="space-y-3">
           {requests.length === 0 ? (
-            <p className="text-center text-sm text-slate-500 py-10">No new booking requests.</p>
+            <p className="text-center text-sm text-slate-500 py-10">{t(language, 'noRequests')}</p>
           ) : (
             requests.map(req => (
               <div key={req.id} className="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm">
@@ -219,14 +220,14 @@ export default function WarehouseDashboard() {
                       <Box className="w-3 h-3 mr-1" /> {req.crop} — {req.quantity} MT
                     </p>
                     <p className="text-xs text-slate-500 flex items-center mt-0.5">
-                      🕒 Duration: {req.duration}
+                      🕒 {t(language, 'duration')}: {req.duration}
                     </p>
                   </div>
                   <span className={"px-2 py-1 rounded-lg text-[10px] font-bold " + (
                     req.status === 'Pending' ? 'bg-amber-50 text-amber-700 border border-amber-200' : 
                     req.status === 'Approved' ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : 'bg-rose-50 text-rose-700 border border-rose-200'
                   )}>
-                    {req.status}
+                    {t(language, req.status.toLowerCase())}
                   </span>
                 </div>
                 

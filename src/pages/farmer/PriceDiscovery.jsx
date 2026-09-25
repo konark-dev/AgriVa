@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import { useApp } from '../../context/AppContext';
 import { recommendBestMandis } from '../../utils/priceTrends';
 import { TrendingUp, TrendingDown, Minus, Filter, Sparkles, MapPin, Award, RefreshCw } from 'lucide-react';
+import { t } from '../../utils/translations';
 
 export default function PriceDiscovery() {
-  const { mandiPrices, currentUser } = useApp();
+  const { mandiPrices, currentUser, language } = useApp();
 
   const [selectedCrop, setSelectedCrop] = useState('All');
   const [maxDistanceKm, setMaxDistanceKm] = useState(100);
@@ -162,9 +163,9 @@ export default function PriceDiscovery() {
         {filteredPrices.length === 0 ? (
           /* Fallback state-average card when crop not found */
           <div className="bg-amber-50 border border-amber-200 rounded-2xl p-6 text-center space-y-2 shadow-sm mt-4">
-            <div className="text-amber-700 text-sm font-bold uppercase tracking-wide">No Live Prices Found</div>
+            <div className="text-amber-700 text-sm font-bold uppercase tracking-wide">{t(language, 'noLivePrices') || 'No Live Prices Found'}</div>
             <p className="text-xs text-amber-800 font-medium">
-              No live mandi prices reported today for <strong className="text-amber-900">{selectedCrop}</strong>. Showing state benchmark average instead.
+              {(t(language, 'noLivePricesDesc') || '').replace('{crop}', selectedCrop) || `No live mandi prices reported today for ${selectedCrop}. Showing state benchmark average instead.`}
             </p>
             <div className="text-2xl font-black text-amber-600 pt-2">₹28.50 <span className="text-sm font-semibold">/ kg (Avg)</span></div>
           </div>        ) : (
