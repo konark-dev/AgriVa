@@ -1,6 +1,6 @@
 import React from 'react';
 import { useApp } from '../context/AppContext';
-import { Home, Store, Bell, User, Truck, Building2, Microscope, ShieldCheck, BarChart3, AlertCircle } from 'lucide-react';
+import { Home, Store, Bell, User, Truck, Building2, Microscope, ShieldCheck, BarChart3, AlertCircle, Package } from 'lucide-react';
 import { t } from '../utils/translations';
 
 export default function BottomNav({ activeTab, setActiveTab }) {
@@ -14,6 +14,7 @@ export default function BottomNav({ activeTab, setActiveTab }) {
         return [
           { id: 'dashboard', label: t(language, 'home'), icon: Home },
           { id: 'feed', label: t(language, 'feed'), icon: Bell },
+          { id: 'createLot', label: 'New Lot', icon: Package },
           { id: 'prices', label: t(language, 'sell'), icon: Store },
           { id: 'settings', label: t(language, 'profile'), icon: User }
         ];

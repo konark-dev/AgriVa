@@ -13,6 +13,8 @@ import FarmerDashboard from './pages/farmer/FarmerDashboard';
 import PriceDiscovery from './pages/farmer/PriceDiscovery';
 import RequirementsFeed from './pages/farmer/RequirementsFeed';
 import MakeOfferModal from './pages/farmer/MakeOfferModal';
+import CreateLotScreen from './pages/farmer/CreateLotScreen';
+import LotDetailScreen from './pages/farmer/LotDetailScreen';
 import BuyerMarketplace from './pages/buyer/BuyerMarketplace';
 import BulkBuyerDashboard from './pages/buyer/BulkBuyerDashboard';
 import PostRequirementForm from './pages/buyer/PostRequirementForm';
@@ -27,19 +29,21 @@ import WarehouseDashboard from './pages/warehouse/WarehouseDashboard';
 import SettingsPage from './pages/SettingsPage';
 
 function MainLayout() {
-  const { currentUser, requirements } = useApp();
+  const { currentUser, requirements, createLot } = useApp();
   const [activeTab, setActiveTab] = useState('dashboard');
   const [isAuthenticated, setIsAuthenticated] = useState(() => {
     return localStorage.getItem('agriva_auth_status') === 'true';
   });
   const [activeRequirement, setActiveRequirement] = useState(null);
   const [showMakeOffer, setShowMakeOffer] = useState(false);
+  const [activeLot, setActiveLot] = useState(null); // For viewing lot detail
 
   // Reset to dashboard when user/role changes
   useEffect(() => {
     setActiveTab('dashboard');
     setActiveRequirement(null);
     setShowMakeOffer(false);
+    setActiveLot(null);
   }, [currentUser?.uid]);
 
   if (!isAuthenticated) {
@@ -77,6 +81,15 @@ function MainLayout() {
       case 'fpo':
         if (activeTab === 'prices') return <PriceDiscovery />;
         if (activeTab === 'feed') return <RequirementsFeed onMakeOffer={(req) => { setActiveRequirement(req); setShowMakeOffer(true); }} />;
+        if (activeTab === 'createLot') return <CreateLotScreen 
+          onBack={() => setActiveTab('dashboard')} 
+          onLotCreated={async (lotData) => {
+            const lot = await createLot(lotData);
+            setActiveLot(lot);
+            setActiveTab('lotDetail');
+          }} 
+        />;
+        if (activeTab === 'lotDetail' && activeLot) return <LotDetailScreen lot={activeLot} onBack={() => { setActiveLot(null); setActiveTab('dashboard'); }} />;
         return <FarmerDashboard />;
 
       case 'buyer':

@@ -45,6 +45,7 @@ export const AppProvider = ({ children }) => {
   const [mandiLots, setMandiLots] = useState([]);
   const [labCertificates, setLabCertificates] = useState([]);
   const [disputes, setDisputes] = useState([]);
+  const [farmerLots, setFarmerLots] = useState([]);
 
   // Actor Registrations & Governance State
   const [registeredUsers, setRegisteredUsers] = useState(INITIAL_REGISTERED_USERS);
@@ -96,6 +97,7 @@ export const AppProvider = ({ children }) => {
     const unsubPrices = subscribeCollection('mandiPriceData', setMandiPrices);
     const unsubNotifs = subscribeCollection('notifications', setNotifications);
     const unsubLots = subscribeCollection('mandiLots', setMandiLots);
+    const unsubFarmerLots = subscribeCollection('farmerLots', setFarmerLots);
     const unsubCerts = subscribeCollection('labCertificates', setLabCertificates);
     const unsubUsers = subscribeCollection('registeredUsers', setRegisteredUsers);
     const unsubFpos = subscribeCollection('fpoApprovals', setFpoApprovals);
@@ -115,6 +117,7 @@ export const AppProvider = ({ children }) => {
       unsubPrices();
       unsubNotifs();
       unsubLots();
+      unsubFarmerLots();
       unsubCerts();
       unsubUsers();
       unsubFpos();
@@ -362,6 +365,27 @@ export const AppProvider = ({ children }) => {
     
     await saveDocument('listings', id, newListing);
     triggerToast(`Crop listing for ${listingData.crop} created successfully!`, "Listing Published", "success");
+  };
+
+  const createLot = async (lotData) => {
+    // lotData comes from CreateLotScreen with id already generated
+    const lot = {
+      ...lotData,
+      farmerId: currentUser.uid,
+      farmerName: currentUser.name,
+      farmerPhone: currentUser.phone,
+      status: 'pending_grading',
+      createdAt: new Date().toISOString()
+    };
+    
+    await saveDocument('farmerLots', lot.id, lot);
+    triggerToast(`Lot ${lot.id} created! Awaiting quality grading.`, "Lot Created", "success");
+    return lot;
+  };
+
+  const updateLotStatus = async (lotId, newStatus, extraData = {}) => {
+    await updateDocumentFields('farmerLots', lotId, { status: newStatus, ...extraData });
+    triggerToast(`Lot ${lotId} status updated to: ${newStatus}`, "Lot Updated", "info");
   };
 
   const placeBid = async (listingId, price) => {
@@ -886,6 +910,10 @@ export const AppProvider = ({ children }) => {
       makeOffer,
       acceptOffer,
       withdrawOffer,
+      // Farmer Lot module
+      farmerLots,
+      createLot,
+      updateLotStatus,
       t
     }}>
       {children}
