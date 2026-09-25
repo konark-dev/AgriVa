@@ -6,7 +6,7 @@ import { t } from '../../utils/translations';
 import { INITIAL_MANDI_PRICES } from '../../firebase/seedData';
 
 export default function PriceDiscovery() {
-  const { mandiPrices, currentUser, language } = useApp();
+  const { mandiPrices, currentUser, language, triggerToast } = useApp();
   const effectiveMandiPrices = mandiPrices.length > 0 ? mandiPrices : INITIAL_MANDI_PRICES;
 
   const [selectedCrop, setSelectedCrop] = useState('All');
@@ -40,8 +40,9 @@ export default function PriceDiscovery() {
     setTimeout(() => {
       setIsSyncing(false);
       setLastSync(new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}));
-      // We don't actually mutate state because we want to stick to mock data, 
-      // but we show a success toast to complete the simulation.
+      if (triggerToast) {
+        triggerToast("eNAM Mandi Prices synchronized successfully.", "Sync Complete", "success");
+      }
     }, 2000);
   };
 
