@@ -5,6 +5,7 @@ import {
   Filter, Volume2, Zap, TrendingUp, Square, CheckSquare 
 } from 'lucide-react';
 import { useApp } from '../../context/AppContext';
+import LogisticsAssignmentScreen from '../../components/LogisticsAssignmentScreen';
 
 export default function BuyerOffersView({ requirement, onBack }) {
   const { offers, acceptOffer, requirements } = useApp();
@@ -19,6 +20,7 @@ export default function BuyerOffersView({ requirement, onBack }) {
   const [selectedIds, setSelectedIds] = useState([]);
   const [sortBy, setSortBy] = useState('price');
   const [loading, setLoading] = useState(false);
+  const [createdOrderToAssign, setCreatedOrderToAssign] = useState(null);
   
   const sortedOffers = [...reqOffers].sort((a, b) =>
     sortBy === 'price' ? a.pricePerUnit - b.pricePerUnit : new Date(a.createdAt) - new Date(b.createdAt)
@@ -39,9 +41,15 @@ export default function BuyerOffersView({ requirement, onBack }) {
   const handleAccept = async () => {
     if (!selectedIds.length) return;
     setLoading(true);
-    await acceptOffer(req.id, selectedIds);
+    const createdOrders = await acceptOffer(req.id, selectedIds);
     setLoading(false);
-    onBack();
+    
+    if (createdOrders && createdOrders.length > 0) {
+      // Pass the first created order to the logistics assignment screen
+      setCreatedOrderToAssign(createdOrders[0]);
+    } else {
+      onBack();
+    }
   };
 
   const getSellerBadge = (type) => {
@@ -248,6 +256,20 @@ export default function BuyerOffersView({ requirement, onBack }) {
           )}
         </button>
       </div>
+
+      {createdOrderToAssign && (
+        <LogisticsAssignmentScreen 
+          order={createdOrderToAssign} 
+          onAssigned={() => {
+            setCreatedOrderToAssign(null);
+            onBack();
+          }}
+          onCancel={() => {
+            setCreatedOrderToAssign(null);
+            onBack();
+          }} 
+        />
+      )}
     </div>
   );
 }

@@ -494,14 +494,25 @@ export const AppProvider = ({ children }) => {
     triggerToast(`Delivery #${deliveryId} status updated to: ${newStatus}`, "Status Updated", "info");
   };
 
-  const completeTransporterDelivery = async (deliveryId) => {
+  const completeTransporterDelivery = async (deliveryId, proofPhoto = '') => {
     // TRIGGER 1: Logistics Partner Payout
     // Fires when driver scans delivery completion. INDEPENDENT of buyer dispute.
     await updateDeliveryStatus(deliveryId, "Delivered", { 
       logisticsPayoutStatus: "Released",
-      deliveredAt: new Date().toISOString()
+      deliveredAt: new Date().toISOString(),
+      deliveryProofUrl: proofPhoto
     });
-    triggerToast(`Delivery scan complete. Driver payment released.`, "Logistics Payout", "success");
+    
+    // Also update order status to trigger payment timeline
+    const del = deliveries.find(d => d.id === deliveryId);
+    if (del && del.orderId) {
+      await updateDocumentFields('orders', del.orderId, {
+        status: 'Delivered',
+        deliveredAt: new Date().toISOString()
+      });
+    }
+    
+    triggerToast(`Delivery scan complete. Proof attached and driver payment released.`, "Logistics Payout", "success");
   };
 
   const confirmBuyerDelivery = async (deliveryId) => {
@@ -776,6 +787,7 @@ export const AppProvider = ({ children }) => {
     if (!requirement) return;
 
     let addedQty = 0;
+    const createdOrders = [];
 
     for (const offerId of normalizedIds) {
       const offer = offers.find(o => o.id === offerId);
@@ -796,41 +808,21 @@ export const AppProvider = ({ children }) => {
         buyerName: requirement.buyerName,
         sellerId: offer.sellerId,
         sellerName: offer.sellerName,
+        sellerLocation: offer.sellerLocation || "Farmer's Field",
+        deliveryLocation: requirement.deliveryLocation,
         crop: requirement.crop,
         qty: offer.offeredQty,
         pricePerUnit: offer.pricePerUnit,
         totalValue: offer.totalPayout,
         linkedListingId: offer.linkedListingId || null,
-        status: 'Transport Assigned',
+        status: 'Pending Logistics', // Changed from Transport Assigned
         createdAt: new Date().toISOString()
       };
       await saveDocument('orders', orderId, newOrder);
-
-      // 3. Auto-assign logistics / create Delivery document
-      const delId = `del-${Date.now().toString().slice(-4)}-${offerId.slice(-2)}`;
-      const newDelivery = {
-        id: delId,
-        orderId,
-        requirementId,
-        farmerName: offer.sellerName,
-        crop: requirement.crop,
-        quantity: offer.offeredQty,
-        bidPrice: offer.pricePerUnit,
-        transporterId: "usr-transporter-1",
-        transporterName: "Kisan Logistics (HR-10-AB-1234)",
-        pickupLocation: { name: offer.sellerLocation || "Farmer's Field", lat: 28.9931, lng: 77.0151 },
-        deliveryLocation: { name: requirement.deliveryLocation, lat: 28.7041, lng: 77.1025 },
-        status: "Transport Assigned",
-        deliveryMode: "verified",
-        pickupOrder: [
-          { id: "stop-1", name: `${offer.sellerLocation || "Field"} - ${offer.sellerName}`, lat: 28.9931, lng: 77.0151, quantity: offer.offeredQty }
-        ],
-        createdAt: new Date().toISOString()
-      };
-      await saveDocument('deliveries', delId, newDelivery);
+      createdOrders.push(newOrder);
     }
 
-    // 4. Update requirement's fulfilledQty
+    // 3. Update requirement's fulfilledQty
     const newFulfilledQty = (requirement.fulfilledQty || 0) + addedQty;
     const isFullyClosed = newFulfilledQty >= requirement.targetQty;
     await updateDocumentFields('requirements', requirementId, {
@@ -862,6 +854,8 @@ export const AppProvider = ({ children }) => {
         'success'
       );
     }
+    
+    return createdOrders;
   };
 
   /**

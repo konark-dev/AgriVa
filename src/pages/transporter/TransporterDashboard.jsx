@@ -20,6 +20,8 @@ export default function TransporterDashboard() {
   const [delayModal, setDelayModal] = useState(null);
   const [delayReason, setDelayReason] = useState('Traffic & Highway Hold');
   const [trackingDelivery, setTrackingDelivery] = useState(null);
+  const [deliveryCompletionModal, setDeliveryCompletionModal] = useState(null);
+  const [proofFile, setProofFile] = useState(null);
 
   if (activeTab === 'route_comparison') {
     return <RouteComparisonView onBack={() => setActiveTab('pickups')} />;
@@ -279,7 +281,7 @@ export default function TransporterDashboard() {
                           <span>Track Live</span>
                         </button>
                           <button
-                            onClick={() => completeTransporterDelivery(del.id)}
+                            onClick={() => setDeliveryCompletionModal(del)}
                             className="btn-touch flex-1 py-2.5 rounded-xl bg-[#2E7D32] text-white text-xs font-bold shadow"
                           >
                             Scan & Complete (Release Payout)
@@ -465,6 +467,55 @@ export default function TransporterDashboard() {
           delivery={trackingDelivery} 
           onClose={() => setTrackingDelivery(null)} 
         />
+      )}
+
+      {/* Delivery Completion Proof Modal */}
+      {deliveryCompletionModal && (
+        <div className="fixed inset-0 z-50 bg-white/90 backdrop-blur-sm flex items-center justify-center p-4">
+          <form 
+            onSubmit={(e) => {
+              e.preventDefault();
+              completeTransporterDelivery(deliveryCompletionModal.id, proofFile ? proofFile.name : 'proof.jpg');
+              setDeliveryCompletionModal(null);
+            }} 
+            className="bg-white border border-slate-200 rounded-2xl w-full max-w-md p-5 space-y-4 shadow-2xl"
+          >
+            <h3 className="font-bold text-base text-slate-800">Upload Delivery Proof</h3>
+            <p className="text-xs text-slate-500 mb-2">Please upload a photo of the delivered goods to release your payout.</p>
+
+            <div className="border-2 border-dashed border-slate-300 rounded-xl p-6 text-center hover:bg-slate-50 transition-colors">
+              <input
+                type="file"
+                id="proof-upload"
+                className="hidden"
+                required
+                onChange={(e) => setProofFile(e.target.files[0])}
+              />
+              <label htmlFor="proof-upload" className="cursor-pointer flex flex-col items-center gap-2">
+                <Camera className="w-8 h-8 text-slate-400" />
+                <span className="text-sm font-medium text-slate-600">
+                  {proofFile ? proofFile.name : 'Tap to take photo'}
+                </span>
+              </label>
+            </div>
+
+            <div className="flex space-x-2 pt-2">
+              <button
+                type="button"
+                onClick={() => setDeliveryCompletionModal(null)}
+                className="flex-1 py-2.5 rounded-xl bg-slate-100 text-slate-700 text-xs font-semibold"
+              >
+                Cancel
+              </button>
+              <button
+                type="submit"
+                className="flex-1 py-2.5 rounded-xl bg-[#2E7D32] text-white text-xs font-bold shadow"
+              >
+                Submit Proof & Complete
+              </button>
+            </div>
+          </form>
+        </div>
       )}
     </div>
   );
