@@ -64,7 +64,7 @@ export default function PaymentTimeline({ order, onDispute }) {
         </div>
       )}
 
-      <div className="relative pl-6 space-y-6 before:content-['\'] before:absolute before:left-[11px] before:top-2 before:bottom-2 before:w-[2px] before:bg-slate-200">
+      <div className="relative pl-6 space-y-6 before:content-[''] before:absolute before:left-[11px] before:top-2 before:bottom-2 before:w-[2px] before:bg-slate-200">
         {stages.map((stage, index) => {
           const isCompleted = !!stage.timestamp;
           const isCurrent = index === currentStageIndex;
@@ -88,16 +88,16 @@ export default function PaymentTimeline({ order, onDispute }) {
           return (
             <div key={stage.key} className="relative">
               <div
-                className={\`absolute -left-[33px] top-0 w-6 h-6 rounded-full border-2 flex items-center justify-center bg-white z-10 transition-colors \${borderColor}\`}
+                className={`absolute -left-[33px] top-0 w-6 h-6 rounded-full border-2 flex items-center justify-center bg-white z-10 transition-colors ${borderColor}`}
               >
-                <Icon className={\`w-3.5 h-3.5 \${iconColor}\`} />
+                <Icon className={`w-3.5 h-3.5 ${iconColor}`} />
               </div>
 
               <div className="flex flex-col">
                 <span
-                  className={\`text-sm font-semibold \${
+                  className={`text-sm font-semibold ${
                     isCompleted || isCurrent ? "text-slate-800" : "text-slate-400"
-                  }\`}
+                  }`}
                 >
                   {stage.label}
                 </span>
@@ -117,4 +117,3 @@ export default function PaymentTimeline({ order, onDispute }) {
     </div>
   );
 }
-
