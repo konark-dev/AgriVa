@@ -10,7 +10,7 @@ import {
   Star, 
   TrendingUp, 
   Volume2, 
-  Truck, Phone 
+  Truck, Phone, CheckCircle
 } from 'lucide-react';
 import { useApp } from '../../context/AppContext';
 
@@ -156,7 +156,14 @@ export default function RequirementsFeed({ onMakeOffer }) {
               {/* Buyer row */}
               <div className="flex items-center gap-2 mb-4">
                 <span className="font-bold text-slate-800 text-sm">{buyerName}</span>
-                <span className="bg-[#2E7D32] text-white text-[10px] px-1.5 py-0.5 rounded font-medium">सत्यापित</span>
+                {req.verified || req.buyerType?.includes('Verified') ? (
+                  <span className="bg-blue-50 text-blue-700 border border-blue-200 text-[10px] px-1.5 py-0.5 rounded font-bold flex items-center gap-1">
+                    <CheckCircle className="w-3 h-3" />
+                    Verified Buyer
+                  </span>
+                ) : (
+                  <span className="bg-[#2E7D32] text-white text-[10px] px-1.5 py-0.5 rounded font-medium">सत्यापित</span>
+                )}
                 <span className="flex items-center text-xs text-slate-600 font-medium">
                   <Star size={12} className="text-yellow-400 fill-yellow-400 mr-0.5" /> 4.9
                 </span>

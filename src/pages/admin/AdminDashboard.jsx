@@ -22,6 +22,7 @@ import {
   Info,
   AlertOctagon
 } from 'lucide-react';
+import AdminDisputeQueue from './AdminDisputeQueue';
 
 export default function AdminDashboard() {
   const { 
@@ -261,8 +262,11 @@ export default function AdminDashboard() {
               <div key={buyer.id} className="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm space-y-3 text-xs">
                 <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-2">
                   <div>
-                    <h3 className="font-extrabold text-base text-slate-900">{buyer.businessName}</h3>
-                    <p className="text-slate-600 font-mono font-bold text-xs mt-0.5">GSTIN: {buyer.gstin}</p>
+                    <span className="font-mono text-[10px] bg-amber-100 text-amber-800 px-2 py-0.5 rounded font-bold">
+                      {buyer.buyerType}
+                    </span>
+                    <h3 className="font-extrabold text-base text-slate-900 mt-1">{buyer.businessName}</h3>
+                    <p className="text-slate-600 font-mono font-bold text-xs mt-0.5">GSTIN: {buyer.gstin} | PAN: {buyer.pan}</p>
                     <p className="text-slate-500 mt-1">📍 {buyer.businessAddress}</p>
                   </div>
                   <span className="px-2.5 py-1 bg-amber-100 text-amber-700 border border-amber-300 font-bold rounded-full text-[10px] shrink-0 self-start">
@@ -276,8 +280,8 @@ export default function AdminDashboard() {
                     <span className="font-bold text-slate-800">{buyer.contactPerson} ({buyer.phone})</span>
                   </div>
                   <div>
-                    <span className="text-slate-500 block text-[10px]">भुगतान शर्तें (MVP Rule):</span>
-                    <span className="font-bold text-emerald-700">{buyer.paymentTerms || 'Upfront Only (MVP Scope)'}</span>
+                    <span className="text-slate-500 block text-[10px]">Bank Details:</span>
+                    <span className="font-bold text-slate-800">{buyer.bankAccount} / {buyer.ifsc}</span>
                   </div>
                 </div>
 
@@ -462,64 +466,7 @@ export default function AdminDashboard() {
 
       {/* ---------------- 6. DISPUTES QUEUE ---------------- */}
       {activeTab === 'disputes' && (
-        <div className="space-y-3">
-          <div className="p-3 rounded-2xl bg-rose-50 border border-rose-200 text-rose-950 text-xs leading-relaxed">
-            <strong>Disputes Resolution Center:</strong> Admin can intervene on contested deliveries (quantity shortages, quality spoilage, etc.) to void payments or uphold transactions based on offline investigation.
-          </div>
-
-          {disputes.length === 0 ? (
-            <EmptyState title="No Active Disputes" description="All deliveries are proceeding smoothly." />
-          ) : (
-            disputes.map(disp => (
-              <div key={disp.id} className="bg-white rounded-2xl p-5 border border-slate-200 space-y-3 shadow-sm text-xs">
-                <div className="flex items-start justify-between">
-                  <div>
-                    <h4 className="font-bold text-sm text-slate-900">Dispute #{disp.id}</h4>
-                    <p className="text-slate-600">Order ID: {disp.orderId}</p>
-                    <p className="text-slate-500 font-bold capitalize text-rose-600 mt-1">Issue: {disp.category.replace('_', ' ')}</p>
-                  </div>
-                  <span className={`px-2.5 py-1 rounded-full border font-bold text-[10px] ${
-                    disp.liability === 'unresolved' ? 'bg-amber-100 text-amber-700 border-amber-300' : 'bg-emerald-100 text-emerald-700 border-emerald-300'
-                  }`}>
-                    {disp.liability === 'unresolved' ? 'Action Required' : 'Resolved'}
-                  </span>
-                </div>
-
-                {disp.liability === 'unresolved' ? (
-                  <div className="pt-2 border-t border-slate-200 flex flex-col space-y-2">
-                    <div className="font-bold text-slate-600 mb-1">Admin Action:</div>
-                    <div className="grid grid-cols-2 gap-2">
-                      <button
-                        onClick={() => resolveDispute(disp.id, 'farmer', 'full_void')}
-                        className="py-2.5 rounded-xl bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200 font-bold flex flex-col items-center justify-center space-x-1"
-                      >
-                        <span>At Fault: Farmer</span>
-                        <span className="text-[10px] font-normal opacity-80">Full Void & Refund</span>
-                      </button>
-                      <button
-                        onClick={() => resolveDispute(disp.id, 'logistics_partner', 'partial_capture')}
-                        className="py-2.5 rounded-xl bg-indigo-50 hover:bg-indigo-100 text-indigo-700 border border-indigo-200 font-bold flex flex-col items-center justify-center space-x-1"
-                      >
-                        <span>At Fault: Transporter</span>
-                        <span className="text-[10px] font-normal opacity-80">Partial Refund</span>
-                      </button>
-                    </div>
-                    <button
-                      onClick={() => resolveDispute(disp.id, 'buyer_false_claim', 'contested_upheld')}
-                      className="w-full py-2.5 rounded-xl bg-[#2E7D32] hover:bg-green-800 text-white font-bold"
-                    >
-                      Uphold Transaction (Release Funds)
-                    </button>
-                  </div>
-                ) : (
-                  <div className="p-2.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-600 text-[10px]">
-                    <strong>Resolution:</strong> {disp.resolution} (Fault: {disp.liability})
-                  </div>
-                )}
-              </div>
-            ))
-          )}
-        </div>
+        <AdminDisputeQueue />
       )}
 
       {/* Rejection Reason Modal */}

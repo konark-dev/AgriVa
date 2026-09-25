@@ -296,8 +296,7 @@ export default function Onboarding({ onComplete }) {
 
     // Specific field adjustments
     if (selectedRole === 'bulk_buyer') {
-      payload.buyerType = 'bulk';
-      payload.buyerTier = formData.buyerTier || 'bulk'; // bulk | retailer
+      payload.buyerType = formData.buyerType || 'Bulk Buyer';
       payload.name = formData.businessName;
     } else if (selectedRole === 'consumer') {
       payload.buyerType = 'retail';
@@ -1046,68 +1045,123 @@ export default function Onboarding({ onComplete }) {
                    <p>⬢ FPO की तरह एडमिन सत्यापन पथ: Pending → Admin Verified → Active।</p>
                 </div>
 
-                <div className="bg-white rounded-2xl p-4 border border-slate-200 space-y-3 shadow-sm">
-                   <div>
-                      <label className="text-xs font-bold text-slate-700 block mb-2">Buyer Category (Tier) *</label><div className="grid grid-cols-2 gap-2 mb-4"><label className={`flex items-center space-x-2 p-2 rounded-lg border cursor-pointer ${formData.buyerTier === 'bulk' ? 'bg-amber-50 border-amber-300 text-amber-800' : 'bg-slate-50 border-slate-200 text-slate-600'}`}><input type="radio" name="buyerTier" value="bulk" checked={formData.buyerTier === 'bulk'} onChange={e => handleFormChange('buyerTier', e.target.value)} className="text-amber-600" /><div className="text-xs font-bold">Bulk Buyer<br/><span className="text-[9px] font-normal opacity-80">Full Truckloads</span></div></label><label className={`flex items-center space-x-2 p-2 rounded-lg border cursor-pointer ${formData.buyerTier === 'retailer' ? 'bg-amber-50 border-amber-300 text-amber-800' : 'bg-slate-50 border-slate-200 text-slate-600'}`}><input type="radio" name="buyerTier" value="retailer" checked={formData.buyerTier === 'retailer'} onChange={e => handleFormChange('buyerTier', e.target.value)} className="text-amber-600" /><div className="text-xs font-bold">Retailer<br/><span className="text-[9px] font-normal opacity-80">20-200kg Batched</span></div></label></div><label className="text-xs font-bold text-slate-700">Business Name *</label>
-                      <input 
-                        type="text"
-                        value={formData.businessName}
-                        onChange={e => handleFormChange('businessName', e.target.value)}
+               <div className="bg-white rounded-2xl p-4 border border-slate-200 space-y-3 shadow-sm">
+                  <div>
+                     <label className="text-xs font-bold text-slate-700 block mb-2">Buyer Type *</label>
+                     <select 
+                        value={formData.buyerType || 'Bulk Buyer'} 
+                        onChange={e => handleFormChange('buyerType', e.target.value)} 
                         className="w-full mt-1 p-3 rounded-xl border border-slate-200 text-sm font-bold text-slate-800"
-                        placeholder="एग्रोकॉर्प बल्क ट्रेडर्स प्रा. लि."
-                      />
-                   </div>
-
-                   <div>
-                      <label className="text-xs font-bold text-slate-700 flex justify-between">
-                         <span>15-अंक GSTIN *</span>
-                         <span className="text-[10px] text-slate-500 font-mono">
-                            {validateGstin(formData.gstin).valid ? '✅ प्रारूप मान्य' : '⚠ 15-अंक GSTIN अपेक्षित'}
-                         </span>
-                      </label>
-                      <input 
-                        type="text"
-                        value={formData.gstin}
-                        onChange={e => handleFormChange('gstin', e.target.value.toUpperCase())}
-                        className="w-full mt-1 p-3 rounded-xl border border-slate-200 text-sm font-mono font-bold text-slate-800 tracking-wider"
-                        placeholder="07AAAAA0000A1Z5"
-                        maxLength={15}
-                      />
-                   </div>
-
-                   <div>
-                      <label className="text-xs font-bold text-slate-700">व्यावसायिक पता *</label>
-                      <input 
-                        type="text"
-                        value={formData.address}
-                        onChange={e => handleFormChange('address', e.target.value)}
-                        className="w-full mt-1 p-3 rounded-xl border border-slate-200 text-sm font-bold text-slate-800"
-                        placeholder="प्लॉट 42, मॉडल टाउन, इंडस्ट्रियल एरिया, हरियाणा"
-                      />
-                   </div>
-
-                   <div className="grid grid-cols-2 gap-3">
-                      <div>
-                         <label className="text-xs font-bold text-slate-700">अधिकृत संपर्क व्यक्ति *</label>
-                         <input 
+                     >
+                        <option value="Individual Trader">Individual Trader</option>
+                        <option value="Bulk Buyer">Bulk Buyer</option>
+                        <option value="Processor">Processor</option>
+                        <option value="FPO">FPO</option>
+                     </select>
+                  </div>
+                  {formData.buyerType === 'Individual Trader' && (
+                     <div>
+                        <label className="text-xs font-bold text-slate-700">Mandi Trading License Number (Optional)</label>
+                        <input 
                            type="text"
-                           value={formData.authorizedContact}
-                           onChange={e => handleFormChange('authorizedContact', e.target.value)}
+                           value={formData.mandiLicense || ''}
+                           onChange={e => handleFormChange('mandiLicense', e.target.value)}
                            className="w-full mt-1 p-3 rounded-xl border border-slate-200 text-sm font-bold text-slate-800"
-                           placeholder="विक्रम सिंघानिया"
-                         />
-                      </div>
-                      <div>
-                         <label className="text-xs font-bold text-slate-700">भुगतान शर्तें (Payment Terms)</label>
-                         <input 
-                           type="text"
-                           value={formData.paymentTerms}
-                           className="w-full mt-1 p-3 rounded-xl border border-slate-200 text-sm font-bold text-slate-700 bg-slate-50"
-                           readOnly
-                         />
-                      </div>
-                   </div>
-                </div>
+                           placeholder="License Number"
+                        />
+                     </div>
+                  )}
+                  <div>
+                     <label className="text-xs font-bold text-slate-700">Business Name / Name *</label>
+                     <input 
+                       type="text"
+                       value={formData.businessName}
+                       onChange={e => handleFormChange('businessName', e.target.value)}
+                       className="w-full mt-1 p-3 rounded-xl border border-slate-200 text-sm font-bold text-slate-800"
+                       placeholder="एग्रोकॉर्प बल्क ट्रेडर्स प्रा. लि."
+                     />
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-3">
+                     <div>
+                        <label className="text-xs font-bold text-slate-700 flex justify-between">
+                           <span>15-अंक GSTIN *</span>
+                           <span className="text-[10px] text-slate-500 font-mono">
+                              {validateGstin(formData.gstin).valid ? '✅ मान्य' : '⚠ अपेक्षित'}
+                           </span>
+                        </label>
+                        <input 
+                          type="text"
+                          value={formData.gstin}
+                          onChange={e => handleFormChange('gstin', e.target.value.toUpperCase())}
+                          className="w-full mt-1 p-3 rounded-xl border border-slate-200 text-sm font-mono font-bold text-slate-800 tracking-wider"
+                          placeholder="07AAAAA0000A1Z5"
+                          maxLength={15}
+                        />
+                     </div>
+                     <div>
+                        <label className="text-xs font-bold text-slate-700 flex justify-between">
+                           <span>PAN *</span>
+                           <span className="text-[10px] text-slate-500 font-mono">
+                              {/^[A-Z]{5}[0-9]{4}[A-Z]{1}$/.test(formData.pan || '') ? '✅ मान्य' : '⚠ अपेक्षित'}
+                           </span>
+                        </label>
+                        <input 
+                          type="text"
+                          value={formData.pan || ''}
+                          onChange={e => handleFormChange('pan', e.target.value.toUpperCase())}
+                          className="w-full mt-1 p-3 rounded-xl border border-slate-200 text-sm font-mono font-bold text-slate-800 tracking-wider"
+                          placeholder="ABCDE1234F"
+                          maxLength={10}
+                        />
+                     </div>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-3">
+                     <div>
+                        <label className="text-xs font-bold text-slate-700">Bank Account Number *</label>
+                        <input 
+                          type="text"
+                          value={formData.bankAccount || ''}
+                          onChange={e => handleFormChange('bankAccount', e.target.value)}
+                          className="w-full mt-1 p-3 rounded-xl border border-slate-200 text-sm font-bold text-slate-800"
+                          placeholder="Account Number"
+                        />
+                     </div>
+                     <div>
+                        <label className="text-xs font-bold text-slate-700">IFSC Code *</label>
+                        <input 
+                          type="text"
+                          value={formData.ifsc || ''}
+                          onChange={e => handleFormChange('ifsc', e.target.value.toUpperCase())}
+                          className="w-full mt-1 p-3 rounded-xl border border-slate-200 text-sm font-bold text-slate-800"
+                          placeholder="IFSC Code"
+                        />
+                     </div>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-3">
+                     <div>
+                        <label className="text-xs font-bold text-slate-700">अधिकृत संपर्क व्यक्ति *</label>
+                        <input 
+                          type="text"
+                          value={formData.authorizedContact}
+                          onChange={e => handleFormChange('authorizedContact', e.target.value)}
+                          className="w-full mt-1 p-3 rounded-xl border border-slate-200 text-sm font-bold text-slate-800"
+                          placeholder="विक्रम सिंघानिया"
+                        />
+                     </div>
+                     <div>
+                        <label className="text-xs font-bold text-slate-700">भुगतान शर्तें</label>
+                        <input 
+                          type="text"
+                          value={formData.paymentTerms}
+                          className="w-full mt-1 p-3 rounded-xl border border-slate-200 text-sm font-bold text-slate-700 bg-slate-50"
+                          readOnly
+                        />
+                     </div>
+                  </div>
+               </div>
              </div>
           )}
 

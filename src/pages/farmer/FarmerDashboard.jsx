@@ -8,6 +8,7 @@ import AddListingModal from './AddListingModal';
 import LiveMandiPrices from '../shared/LiveMandiPrices';
 import FpoIntelligenceWidget from '../../components/FpoIntelligenceWidget';
 import RatingStars from '../../components/RatingStars';
+import RaiseDisputeModal from '../../components/RaiseDisputeModal';
 import { calculatePayoutBreakdown } from '../../utils/qualityEngine';
 import { speakText, initSpeechRecognition } from '../../utils/speechUtils';
 import {
@@ -24,7 +25,8 @@ import {
   CheckCircle2,
   ArrowRight,
   Eye,
-  EyeOff
+  EyeOff,
+  AlertCircle
 } from 'lucide-react';
 
 export default function FarmerDashboard() {
@@ -36,7 +38,8 @@ export default function FarmerDashboard() {
     currentUser,
     labRegistrations,
     triggerToast,
-    language
+    language,
+    disputes
   } = useApp();
   const isUnverified = currentUser?.role === 'farmer' && currentUser?.sellerBadge === 'New Seller';
 
@@ -45,6 +48,7 @@ export default function FarmerDashboard() {
   const [showAddModal, setShowAddModal] = useState(false);
   const [selectedBidModal, setSelectedBidModal] = useState(null);
   const [payoutModal, setPayoutModal] = useState(null);
+  const [disputeModalEntity, setDisputeModalEntity] = useState(null);
   const [qualityRenegotiationModal, setQualityRenegotiationModal] = useState(null);
   const [ratedDeliveries, setRatedDeliveries] = useState({});
   const [searchTerm, setSearchTerm] = useState('');
@@ -421,12 +425,42 @@ export default function FarmerDashboard() {
                     </div>
                   )}
                   {(item.status === 'Payment Done' || item.status === 'Delivered') && (
-                    <div className="mt-2 flex items-center justify-between">
-                      <span className="text-xs text-slate-600">रेट करें:</span>
-                      <RatingStars
-                        initialScore={ratedDeliveries[item.id] || 5}
-                        onRate={s => setRatedDeliveries({ ...ratedDeliveries, [item.id]: s })}
-                      />
+                    <div className="mt-3 space-y-2 border-t border-slate-100 pt-2">
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs text-slate-600">रेट करें:</span>
+                        <RatingStars
+                          initialScore={ratedDeliveries[item.id] || 5}
+                          onRate={s => setRatedDeliveries({ ...ratedDeliveries, [item.id]: s })}
+                        />
+                      </div>
+                      
+                      {(() => {
+                        // Find any dispute related to this listing ID (which we passed as orderId/entityId)
+                        const relatedDispute = disputes.find(d => d.orderId === item.id);
+                        if (relatedDispute) {
+                          const isResolved = relatedDispute.liability !== 'unresolved';
+                          return (
+                            <div className={`p-2 rounded-lg text-xs font-bold border flex items-center justify-between ${
+                              isResolved ? 'bg-emerald-50 text-emerald-700 border-emerald-200' : 'bg-amber-50 text-amber-700 border-amber-200'
+                            }`}>
+                              <div className="flex items-center space-x-1">
+                                <ShieldCheck className="w-4 h-4" />
+                                <span>Dispute: {isResolved ? relatedDispute.resolution : 'Under Review'}</span>
+                              </div>
+                            </div>
+                          );
+                        }
+                        
+                        return (
+                          <button
+                            onClick={() => setDisputeModalEntity({ id: item.id, type: 'listing', lotId: item.lotId })}
+                            className="w-full py-2 bg-rose-50 text-rose-700 border border-rose-200 rounded-lg text-xs font-bold flex items-center justify-center space-x-1 hover:bg-rose-100 transition"
+                          >
+                            <AlertCircle className="w-3.5 h-3.5" />
+                            <span>Raise a Dispute</span>
+                          </button>
+                        );
+                      })()}
                     </div>
                   )}
                 </div>
@@ -529,6 +563,15 @@ export default function FarmerDashboard() {
             <button onClick={() => setPayoutModal(null)} className="mt-3 w-full py-2 bg-[#2E7D32] text-white rounded-md">बंद करें</button>
           </div>
         </div>
+      )}
+
+      {disputeModalEntity && (
+        <RaiseDisputeModal 
+          entityId={disputeModalEntity.id} 
+          entityType={disputeModalEntity.type} 
+          lotId={disputeModalEntity.lotId}
+          onBack={() => setDisputeModalEntity(null)} 
+        />
       )}
     </div>
   );

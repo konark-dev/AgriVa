@@ -196,18 +196,22 @@ export const AppProvider = ({ children }) => {
         };
         await saveDocument('fpoApprovals', fpoReq.id, fpoReq);
         triggerToast("FPO Registration Submitted! Awaiting Admin Approval.", "Verification Pending", "info");
-      } else if (finalProfile.role === 'buyer' && finalProfile.buyerType === 'bulk') {
+      } else if (finalProfile.role === 'buyer' && finalProfile.buyerType !== 'retail') {
         const bulkReq = {
           id: `bulk-req-${Date.now().toString().slice(-4)}`,
           businessName: finalProfile.name,
+          buyerType: finalProfile.buyerType || 'Bulk Buyer',
           gstin: finalProfile.gstin,
+          pan: finalProfile.pan,
+          bankAccount: finalProfile.bankAccount,
+          ifsc: finalProfile.ifsc,
           contactPerson: finalProfile.contactPerson || finalProfile.name,
           phone: finalProfile.phone,
           businessAddress: finalProfile.address,
           paymentTerms: finalProfile.paymentTerms || "Upfront Only (MVP Scope)",
           submittedAt: new Date().toISOString(),
           status: 'pending',
-          complianceNote: "GSTIN format confirmed. Bulk buyer escrow/tax-compliance review required."
+          complianceNote: "GSTIN/PAN format confirmed. Bulk buyer escrow/tax-compliance review required."
         };
         await saveDocument('bulkBuyerApprovals', bulkReq.id, bulkReq);
         triggerToast("Bulk Buyer Application Submitted for Admin Verification.", "Verification Pending", "info");
@@ -303,13 +307,15 @@ export const AppProvider = ({ children }) => {
       name: req.businessName,
       gstin: req.gstin,
       role: 'buyer',
-      buyerType: 'bulk',
+      buyerType: req.buyerType || 'bulk',
       phone: req.phone,
       contactPerson: req.contactPerson,
       businessAddress: req.businessAddress,
       paymentTerms: req.paymentTerms,
       trustScore: 90,
-      verificationStatus: 'approved'
+      verificationStatus: 'approved',
+      verified: true,
+      verifiedAt: new Date().toISOString()
     };
     await saveDocument('registeredUsers', newUser.uid, newUser);
     triggerToast(`Bulk Buyer "${req.businessName}" Approved & Active!`, "Admin Verified", "success");
@@ -532,18 +538,27 @@ export const AppProvider = ({ children }) => {
     return newCall;
   };
 
-  const raiseDispute = async (orderId, deliveryId, category, evidenceUrl = '') => {
+  const raiseDispute = async (orderId, deliveryId, lotId, category, description, evidenceUrl = '') => {
     const disputeId = `DISP-${Date.now().toString().slice(-5)}`;
+    
+    // Fetch lot to get locked quality data
+    const relatedLot = farmerLots.find(l => l.id === lotId) || null;
+    
     const newDispute = {
       id: disputeId,
       orderId,
       deliveryId,
+      lotId,
       category,
+      description,
       raisedBy: currentUser.uid,
+      raisedByName: currentUser.name,
       evidenceUrl,
       liability: 'unresolved',
       resolution: null,
       resolvedAt: null,
+      lockedQuality: relatedLot ? relatedLot.quality : null,
+      lotImages: relatedLot ? relatedLot.images : null,
       createdAt: new Date().toISOString()
     };
     
@@ -555,20 +570,31 @@ export const AppProvider = ({ children }) => {
     return newDispute;
   };
 
-  const resolveDispute = async (disputeId, liability, resolution) => {
+  const resolveDispute = async (disputeId, liability, resolution, amount = null) => {
     await updateDocumentFields('disputes', disputeId, {
       liability,
       resolution,
+      resolutionAmount: amount,
       resolvedAt: new Date().toISOString()
     });
 
     const disp = disputes.find(d => d.id === disputeId);
     if (disp && disp.deliveryId) {
-      await updateDeliveryStatus(disp.deliveryId, resolution === 'full_void' ? 'Voided' : 'Completed', {
-        farmerPayoutStatus: resolution === 'full_void' ? 'Voided' : 'Partial/Completed'
+      const deliveryStatus = resolution === 'Full Refund' ? 'Voided' : 'Completed';
+      const payoutStatus = resolution === 'Full Refund' ? 'Voided' : (resolution === 'Partial Adjustment' ? 'Partial/Adjusted' : 'Completed');
+      await updateDeliveryStatus(disp.deliveryId, deliveryStatus, {
+        farmerPayoutStatus: payoutStatus
       });
     }
-    triggerToast(`Dispute #${disputeId} resolved.`, "Dispute Resolved", "success");
+    
+    // Also update order if disp.orderId exists (in case order exists)
+    if (disp && disp.orderId) {
+       await updateDocumentFields('orders', disp.orderId, {
+         paymentStatus: resolution === 'Full Refund' ? 'Refunded' : (resolution === 'Partial Adjustment' ? 'Partially Adjusted' : 'Released')
+       });
+    }
+
+    triggerToast(`Dispute #${disputeId} resolved: ${resolution}`, "Dispute Resolved", "success");
   };
 
   const submitQualityLabTest = async (deliveryOrLotId, crop, moisture, foreignMatter, grainGrade) => {

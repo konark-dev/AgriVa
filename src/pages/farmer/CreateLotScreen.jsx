@@ -2,12 +2,83 @@ import React, { useState, useRef } from 'react';
 import { useApp } from '../../context/AppContext';
 import { t } from '../../utils/translations';
 import {
-  ArrowLeft, Camera, MapPin, Package, Calendar, Leaf, Plus, X, CheckCircle
+  ArrowLeft, Camera, MapPin, Package, Calendar, Leaf, Plus, X, CheckCircle, AlertCircle, TrendingDown, TrendingUp
 } from 'lucide-react';
 import imageCompression from 'browser-image-compression';
 
+function SaleRecommendationPanel({ cropType, allLots }) {
+  if (!cropType) return null;
+
+  let priceTrend = 'stable';
+  let dataPointsCount = 30;
+  
+  if (['Wheat', 'Tomato', 'Potato'].includes(cropType)) {
+     priceTrend = 'falling';
+  } else if (['Rice', 'Cotton', 'Maize'].includes(cropType)) {
+     priceTrend = 'rising';
+  } else if (['Onion', 'Soybean', 'Sugarcane'].includes(cropType)) {
+     priceTrend = 'stable';
+  } else {
+     dataPointsCount = 2; 
+  }
+
+  const activeLots = (allLots || []).filter(l => l.crop === cropType && l.status !== 'sold');
+  const arrivalVolume = activeLots.length > 3 ? 'rising' : 'normal';
+
+  let recState = 'Uncertain';
+  let reason = 'Insufficient historical data for this crop/region.';
+  let confidence = 'Low';
+  let color = 'bg-slate-50 border-slate-200 text-slate-700';
+  let badgeColor = 'bg-slate-200 text-slate-700';
+  let icon = <AlertCircle size={18} className="text-slate-500" />;
+
+  if (dataPointsCount >= 5) {
+     if (priceTrend === 'falling' && arrivalVolume === 'rising') {
+        recState = 'Sell Soon';
+        reason = 'Prices may dip soon — consider selling within 2 days if no storage.';
+        confidence = 'High';
+        color = 'bg-rose-50 border-rose-200 text-rose-800';
+        badgeColor = 'bg-rose-200 text-rose-800';
+        icon = <TrendingDown size={18} className="text-rose-600" />;
+     } else if (priceTrend === 'rising' || priceTrend === 'stable') {
+        recState = 'Can Wait';
+        reason = 'Stable/improving conditions — you can wait for better offers.';
+        confidence = dataPointsCount > 20 ? 'High' : 'Medium';
+        color = 'bg-emerald-50 border-emerald-200 text-emerald-800';
+        badgeColor = 'bg-emerald-200 text-emerald-800';
+        icon = <TrendingUp size={18} className="text-emerald-600" />;
+     } else {
+        recState = 'Sell Soon';
+        reason = 'Prices are falling. Better to sell now.';
+        confidence = 'Medium';
+        color = 'bg-orange-50 border-orange-200 text-orange-800';
+        badgeColor = 'bg-orange-200 text-orange-800';
+        icon = <TrendingDown size={18} className="text-orange-600" />;
+     }
+  }
+
+  return (
+    <div className={`mt-4 p-4 rounded-xl border ${color} shadow-sm`}>
+       <div className="flex justify-between items-start mb-2">
+         <div className="flex items-center gap-2 font-bold">
+           {icon} Best Time to Sell: {recState}
+         </div>
+         <span className={`text-[10px] px-2 py-1 rounded-full font-bold uppercase ${badgeColor}`}>
+           {confidence} Confidence
+         </span>
+       </div>
+       <p className="text-xs opacity-90">{reason}</p>
+       <div className="mt-3 text-[10px] opacity-75 flex gap-3">
+         <span>📊 30-day Price Trend: {priceTrend}</span>
+         <span>📦 Local Arrivals: {arrivalVolume} ({activeLots.length} lots)</span>
+       </div>
+    </div>
+  );
+}
+
 export default function CreateLotScreen({ onBack, onLotCreated }) {
-  const { currentUser, language } = useApp();
+  const { currentUser, language, farmerLots, mandiLots } = useApp();
+  const allLots = [...(farmerLots || []), ...(mandiLots || [])];
   
   const [cropType, setCropType] = useState('');
   const [variety, setVariety] = useState('');
@@ -172,6 +243,8 @@ export default function CreateLotScreen({ onBack, onLotCreated }) {
                 ))}
               </select>
             </div>
+            
+            <SaleRecommendationPanel cropType={cropType} allLots={allLots} />
             
             <div>
               <label className="block text-xs text-slate-500 mb-1 ml-1 font-medium">Variety *</label>

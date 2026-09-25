@@ -69,8 +69,16 @@ export default function MakeOfferModal({ requirement, onClose }) {
             </span>
           </div>
           <div className="flex flex-col mb-3">
-            <span className="font-bold text-slate-800">{requirement.buyerName || 'ITC Rural Procurement Ltd.'}</span>
-            <span className="text-xs text-slate-500">ITC Rural Procurement Ltd.</span>
+            <div className="flex items-center gap-2">
+              <span className="font-bold text-slate-800">{requirement.buyerName}</span>
+              {(requirement.verified || requirement.buyerType?.includes('Verified')) && (
+                <span className="bg-blue-50 text-blue-700 border border-blue-200 text-[10px] px-1.5 py-0.5 rounded font-bold flex items-center gap-1">
+                  <CheckCircle className="w-3 h-3" />
+                  Verified Buyer
+                </span>
+              )}
+            </div>
+            <span className="text-xs text-slate-500">{requirement.buyerType || 'Verified Buyer'}</span>
           </div>
           <div className="grid grid-cols-2 gap-4 mb-3 border-y border-slate-100 py-3">
             <div>
