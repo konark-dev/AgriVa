@@ -31,7 +31,7 @@ import {
 
 export default function FarmerDashboard() {
   // Context
-  const {
+  const { orders,
     listings,
     bids,
     acceptBid,
@@ -46,6 +46,7 @@ export default function FarmerDashboard() {
   // UI state
   const [activeTab, setActiveTab] = useState('crops'); // crops | sales
   const [showAddModal, setShowAddModal] = useState(false);
+  const [selectedOrder, setSelectedOrder] = useState(null);
   const [selectedBidModal, setSelectedBidModal] = useState(null);
   const [payoutModal, setPayoutModal] = useState(null);
   const [disputeModalEntity, setDisputeModalEntity] = useState(null);
@@ -91,6 +92,7 @@ export default function FarmerDashboard() {
     return <LiveMandiPrices onBack={() => setShowTicker(false)} />;
   }
 
+  if (selectedOrder) return <OrderDetailScreen order={selectedOrder} onBack={() => setSelectedOrder(null)} onDispute={(ord) => setDisputeModalEntity({ id: ord.id, type: 'order' })} />;
   return (
     <div className="space-y-4 p-4 pb-24 bg-[#f9f8f3] min-h-screen text-slate-800 max-w-4xl mx-auto">
 
@@ -389,7 +391,21 @@ export default function FarmerDashboard() {
 
       {activeTab === 'sales' && (
         <div className="flex flex-col md:grid md:grid-cols-2 md:gap-4 md:space-y-0 space-y-4">
-          {sales.length === 0 ? (
+                      {orders && orders.filter(o => o.sellerId === currentUser.uid).map(order => (
+              <div key={order.id} className="bg-white rounded-2xl p-4 border border-slate-200 shadow-md">
+                <div className="flex items-center justify-between border-b border-slate-200 pb-2 mb-3">
+                  <div>
+                    <h4 className="font-bold text-sm text-[#2E7D32]">Sale #{order.id}</h4>
+                    <p className="text-xs text-slate-500">{order.crop} - {order.qty} kg</p>
+                  </div>
+                  <span className="bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2 py-1 rounded-full">{order.status}</span>
+                </div>
+                <button onClick={() => setSelectedOrder(order)} className="w-full py-2 bg-[#2E7D32] hover:bg-green-800 text-white text-xs font-bold rounded-xl shadow-sm">
+                  Track Payment & Logistics
+                </button>
+              </div>
+            ))}
+            {sales.length === 0 && orders.filter(o => o.sellerId === currentUser.uid).length === 0 ? (
             <EmptyState title={t(language, "noActiveListings")} description={t(language, "clickToAdd")} />
           ) : (
             sales.map(item => {
@@ -576,3 +592,5 @@ export default function FarmerDashboard() {
     </div>
   );
 }
+
+
