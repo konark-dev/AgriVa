@@ -15,6 +15,7 @@ import RequirementsFeed from './pages/farmer/RequirementsFeed';
 import MakeOfferModal from './pages/farmer/MakeOfferModal';
 import CreateLotScreen from './pages/farmer/CreateLotScreen';
 import LotDetailScreen from './pages/farmer/LotDetailScreen';
+import QualitySelfDeclarationScreen from './pages/farmer/QualitySelfDeclarationScreen';
 import BuyerMarketplace from './pages/buyer/BuyerMarketplace';
 import BulkBuyerDashboard from './pages/buyer/BulkBuyerDashboard';
 import PostRequirementForm from './pages/buyer/PostRequirementForm';
@@ -29,7 +30,7 @@ import WarehouseDashboard from './pages/warehouse/WarehouseDashboard';
 import SettingsPage from './pages/SettingsPage';
 
 function MainLayout() {
-  const { currentUser, requirements, createLot } = useApp();
+  const { currentUser, requirements, createLot, updateLotStatus } = useApp();
   const [activeTab, setActiveTab] = useState('dashboard');
   const [isAuthenticated, setIsAuthenticated] = useState(() => {
     return localStorage.getItem('agriva_auth_status') === 'true';
@@ -86,8 +87,17 @@ function MainLayout() {
           onLotCreated={async (lotData) => {
             const lot = await createLot(lotData);
             setActiveLot(lot);
-            setActiveTab('lotDetail');
+            setActiveTab('qualityGrading');
           }} 
+        />;
+        if (activeTab === 'qualityGrading' && activeLot) return <QualitySelfDeclarationScreen 
+          lot={activeLot}
+          onBack={() => { setActiveLot(null); setActiveTab('dashboard'); }}
+          onGraded={async (qualityData) => {
+            await updateLotStatus(activeLot.id, 'active_listed', qualityData);
+            setActiveLot({ ...activeLot, ...qualityData, status: 'active_listed' });
+            setActiveTab('lotDetail');
+          }}
         />;
         if (activeTab === 'lotDetail' && activeLot) return <LotDetailScreen lot={activeLot} onBack={() => { setActiveLot(null); setActiveTab('dashboard'); }} />;
         return <FarmerDashboard />;
