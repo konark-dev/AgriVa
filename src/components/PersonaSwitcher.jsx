@@ -19,7 +19,7 @@ export default function PersonaSwitcher() {
     { key: 'admin', label: `👑 ${t(language, 'adminRole')}`, match: (u) => u.role === 'admin' },
     { key: 'warehouse', label: `🏢 ${t(language, 'warehouseBooking')}`, match: (u) => u.role === 'warehouse' },
     { key: 'lender', label: `🏦 ${t(language, 'lenderRole')}`, match: (u) => u.role === 'lender' },
-    { key: 'warehouse', label: `🏢 ${t(language, 'warehouseBooking')}`, match: (u) => u.role === 'warehouse' }
+    { key: 'middleman', label: `?? Middleman`, match: (u) => u.role === 'middleman' }
   ];
 
   return (
