@@ -49,7 +49,7 @@ export default function BuyerMarketplace() {
       <div className="flex items-center justify-between">
         <div>
           <h2 className="text-base font-bold text-slate-800 flex items-center space-x-2">
-            <ShoppingBag className="w-5 h-5 text-[#1B5E20]" />
+            <ShoppingBag className="w-5 h-5 text-[#2E7D32]" />
             <span>{t(language, 'buyerMarketplace')}</span>
           </h2>
           <p className="text-xs text-slate-500">Direct FPO/Farmer Bidding & Consumer Batching</p>
@@ -61,7 +61,7 @@ export default function BuyerMarketplace() {
         <button
           onClick={() => setActiveTab('browse')}
           className={`py-2 rounded-xl text-xs font-bold transition-colors ${
-            activeTab === 'browse' ? 'bg-[#1B5E20] text-white shadow' : 'text-slate-500 hover:text-slate-700'
+            activeTab === 'browse' ? 'bg-[#2E7D32] text-white shadow' : 'text-slate-500 hover:text-slate-700'
           }`}
         >
           Browse Marketplace ({filteredListings.length})
@@ -69,7 +69,7 @@ export default function BuyerMarketplace() {
         <button
           onClick={() => setActiveTab('my_orders')}
           className={`py-2 rounded-xl text-xs font-bold transition-colors ${
-            activeTab === 'my_orders' ? 'bg-[#1B5E20] text-white shadow' : 'text-slate-500 hover:text-slate-700'
+            activeTab === 'my_orders' ? 'bg-[#2E7D32] text-white shadow' : 'text-slate-500 hover:text-slate-700'
           }`}
         >
           My Orders & Escrow
@@ -82,7 +82,7 @@ export default function BuyerMarketplace() {
           {/* Crop Filter Bar */}
           <div className="bg-white rounded-2xl p-3 border border-slate-200 space-y-2">
             <div className="flex items-center space-x-2 text-xs">
-              <Filter className="w-4 h-4 text-[#1B5E20]" />
+              <Filter className="w-4 h-4 text-[#2E7D32]" />
               <span className="font-semibold text-slate-600">{t(language, 'filterCrop')}</span>
             </div>
             <div className="flex space-x-1.5 overflow-x-auto no-scrollbar">
@@ -92,8 +92,8 @@ export default function BuyerMarketplace() {
                   onClick={() => setSelectedCropFilter(crop)}
                   className={`px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all border ${
                     selectedCropFilter === crop
-                      ? 'bg-[#1B5E20] text-white shadow'
-                      : 'bg-slate-50 text-slate-600 border border-slate-200 hover:bg-emerald-50 hover:text-emerald-800'
+                      ? 'bg-[#2E7D32] text-white shadow'
+                      : 'bg-slate-50 text-slate-600 border border-slate-200 hover:bg-emerald-50 hover:text-emerald-700'
                   }`}
                 >{crop === 'All' ? t(language, 'all') : t(language, crop.toLowerCase()) === crop.toLowerCase() ? crop : t(language, crop.toLowerCase())}</button>
               ))}
@@ -118,7 +118,7 @@ export default function BuyerMarketplace() {
             <div className="space-y-1 pt-1">
               <div className="flex justify-between text-[10px] text-slate-600">
                 <span>{t(language, 'currentBatchFill')} 380kg / 500kg</span>
-                <span className="text-[#1B5E20] font-bold">76% Full</span>
+                <span className="text-[#2E7D32] font-bold">76% Full</span>
               </div>
               <div className="w-full bg-white rounded-full h-2 overflow-hidden border border-slate-200">
                 <div className="bg-sky-500 h-full rounded-full" style={{ width: '76%' }} />
@@ -161,7 +161,7 @@ export default function BuyerMarketplace() {
                             <span className="text-[9px] font-bold text-rose-500 bg-rose-50 px-1 rounded">-{surplusCheck.discountPct}% {t(language, 'off')}</span>
                           </div>
                         ) : (
-                          <span className="text-base font-extrabold text-[#1B5E20]">₹{finalPrice}/kg</span>
+                          <span className="text-base font-extrabold text-[#2E7D32]">₹{finalPrice}/kg</span>
                         )}
                         <div className="text-[10px] font-semibold text-slate-500">{item.quantity} kg {t(language, 'available')}</div>
                       </div>
@@ -177,7 +177,7 @@ export default function BuyerMarketplace() {
                           setBiddingListing({ ...item, price: finalPrice });
                           setBidAmount(finalPrice.toString());
                         }}
-                        className={`btn-touch px-4 py-2 rounded-xl text-white text-xs font-bold shadow flex items-center space-x-1 ${isSurplus ? 'bg-rose-500 hover:bg-rose-600' : 'bg-[#1B5E20]'}`}
+                        className={`btn-touch px-4 py-2 rounded-xl text-white text-xs font-bold shadow flex items-center space-x-1 ${isSurplus ? 'bg-rose-500 hover:bg-rose-600' : 'bg-[#2E7D32]'}`}
                       >
                         <Tag className="w-3.5 h-3.5" />
                         <span>{isSurplus ? 'Auto-Buy (Rescue)' : 'Place Bid / Order'}</span>
@@ -249,7 +249,7 @@ export default function BuyerMarketplace() {
                               const del = deliveries.find(d => d.listingId === item.id);
                               if (del) confirmBuyerDelivery(del.id);
                             }}
-                            className="btn-touch ml-2 px-3 py-1.5 rounded-xl bg-[#1B5E20] text-white text-xs font-bold shadow flex items-center space-x-1"
+                            className="btn-touch ml-2 px-3 py-1.5 rounded-xl bg-[#2E7D32] text-white text-xs font-bold shadow flex items-center space-x-1"
                           >
                             <CheckCircle2 className="w-3.5 h-3.5" />
                             <span>Confirm Receipt</span>
@@ -283,7 +283,7 @@ export default function BuyerMarketplace() {
           <form onSubmit={handlePlaceBid} className="bg-white border border-slate-200 rounded-t-2xl sm:rounded-2xl w-full max-w-md p-5 space-y-4 shadow-2xl">
             <h3 className="font-bold text-base text-slate-800">Place Bid for {biddingListing.crop}</h3>
             <p className="text-xs text-slate-600">
-              Target Price: <strong className="text-[#1B5E20]">₹{biddingListing.price}/kg</strong> ({biddingListing.quantity}kg available)
+              Target Price: <strong className="text-[#2E7D32]">₹{biddingListing.price}/kg</strong> ({biddingListing.quantity}kg available)
             </p>
 
             <div>
@@ -342,7 +342,7 @@ export default function BuyerMarketplace() {
                   const orderValue = Number(bidAmount || biddingListing.price) * biddingListing.quantity;
                   return orderValue > 0 && batchedDeliveryFee > (0.25 * orderValue);
                 })()}
-                className="flex-1 py-3 rounded-xl bg-[#1B5E20] text-white text-xs font-bold shadow disabled:opacity-50 disabled:cursor-not-allowed"
+                className="flex-1 py-3 rounded-xl bg-[#2E7D32] text-white text-xs font-bold shadow disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 Submit Bid
               </button>

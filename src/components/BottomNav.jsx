@@ -75,14 +75,14 @@ export default function BottomNav({ activeTab, setActiveTab }) {
             onClick={() => setActiveTab(item.id)}
             className={`flex-1 flex flex-col items-center justify-center py-1.5 rounded-xl transition-all ${
               isActive
-                ? 'text-[#1B5E20]'
+                ? 'text-[#2E7D32]'
                 : 'text-slate-500 hover:text-slate-600'
             }`}
           >
             <div className={`p-1.5 rounded-xl transition-all ${isActive ? 'bg-green-100' : ''}`}>
-              <Icon className={`w-5 h-5 ${isActive ? 'text-[#1B5E20]' : 'text-slate-500'}`} />
+              <Icon className={`w-5 h-5 ${isActive ? 'text-[#2E7D32]' : 'text-slate-500'}`} />
             </div>
-            <span className={`text-[10px] mt-0.5 font-bold leading-tight ${isActive ? 'text-[#1B5E20]' : 'text-slate-500'}`}>
+            <span className={`text-[10px] mt-0.5 font-bold leading-tight ${isActive ? 'text-[#2E7D32]' : 'text-slate-500'}`}>
               {item.label}
             </span>
           </button>

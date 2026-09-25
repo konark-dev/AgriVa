@@ -39,8 +39,8 @@ export default function TrackingMapModal({ delivery, onClose }) {
     if (!delivery || !delivery.pickupLocation || !delivery.deliveryLocation) return;
     
     // We'll just interpolate a path over time
-    const start = [delivery.pickupLocation.lat || 28.9931, delivery.pickupLocation.lng || 77.0151];
-    const end = [delivery.deliveryLocation.lat || 28.7041, delivery.deliveryLocation.lng || 77.1025];
+    const start = [delivery.pickupLocation?.lat || 28.9931, delivery.pickupLocation?.lng || 77.0151];
+    const end = [delivery.deliveryLocation?.lat || 28.7041, delivery.deliveryLocation?.lng || 77.1025];
     
     setCurrentPos(start);
     
@@ -62,14 +62,14 @@ export default function TrackingMapModal({ delivery, onClose }) {
 
   if (!delivery) return null;
 
-  const start = [delivery.pickupLocation.lat || 28.9931, delivery.pickupLocation.lng || 77.0151];
-  const end = [delivery.deliveryLocation.lat || 28.7041, delivery.deliveryLocation.lng || 77.1025];
+  const start = [delivery.pickupLocation?.lat || 28.9931, delivery.pickupLocation?.lng || 77.0151];
+  const end = [delivery.deliveryLocation?.lat || 28.7041, delivery.deliveryLocation?.lng || 77.1025];
 
   return (
     <div className="fixed inset-0 z-50 bg-white backdrop-blur-sm flex items-end sm:items-center justify-center p-0 sm:p-4">
       <div className="bg-white border border-slate-200 rounded-t-2xl sm:rounded-2xl w-full max-w-md h-[85vh] flex flex-col overflow-hidden shadow-2xl animate-in slide-in-from-bottom">
         {/* Header */}
-        <div className="p-4 border-b border-slate-200 flex items-center justify-between bg-[#1B5E20] text-white shrink-0">
+        <div className="p-4 border-b border-slate-200 flex items-center justify-between bg-[#2E7D32] text-white shrink-0">
           <div className="flex items-center space-x-2">
             <Navigation className="w-5 h-5 animate-pulse text-amber-300" />
             <div>
@@ -98,12 +98,12 @@ export default function TrackingMapModal({ delivery, onClose }) {
             
             {/* Origin Marker */}
             <Marker position={start}>
-              <Popup>Pickup: {delivery.pickupLocation.name}</Popup>
+              <Popup>Pickup: {delivery.pickupLocation?.name || (typeof delivery.pickupLocation === 'string' ? delivery.pickupLocation : 'Farm')}</Popup>
             </Marker>
 
             {/* Destination Marker */}
             <Marker position={end}>
-              <Popup>Destination: {delivery.deliveryLocation.name}</Popup>
+              <Popup>Destination: {delivery.deliveryLocation?.name || (typeof delivery.deliveryLocation === 'string' ? delivery.deliveryLocation : 'Destination')}</Popup>
             </Marker>
 
             {/* Route Line */}
@@ -125,7 +125,7 @@ export default function TrackingMapModal({ delivery, onClose }) {
               <MapPin className="w-4 h-4 text-rose-400" />
               <span className="font-semibold">Status:</span>
             </div>
-            <span className="text-[#1B5E20] font-bold">{delivery.status || 'In Transit'}</span>
+            <span className="text-[#2E7D32] font-bold">{delivery.status || 'In Transit'}</span>
           </div>
           <p className="text-center text-[10px] text-slate-500">Live Telematics Powered by Mapbox/Leaflet Simulation</p>
         </div>

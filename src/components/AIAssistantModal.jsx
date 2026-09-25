@@ -200,7 +200,7 @@ export default function AIAssistantModal() {
                 <button
                   key={idx}
                   onClick={() => handleQuickQuestion(q)}
-                  className="px-3 py-1.5 rounded-full bg-white text-slate-600 hover:bg-emerald-50 hover:text-emerald-800 hover:border-emerald-200 text-[11px] font-bold whitespace-nowrap border border-slate-200 transition-colors"
+                  className="px-3 py-1.5 rounded-full bg-white text-slate-600 hover:bg-emerald-50 hover:text-emerald-700 hover:border-emerald-200 text-[11px] font-bold whitespace-nowrap border border-slate-200 transition-colors"
                 >
                   {q}
                 </button>
@@ -216,13 +216,13 @@ export default function AIAssistantModal() {
                       ? 'bg-emerald-600 text-white rounded-tr-sm' 
                       : 'bg-slate-50 text-slate-700 border border-slate-200 text-slate-800 rounded-tl-sm'
                   }`}>
-                    {msg.role === 'assistant' && <Bot className="w-4 h-4 mt-0.5 text-[#1B5E20] opacity-90 shrink-0" />}
+                    {msg.role === 'assistant' && <Bot className="w-4 h-4 mt-0.5 text-[#2E7D32] opacity-90 shrink-0" />}
                     <div className="flex-1">
                       <span className="leading-relaxed whitespace-pre-wrap">{msg.text}</span>
                       {msg.role === 'assistant' && (
                         <button
                           onClick={() => speakText(msg.text, language === 'hi' ? 'hi-IN' : 'en-IN')}
-                          className="mt-1 flex items-center text-[10px] text-[#1B5E20] hover:underline"
+                          className="mt-1 flex items-center text-[10px] text-[#2E7D32] hover:underline"
                         >
                           <Volume2 className="w-3 h-3 mr-1" /> सुनें
                         </button>
@@ -236,7 +236,7 @@ export default function AIAssistantModal() {
               {isProcessing && (
                 <div className="flex justify-start">
                   <div className="bg-slate-50 text-slate-700 border border-slate-200 rounded-2xl rounded-tl-sm p-3 flex items-center space-x-2">
-                    <Loader2 className="w-4 h-4 text-[#1B5E20] animate-spin" />
+                    <Loader2 className="w-4 h-4 text-[#2E7D32] animate-spin" />
                     <span className="text-slate-600">Gemini सोच रहा है... / Thinking...</span>
                   </div>
                 </div>
@@ -252,7 +252,7 @@ export default function AIAssistantModal() {
                   className={`p-3 rounded-full shrink-0 transition-colors ${
                     isListening 
                       ? 'bg-rose-600 text-white animate-pulse ring-4 ring-rose-500/40' 
-                      : 'bg-slate-50 text-slate-700 text-slate-600 hover:text-[#1B5E20] hover:bg-slate-700'
+                      : 'bg-slate-50 text-slate-700 text-slate-600 hover:text-[#2E7D32] hover:bg-slate-700'
                   }`}
                   title="Speak into microphone"
                 >
@@ -274,7 +274,7 @@ export default function AIAssistantModal() {
                   <button 
                     type="submit"
                     disabled={!inputValue.trim() || isProcessing}
-                    className="px-4 text-[#1B5E20] disabled:opacity-30 disabled:hover:bg-transparent hover:bg-slate-700 transition-colors"
+                    className="px-4 text-[#2E7D32] disabled:opacity-30 disabled:hover:bg-transparent hover:bg-slate-700 transition-colors"
                   >
                     <Send className="w-4 h-4" />
                   </button>

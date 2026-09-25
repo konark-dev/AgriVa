@@ -17,14 +17,14 @@ export default function SettingsPage() {
       {/* Language Toggle */}
       <div className="bg-white rounded-2xl p-4 border border-slate-200 space-y-3 shadow-md">
         <h3 className="font-bold text-sm text-slate-800 flex items-center space-x-2">
-          <Globe className="w-4 h-4 text-[#1B5E20]" />
+          <Globe className="w-4 h-4 text-[#2E7D32]" />
           <span>Multilingual Language Selection</span>
         </h3>
         <div className="grid grid-cols-2 gap-2">
           <button
             onClick={() => setLanguage('en')}
             className={`py-3 rounded-xl font-bold border transition-colors ${
-              language === 'en' ? 'bg-[#1B5E20] text-white border-emerald-500' : 'bg-slate-50 text-slate-700 border-slate-200 text-slate-600'
+              language === 'en' ? 'bg-[#2E7D32] text-white border-emerald-500' : 'bg-slate-50 text-slate-700 border-slate-200 text-slate-600'
             }`}
           >
             English 🇬🇧
@@ -32,7 +32,7 @@ export default function SettingsPage() {
           <button
             onClick={() => setLanguage('hi')}
             className={`py-3 rounded-xl font-bold border transition-colors ${
-              language === 'hi' ? 'bg-[#1B5E20] text-white border-emerald-500' : 'bg-slate-50 text-slate-700 border-slate-200 text-slate-600'
+              language === 'hi' ? 'bg-[#2E7D32] text-white border-emerald-500' : 'bg-slate-50 text-slate-700 border-slate-200 text-slate-600'
             }`}
           >
             हिंदी 🇮🇳
@@ -62,7 +62,7 @@ export default function SettingsPage() {
               onClick={() => switchRole(r.key)}
               className={`p-2.5 rounded-xl text-left border font-semibold transition-colors ${
                 currentUser.role === r.key
-                  ? 'bg-emerald-950 border-emerald-500 text-[#1B5E20] font-bold'
+                  ? 'bg-emerald-950 border-emerald-500 text-[#2E7D32] font-bold'
                   : 'bg-slate-50 text-slate-700 border-slate-200 text-slate-600'
               }`}
             >

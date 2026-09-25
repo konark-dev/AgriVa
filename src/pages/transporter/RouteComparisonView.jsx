@@ -21,7 +21,7 @@ export default function RouteComparisonView({ onBack }) {
       <div className="p-4 space-y-4">
         
         {/* Explanation Card */}
-        <div className="bg-gradient-to-r from-[#1B5E20] to-emerald-800 rounded-2xl p-4 text-white shadow-lg">
+        <div className="bg-gradient-to-r from-[#2E7D32] to-emerald-800 rounded-2xl p-4 text-white shadow-lg">
           <div className="flex items-center space-x-2 mb-2">
             <Route className="w-5 h-5 text-emerald-300" />
             <h3 className="font-bold">Anti-Spoilage Aggregation Routing</h3>
@@ -95,9 +95,9 @@ export default function RouteComparisonView({ onBack }) {
                 <Factory className="w-4 h-4 text-emerald-700" />
               </div>
               <div className="ml-4 flex-1">
-                <h5 className="font-bold text-sm text-emerald-800">Britannia Mills (Drop-off)</h5>
+                <h5 className="font-bold text-sm text-emerald-700">Britannia Mills (Drop-off)</h5>
                 <p className="text-[10px] text-emerald-600/80 mb-2">Delhi Industrial Area • 11:30 AM</p>
-                <button className="w-full py-2 bg-[#1B5E20] text-white rounded-lg text-xs font-bold shadow-sm flex items-center justify-center">
+                <button className="w-full py-2 bg-[#2E7D32] text-white rounded-lg text-xs font-bold shadow-sm flex items-center justify-center">
                   <Navigation className="w-4 h-4 mr-2" /> Start Guided Route
                 </button>
               </div>

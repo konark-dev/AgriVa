@@ -64,7 +64,7 @@ export default function GlobalVoiceNavigator({ setActiveTab, setShowAddModal }) 
       className={`fixed bottom-20 left-4 z-40 w-16 h-16 rounded-full shadow-2xl flex flex-col items-center justify-center ring-4 ring-amber-200 transition-transform ${
         isListening ? 'bg-amber-500 scale-110 animate-pulse text-white' : 
         isProcessing ? 'bg-emerald-600 scale-100 text-white' : 
-        'bg-amber-400 text-amber-900 hover:scale-105'
+        'bg-amber-400 text-amber-800 hover:scale-105'
       }`}
       aria-label="Voice Navigator"
     >

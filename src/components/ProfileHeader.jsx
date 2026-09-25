@@ -10,7 +10,7 @@ export default function ProfileHeader() {
   return (
     <div className="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm flex items-center justify-between mb-4 w-full">
       <div className="flex items-center space-x-3">
-        <div className="w-12 h-12 bg-emerald-100 text-emerald-800 rounded-full flex items-center justify-center font-bold text-xl shadow-inner uppercase shrink-0">
+        <div className="w-12 h-12 bg-emerald-100 text-emerald-700 rounded-full flex items-center justify-center font-bold text-xl shadow-inner uppercase shrink-0">
           {currentUser.name ? currentUser.name.charAt(0) : 'U'}
         </div>
         <div className="flex flex-col">

@@ -16,13 +16,13 @@ export default function FpoIntelligenceWidget() {
         
         <div className="flex items-center space-x-2 mb-3">
           <Activity className="w-5 h-5 text-emerald-600" />
-          <h3 className="text-sm font-extrabold text-emerald-900">{t(language, 'forecastTitle')}</h3>
+          <h3 className="text-sm font-extrabold text-emerald-700">{t(language, 'forecastTitle')}</h3>
         </div>
 
         <div className="bg-emerald-50 rounded-xl p-3 border border-emerald-100">
           <div className="flex justify-between items-start mb-2">
             <div>
-              <p className="text-xs font-bold text-emerald-800">{t(language, 'forecastCrop')}</p>
+              <p className="text-xs font-bold text-emerald-700">{t(language, 'forecastCrop')}</p>
               <p className="text-[10px] font-medium text-emerald-600/80 mt-0.5">{t(language, 'forecastTrend')}</p>
             </div>
             <span className="flex items-center text-emerald-700 font-bold bg-emerald-200/50 px-2 py-1 rounded text-xs">
@@ -32,7 +32,7 @@ export default function FpoIntelligenceWidget() {
           </div>
           
           <div className="mt-3 pt-3 border-t border-emerald-200/60">
-            <p className="text-[11px] font-semibold text-emerald-900 mb-1">{t(language, 'forecastActionLabel')}</p>
+            <p className="text-[11px] font-semibold text-emerald-700 mb-1">{t(language, 'forecastActionLabel')}</p>
             <p className="text-xs text-slate-700 leading-snug" dangerouslySetInnerHTML={{ __html: t(language, 'forecastActionDesc') }} />
           </div>
         </div>

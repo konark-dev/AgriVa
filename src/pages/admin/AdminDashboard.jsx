@@ -84,7 +84,7 @@ export default function AdminDashboard() {
       <div className="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
-            <div className="inline-flex items-center space-x-1.5 px-3 py-1 bg-emerald-100 text-emerald-800 rounded-full text-xs font-bold mb-2">
+            <div className="inline-flex items-center space-x-1.5 px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-xs font-bold mb-2">
               <ShieldCheck className="w-4 h-4 text-emerald-700" />
               <span>प्लेटफ़ॉर्म ऑपरेटर सुपरविजन (Platform Operator Supervision)</span>
             </div>
@@ -200,7 +200,7 @@ export default function AdminDashboard() {
                     <p className="text-slate-600 mt-1">📍 {fpo.address}</p>
                   </div>
                   <div className="text-right">
-                    <span className="px-2.5 py-1 bg-amber-100 text-amber-800 border border-amber-300 font-bold rounded-full text-[10px]">
+                    <span className="px-2.5 py-1 bg-amber-100 text-amber-700 border border-amber-300 font-bold rounded-full text-[10px]">
                       Pending MCA Review
                     </span>
                     <p className="text-[10px] text-slate-500 mt-1">सदस्य किसान: {fpo.memberCount}</p>
@@ -247,7 +247,7 @@ export default function AdminDashboard() {
       {/* ---------------- 2. BULK BUYER QUEUE ---------------- */}
       {activeTab === 'bulk' && (
         <div className="space-y-3">
-          <div className="p-3 bg-amber-50 border border-amber-200 rounded-xl text-xs text-amber-900 flex items-start">
+          <div className="p-3 bg-amber-50 border border-amber-200 rounded-xl text-xs text-amber-800 flex items-start">
             <Info className="w-4 h-4 text-amber-700 mr-2 shrink-0 mt-0.5" />
             <div>
               <strong>Bulk Buyer Verification Gate:</strong> Bulk buyers require the same <code>Pending → Admin Verified → Active</code> gate as FPOs because bulk volumes create high escrow and tax-compliance exposure. MVP payment terms are restricted to <em>Upfront Only</em>.
@@ -265,7 +265,7 @@ export default function AdminDashboard() {
                     <p className="text-slate-600 font-mono font-bold text-xs mt-0.5">GSTIN: {buyer.gstin}</p>
                     <p className="text-slate-500 mt-1">📍 {buyer.businessAddress}</p>
                   </div>
-                  <span className="px-2.5 py-1 bg-amber-100 text-amber-800 border border-amber-300 font-bold rounded-full text-[10px] shrink-0 self-start">
+                  <span className="px-2.5 py-1 bg-amber-100 text-amber-700 border border-amber-300 font-bold rounded-full text-[10px] shrink-0 self-start">
                     Pending Escrow/Tax Gate
                   </span>
                 </div>
@@ -277,7 +277,7 @@ export default function AdminDashboard() {
                   </div>
                   <div>
                     <span className="text-slate-500 block text-[10px]">भुगतान शर्तें (MVP Rule):</span>
-                    <span className="font-bold text-emerald-800">{buyer.paymentTerms || 'Upfront Only (MVP Scope)'}</span>
+                    <span className="font-bold text-emerald-700">{buyer.paymentTerms || 'Upfront Only (MVP Scope)'}</span>
                   </div>
                 </div>
 
@@ -428,7 +428,7 @@ export default function AdminDashboard() {
                     <p className="text-slate-600">Location: {lab.location}</p>
                     <p className="text-slate-500 font-mono">NABL #: {lab.certificateNumber}</p>
                   </div>
-                  <span className="px-2.5 py-1 rounded-full bg-amber-100 text-amber-800 border border-amber-300 font-bold text-[10px]">
+                  <span className="px-2.5 py-1 rounded-full bg-amber-100 text-amber-700 border border-amber-300 font-bold text-[10px]">
                     Pending NABL Verification
                   </span>
                 </div>
@@ -479,7 +479,7 @@ export default function AdminDashboard() {
                     <p className="text-slate-500 font-bold capitalize text-rose-600 mt-1">Issue: {disp.category.replace('_', ' ')}</p>
                   </div>
                   <span className={`px-2.5 py-1 rounded-full border font-bold text-[10px] ${
-                    disp.liability === 'unresolved' ? 'bg-amber-100 text-amber-800 border-amber-300' : 'bg-emerald-100 text-emerald-800 border-emerald-300'
+                    disp.liability === 'unresolved' ? 'bg-amber-100 text-amber-700 border-amber-300' : 'bg-emerald-100 text-emerald-700 border-emerald-300'
                   }`}>
                     {disp.liability === 'unresolved' ? 'Action Required' : 'Resolved'}
                   </span>
@@ -506,7 +506,7 @@ export default function AdminDashboard() {
                     </div>
                     <button
                       onClick={() => resolveDispute(disp.id, 'buyer_false_claim', 'contested_upheld')}
-                      className="w-full py-2.5 rounded-xl bg-[#1B5E20] hover:bg-green-800 text-white font-bold"
+                      className="w-full py-2.5 rounded-xl bg-[#2E7D32] hover:bg-green-800 text-white font-bold"
                     >
                       Uphold Transaction (Release Funds)
                     </button>

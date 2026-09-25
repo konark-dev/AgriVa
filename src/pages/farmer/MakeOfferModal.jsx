@@ -50,7 +50,7 @@ export default function MakeOfferModal({ requirement, onClose }) {
           <ArrowLeft className="w-6 h-6 text-slate-800" />
         </button>
         <h1 className="text-lg font-bold text-slate-800">बोली लगाएं / Make an Offer</h1>
-        <button onClick={handleListenScreen} className="flex items-center gap-1 bg-orange-100 text-[#F57F17] px-3 py-1 rounded-full text-xs font-medium">
+        <button onClick={handleListenScreen} className="flex items-center gap-1 bg-orange-100 text-[#FF9800] px-3 py-1 rounded-full text-xs font-medium">
           <Volume2 className="w-3 h-3" />
           बोल कर सुनें
         </button>
@@ -79,7 +79,7 @@ export default function MakeOfferModal({ requirement, onClose }) {
             </div>
             <div>
               <p className="text-xs text-slate-500">संदर्भ भाव / Guide</p>
-              <p className="font-medium text-[#1B5E20]">₹ {requirement.indicativePrice}/क्विंटल</p>
+              <p className="font-medium text-[#2E7D32]">₹ {requirement.indicativePrice}/क्विंटल</p>
             </div>
           </div>
           <div className="flex items-center justify-between">
@@ -95,13 +95,13 @@ export default function MakeOfferModal({ requirement, onClose }) {
         {/* Section 1: Offered Quantity */}
         <div>
           <div className="flex items-center gap-2 mb-3">
-            <div className="w-6 h-6 bg-[#1B5E20] text-white rounded-full flex items-center justify-center text-sm font-bold">1</div>
+            <div className="w-6 h-6 bg-[#2E7D32] text-white rounded-full flex items-center justify-center text-sm font-bold">1</div>
             <h2 className="font-bold text-slate-800">आप कितनी मात्रा बेचना चाहते हैं?</h2>
-            <span className="bg-green-100 text-[#1B5E20] text-xs px-2 py-0.5 rounded-full">अनिवार्य</span>
+            <span className="bg-green-100 text-[#2E7D32] text-xs px-2 py-0.5 rounded-full">अनिवार्य</span>
           </div>
           
           <div className="flex items-center gap-3 mb-4">
-            <div className="flex-1 bg-white border border-slate-300 rounded-2xl flex items-center overflow-hidden focus-within:border-[#1B5E20]">
+            <div className="flex-1 bg-white border border-slate-300 rounded-2xl flex items-center overflow-hidden focus-within:border-[#2E7D32]">
               <input 
                 type="number" 
                 value={offeredQty}
@@ -111,7 +111,7 @@ export default function MakeOfferModal({ requirement, onClose }) {
               />
               <span className="pr-4 text-slate-500 font-medium">क्विंटल/Qtl</span>
             </div>
-            <button onClick={() => handleMicInput(setOfferedQty)} className="bg-orange-100 p-3 rounded-2xl text-[#F57F17]">
+            <button onClick={() => handleMicInput(setOfferedQty)} className="bg-orange-100 p-3 rounded-2xl text-[#FF9800]">
               <Mic className="w-6 h-6" />
             </button>
           </div>
@@ -121,14 +121,14 @@ export default function MakeOfferModal({ requirement, onClose }) {
               <button
                 key={qty}
                 onClick={() => setOfferedQty(qty)}
-                className={`whitespace-nowrap px-4 py-2 rounded-xl text-sm font-medium border ${Number(offeredQty) === qty ? 'bg-[#1B5E20] text-white border-[#1B5E20]' : 'bg-white text-slate-700 border-slate-300'}`}
+                className={`whitespace-nowrap px-4 py-2 rounded-xl text-sm font-medium border ${Number(offeredQty) === qty ? 'bg-[#2E7D32] text-white border-[#2E7D32]' : 'bg-white text-slate-700 border-slate-300'}`}
               >
                 {qty} Qtl
               </button>
             ))}
             <button
               onClick={() => setOfferedQty(requirement.targetQty)}
-              className={`whitespace-nowrap px-4 py-2 rounded-xl text-sm font-medium border ${Number(offeredQty) === requirement.targetQty ? 'bg-[#1B5E20] text-white border-[#1B5E20]' : 'bg-white text-slate-700 border-slate-300'}`}
+              className={`whitespace-nowrap px-4 py-2 rounded-xl text-sm font-medium border ${Number(offeredQty) === requirement.targetQty ? 'bg-[#2E7D32] text-white border-[#2E7D32]' : 'bg-white text-slate-700 border-slate-300'}`}
             >
               पूरा {requirement.targetQty}
             </button>
@@ -138,15 +138,15 @@ export default function MakeOfferModal({ requirement, onClose }) {
         {/* Section 2: Price Per Unit */}
         <div>
           <div className="flex items-center gap-2 mb-3">
-            <div className="w-6 h-6 bg-[#1B5E20] text-white rounded-full flex items-center justify-center text-sm font-bold">2</div>
+            <div className="w-6 h-6 bg-[#2E7D32] text-white rounded-full flex items-center justify-center text-sm font-bold">2</div>
             <h2 className="font-bold text-slate-800">आपकी प्रति क्विंटल मांग / Offered Price Per Unit</h2>
-            <span className="bg-green-100 text-[#1B5E20] text-xs px-2 py-0.5 rounded-full flex items-center gap-1">
+            <span className="bg-green-100 text-[#2E7D32] text-xs px-2 py-0.5 rounded-full flex items-center gap-1">
               📊 भाव मंत्र
             </span>
           </div>
 
           <div className="flex items-center gap-3 mb-2">
-            <div className="flex-1 bg-white border border-slate-300 rounded-2xl flex items-center overflow-hidden focus-within:border-[#1B5E20]">
+            <div className="flex-1 bg-white border border-slate-300 rounded-2xl flex items-center overflow-hidden focus-within:border-[#2E7D32]">
               <span className="pl-4 text-xl font-medium text-slate-500">₹</span>
               <input 
                 type="number" 
@@ -157,7 +157,7 @@ export default function MakeOfferModal({ requirement, onClose }) {
               />
               <span className="pr-4 text-slate-500 font-medium">/ क्विंटल</span>
             </div>
-            <button onClick={() => handleMicInput(setPricePerUnit)} className="bg-orange-100 p-3 rounded-2xl text-[#F57F17]">
+            <button onClick={() => handleMicInput(setPricePerUnit)} className="bg-orange-100 p-3 rounded-2xl text-[#FF9800]">
               <Mic className="w-6 h-6" />
             </button>
           </div>
@@ -169,13 +169,13 @@ export default function MakeOfferModal({ requirement, onClose }) {
             <div className="bg-orange-50 border border-orange-300 rounded-2xl p-3 flex gap-3 items-start">
               <AlertTriangle className="w-5 h-5 text-orange-500 shrink-0 mt-0.5" />
               <div>
-                <p className="text-sm text-orange-800 font-medium mb-1">
+                <p className="text-sm text-orange-700 font-medium mb-1">
                   ⚠️ यह भाव सामान्य मंडी भाव से काफी कम है!
                 </p>
                 <p className="text-xs text-orange-700 mb-1">
                   This is below 70% of typical mandi price (₹ {requirement.indicativePrice}). आपको नुकसान हो सकता है।
                 </p>
-                <p className="text-xs text-orange-800 font-medium bg-orange-100 inline-block px-2 py-1 rounded">
+                <p className="text-xs text-orange-700 font-medium bg-orange-100 inline-block px-2 py-1 rounded">
                   सलाह: ₹ {Math.round(requirement.indicativePrice * 0.92)} - ₹ {requirement.indicativePrice} की बोली लगाएं
                 </p>
               </div>
@@ -191,7 +191,7 @@ export default function MakeOfferModal({ requirement, onClose }) {
                 <p className="text-sm font-bold text-slate-800">मेरी सक्रिय लिस्टिंग से जोड़ें</p>
                 <p className="text-xs text-slate-500">Link to active listing for instant trust</p>
               </div>
-              <button onClick={() => setLinkListing(!linkListing)} className="text-[#1B5E20]">
+              <button onClick={() => setLinkListing(!linkListing)} className="text-[#2E7D32]">
                 {linkListing ? <ToggleRight className="w-8 h-8" /> : <ToggleLeft className="w-8 h-8 text-slate-600" />}
               </button>
             </div>
@@ -200,7 +200,7 @@ export default function MakeOfferModal({ requirement, onClose }) {
               <div className="p-4">
                 <div className="flex items-center gap-2 mb-2">
                   <span className="text-sm font-medium text-slate-700">चयनित बैच (Selected Batch)</span>
-                  <span className="bg-green-100 text-[#1B5E20] text-[10px] px-2 py-0.5 rounded-full font-medium">स्टॉक सत्यापित / Stock Verified</span>
+                  <span className="bg-green-100 text-[#2E7D32] text-[10px] px-2 py-0.5 rounded-full font-medium">स्टॉक सत्यापित / Stock Verified</span>
                 </div>
                 <div className="border border-slate-200 rounded-xl p-3 mb-2 flex justify-between items-center bg-slate-50">
                   <div>
@@ -221,19 +221,19 @@ export default function MakeOfferModal({ requirement, onClose }) {
         )}
 
         {/* Total Payout Preview */}
-        <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-4 border-l-4 border-l-[#1B5E20]">
+        <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-4 border-l-4 border-l-[#2E7D32]">
           <p className="text-sm font-medium text-slate-600 mb-1">बुल अनुमानित राशि / Total Payout</p>
-          <p className="text-3xl font-bold text-[#1B5E20] mb-2">₹ {totalPayout.toLocaleString('en-IN')}</p>
+          <p className="text-3xl font-bold text-[#2E7D32] mb-2">₹ {totalPayout.toLocaleString('en-IN')}</p>
           <div className="flex justify-between items-end">
             <p className="text-xs text-slate-500">सामग्री: {offeredQty || 0} Qt × ₹{pricePerUnit || 0}</p>
-            <p className="text-xs font-medium text-[#1B5E20] bg-green-50 px-2 py-1 rounded">डीपीसी बैंक खाते में (Direct Bank Settlement)</p>
+            <p className="text-xs font-medium text-[#2E7D32] bg-green-50 px-2 py-1 rounded">डीपीसी बैंक खाते में (Direct Bank Settlement)</p>
           </div>
         </div>
         
         <NetRealizationWidget price={pricePerUnit} quantity={offeredQty} grade={requirement?.grade || 'Grade A'} />
 
         {checkUnderpricing(requirement?.crop, pricePerUnit) && (
-          <div className="bg-amber-50 border border-amber-200 text-amber-800 text-xs font-bold p-3 rounded-xl flex items-start gap-2 shadow-sm mt-4">
+          <div className="bg-amber-50 border border-amber-200 text-amber-700 text-xs font-bold p-3 rounded-xl flex items-start gap-2 shadow-sm mt-4">
             <span className="text-amber-500 mt-0.5">⚠️</span>
             <span>This price is below the typical mandi rate for this crop.</span>
           </div>
@@ -250,7 +250,7 @@ export default function MakeOfferModal({ requirement, onClose }) {
         <button 
           onClick={handleSubmit}
           disabled={loading || !pricePerUnit || !offeredQty}
-          className="w-full bg-[#1B5E20] text-white rounded-2xl py-4 font-bold text-lg flex items-center justify-center gap-2 disabled:opacity-50"
+          className="w-full bg-[#2E7D32] text-white rounded-2xl py-4 font-bold text-lg flex items-center justify-center gap-2 disabled:opacity-50"
         >
           {loading ? 'कृपया प्रतीक्षा करें...' : (
             <>

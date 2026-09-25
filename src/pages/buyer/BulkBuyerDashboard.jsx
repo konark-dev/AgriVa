@@ -13,7 +13,7 @@ export default function BulkBuyerDashboard() {
       <ProfileHeader />
 
       {/* Header */}
-      <div className="bg-gradient-to-r from-slate-900 to-[#1B5E20] text-white p-4 rounded-2xl shadow-lg border border-slate-700">
+      <div className="bg-gradient-to-r from-slate-900 to-[#2E7D32] text-white p-4 rounded-2xl shadow-lg border border-slate-700">
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-xl font-black flex items-center">
@@ -64,7 +64,7 @@ export default function BulkBuyerDashboard() {
                 <h3 className="font-bold text-slate-800 text-sm">Wheat (Sharbati) - 120 Tons</h3>
                 <p className="text-xs text-slate-500">Aggregated from 50 Farmers • Sonipat Cluster</p>
               </div>
-              <span className="bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded text-xs border border-emerald-200">
+              <span className="bg-emerald-100 text-emerald-700 font-bold px-2 py-0.5 rounded text-xs border border-emerald-200">
                 ₹2,850/qtl
               </span>
             </div>

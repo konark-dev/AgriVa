@@ -9,7 +9,7 @@ export default function NotificationToast() {
 
   const getIcon = () => {
     switch (activeToast.type) {
-      case 'success': return <CheckCircle className="w-5 h-5 text-[#1B5E20] shrink-0" />;
+      case 'success': return <CheckCircle className="w-5 h-5 text-[#2E7D32] shrink-0" />;
       case 'warning': return <AlertCircle className="w-5 h-5 text-amber-400 shrink-0" />;
       default: return <MessageSquare className="w-5 h-5 text-sky-400 shrink-0" />;
     }

@@ -78,7 +78,7 @@ export default function NetRealizationWidget({ price, quantity, grade, crop, sel
         }`}
       >
         {isBest && !isSelected && (
-          <span className="absolute -top-2.5 -right-2 bg-[#F57F17] text-white text-[9px] font-bold px-2 py-0.5 rounded-md shadow-sm">
+          <span className="absolute -top-2.5 -right-2 bg-[#FF9800] text-white text-[9px] font-bold px-2 py-0.5 rounded-md shadow-sm">
             {t(language, 'bestYield')}
           </span>
         )}
@@ -89,7 +89,7 @@ export default function NetRealizationWidget({ price, quantity, grade, crop, sel
         )}
         
         <div className="flex justify-between items-center w-full">
-          <span className={`text-xs font-bold flex items-center ${isSelected ? 'text-emerald-900' : 'text-slate-700'}`}>
+          <span className={`text-xs font-bold flex items-center ${isSelected ? 'text-emerald-700' : 'text-slate-700'}`}>
              <Icon className={`w-4 h-4 mr-2 ${iconColor}`} />
              {title}
           </span>
@@ -110,7 +110,7 @@ export default function NetRealizationWidget({ price, quantity, grade, crop, sel
 
   return (
     <div className="bg-slate-50 rounded-xl border border-slate-300 mt-5 shadow-sm overflow-hidden">
-      <div className="bg-[#1B5E20] p-3 flex items-center justify-between text-white">
+      <div className="bg-[#2E7D32] p-3 flex items-center justify-between text-white">
         <div className="flex items-center font-bold text-xs">
           <Calculator className="w-4 h-4 mr-1.5" />
           <span>{t(language, 'aiNetRealization')}</span>

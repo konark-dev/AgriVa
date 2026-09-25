@@ -46,7 +46,7 @@ export default function PriceDiscovery() {
   const renderTrendBadge = (trend) => {
     if (trend === 'trending_up') {
       return (
-        <span className="inline-flex items-center space-x-0.5 px-2 py-0.5 rounded-full bg-emerald-950 text-[#1B5E20] border border-emerald-800 text-[10px] font-semibold">
+        <span className="inline-flex items-center space-x-0.5 px-2 py-0.5 rounded-full bg-emerald-950 text-[#2E7D32] border border-emerald-800 text-[10px] font-semibold">
           <TrendingUp className="w-3 h-3" />
           <span>Upward</span>
         </span>
@@ -74,7 +74,7 @@ export default function PriceDiscovery() {
       <div className="flex items-center justify-between">
         <div>
           <h2 className="text-base font-bold text-slate-800 flex items-center space-x-1.5">
-            <TrendingUp className="w-5 h-5 text-[#1B5E20]" />
+            <TrendingUp className="w-5 h-5 text-[#2E7D32]" />
             <span>Mandi Price Discovery</span>
           </h2>
           <p className="text-xs text-slate-500">Live Agmarknet Benchmark Prices</p>
@@ -96,7 +96,7 @@ export default function PriceDiscovery() {
       {/* Filter Bar */}
       <div className="bg-white rounded-2xl p-3 border border-slate-200 space-y-2.5">
         <div className="flex items-center space-x-2 text-xs">
-          <Filter className="w-4 h-4 text-[#1B5E20]" />
+          <Filter className="w-4 h-4 text-[#2E7D32]" />
           <span className="font-semibold text-slate-600">Filter Crop:</span>
         </div>
 
@@ -107,7 +107,7 @@ export default function PriceDiscovery() {
               onClick={() => setSelectedCrop(crop)}
               className={`px-3 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-colors ${
                 selectedCrop === crop
-                  ? 'bg-[#1B5E20] text-white shadow-md'
+                  ? 'bg-[#2E7D32] text-white shadow-md'
                   : 'bg-slate-50 text-slate-700 text-slate-600 hover:bg-slate-700'
               }`}
             >
@@ -122,7 +122,7 @@ export default function PriceDiscovery() {
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">
             <Award className="w-6 h-6 text-emerald-600" />
-            <h3 className="text-sm font-bold text-emerald-900 uppercase tracking-wide">
+            <h3 className="text-sm font-bold text-emerald-700 uppercase tracking-wide">
               Smart Mandi Recommendation
             </h3>
           </div>
@@ -143,12 +143,12 @@ export default function PriceDiscovery() {
                   <span>{mandi.mandiName}</span>
                 </div>
                 <div className="text-[11px] text-slate-500 flex items-center space-x-2 mt-0.5">
-                  <span className="flex items-center"><MapPin className="w-3 h-3 text-[#1B5E20] mr-0.5" />{mandi.distanceKm} km away</span>
+                  <span className="flex items-center"><MapPin className="w-3 h-3 text-[#2E7D32] mr-0.5" />{mandi.distanceKm} km away</span>
                   <span>Transport: ~₹{mandi.estTransportCost}</span>
                 </div>
               </div>
               <div className="text-right">
-                <div className="text-sm font-extrabold text-[#1B5E20]">₹{mandi.netPricePerKg}/kg</div>
+                <div className="text-sm font-extrabold text-[#2E7D32]">₹{mandi.netPricePerKg}/kg</div>
                 <div className="text-[10px] text-slate-500">Est Net Payout</div>
               </div>
             </div>
@@ -164,7 +164,7 @@ export default function PriceDiscovery() {
           /* Fallback state-average card when crop not found */
           <div className="bg-amber-50 border border-amber-200 rounded-2xl p-6 text-center space-y-2 shadow-sm mt-4">
             <div className="text-amber-700 text-sm font-bold uppercase tracking-wide">{t(language, 'noLivePrices') || 'No Live Prices Found'}</div>
-            <p className="text-xs text-amber-800 font-medium">
+            <p className="text-xs text-amber-700 font-medium">
               {(t(language, 'noLivePricesDesc') || '').replace('{crop}', selectedCrop) || `No live mandi prices reported today for ${selectedCrop}. Showing state benchmark average instead.`}
             </p>
             <div className="text-2xl font-black text-amber-600 pt-2">₹28.50 <span className="text-sm font-semibold">/ kg (Avg)</span></div>
@@ -181,7 +181,7 @@ export default function PriceDiscovery() {
               </div>
 
               <div className="text-right space-y-0.5">
-                <div className="text-base font-extrabold text-[#1B5E20]">₹{item.modalPrice}/kg</div>
+                <div className="text-base font-extrabold text-[#2E7D32]">₹{item.modalPrice}/kg</div>
                 <div className="text-[10px] text-slate-500">
                   Min ₹{item.minPrice} • Max ₹{item.maxPrice}
                 </div>

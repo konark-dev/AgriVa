@@ -85,7 +85,7 @@ export default function AddListingModal({ onClose }) {
     <div className="fixed inset-0 z-50 bg-white backdrop-blur-sm flex items-end sm:items-center justify-center p-0 sm:p-4">
       <div className="bg-white border border-slate-200 rounded-t-2xl sm:rounded-2xl w-full max-w-md max-h-[85vh] flex flex-col overflow-hidden shadow-2xl animate-in slide-in-from-bottom">
         {/* Header */}
-        <div className="p-4 border-b border-slate-200 flex items-center justify-between bg-[#1B5E20] text-white">
+        <div className="p-4 border-b border-slate-200 flex items-center justify-between bg-[#2E7D32] text-white">
           <div className="flex items-center space-x-2">
             <PlusCircle className="w-5 h-5" />
             <h3 className="font-bold text-sm">{t(language, 'addListing')}</h3>
@@ -102,7 +102,7 @@ export default function AddListingModal({ onClose }) {
             <label className="text-slate-600 font-semibold mb-1 flex items-center justify-between">
               <span>{t(language, 'cropType')}</span>
               <button type="button" onClick={() => startVoiceInput('crop')} className="focus:outline-none">
-                {activeMicField === 'crop' ? <MicOff className="w-3.5 h-3.5 text-rose-400 animate-pulse" /> : <Mic className="w-3.5 h-3.5 text-[#1B5E20] opacity-80" />}
+                {activeMicField === 'crop' ? <MicOff className="w-3.5 h-3.5 text-rose-400 animate-pulse" /> : <Mic className="w-3.5 h-3.5 text-[#2E7D32] opacity-80" />}
               </button>
             </label>
             <select
@@ -125,7 +125,7 @@ export default function AddListingModal({ onClose }) {
               <label className="text-slate-600 font-semibold mb-1 flex items-center justify-between">
                 <span>{t(language, 'quantityKg')}</span>
                 <button type="button" onClick={() => startVoiceInput('quantity')} className="focus:outline-none">
-                  {activeMicField === 'quantity' ? <MicOff className="w-3.5 h-3.5 text-rose-400 animate-pulse" /> : <Mic className="w-3.5 h-3.5 text-[#1B5E20] opacity-80" />}
+                  {activeMicField === 'quantity' ? <MicOff className="w-3.5 h-3.5 text-rose-400 animate-pulse" /> : <Mic className="w-3.5 h-3.5 text-[#2E7D32] opacity-80" />}
                 </button>
               </label>
               <div className="relative">
@@ -144,7 +144,7 @@ export default function AddListingModal({ onClose }) {
               <label className="text-slate-600 font-semibold mb-1 flex items-center justify-between">
                 <span>{t(language, 'priceKg')}</span>
                 <button type="button" onClick={() => startVoiceInput('price')} className="focus:outline-none">
-                  {activeMicField === 'price' ? <MicOff className="w-3.5 h-3.5 text-rose-400 animate-pulse" /> : <Mic className="w-3.5 h-3.5 text-[#1B5E20] opacity-80" />}
+                  {activeMicField === 'price' ? <MicOff className="w-3.5 h-3.5 text-rose-400 animate-pulse" /> : <Mic className="w-3.5 h-3.5 text-[#2E7D32] opacity-80" />}
                 </button>
               </label>
               <div className="relative">
@@ -180,7 +180,7 @@ export default function AddListingModal({ onClose }) {
           <NetRealizationWidget price={form.price} quantity={form.quantity} grade={form.qualityGrade} crop={form.crop} selectedAvenue={selectedAvenue} onSelectAvenue={setSelectedAvenue} />
 
           {checkUnderpricing(form.crop, form.price) && (
-            <div className="bg-amber-50 border border-amber-200 text-amber-800 text-xs font-bold p-3 rounded-xl flex items-start gap-2 shadow-sm">
+            <div className="bg-amber-50 border border-amber-200 text-amber-700 text-xs font-bold p-3 rounded-xl flex items-start gap-2 shadow-sm">
               <span className="text-amber-500 mt-0.5">⚠️</span>
               <span>{t(language, 'belowMandiRate')}</span>
             </div>
@@ -202,7 +202,7 @@ export default function AddListingModal({ onClose }) {
             <label className="text-slate-600 font-semibold mb-1 flex items-center justify-between">
               <span>{t(language, 'pickupLocation')}</span>
               <button type="button" onClick={() => startVoiceInput('pickupLocation')} className="focus:outline-none">
-                  {activeMicField === 'pickupLocation' ? <MicOff className="w-3.5 h-3.5 text-rose-400 animate-pulse" /> : <Mic className="w-3.5 h-3.5 text-[#1B5E20] opacity-80" />}
+                  {activeMicField === 'pickupLocation' ? <MicOff className="w-3.5 h-3.5 text-rose-400 animate-pulse" /> : <Mic className="w-3.5 h-3.5 text-[#2E7D32] opacity-80" />}
               </button>
             </label>
             <input
@@ -217,7 +217,7 @@ export default function AddListingModal({ onClose }) {
 
           <button
             type="submit"
-            className="w-full btn-touch py-3 rounded-xl bg-[#1B5E20] text-white font-bold text-sm shadow-lg mt-3"
+            className="w-full btn-touch py-3 rounded-xl bg-[#2E7D32] text-white font-bold text-sm shadow-lg mt-3"
           >
             {t(language, 'publishListing')}
           </button>

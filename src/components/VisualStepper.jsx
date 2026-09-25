@@ -94,7 +94,7 @@ export default function VisualStepper({ currentStatus, deliveryMode = 'direct', 
                   )}
                 </div>
                 <span className={"text-[10px] text-center font-medium mt-1.5 leading-tight " + (
-                  isCurrent ? 'text-emerald-800 font-bold' : isCompleted ? 'text-slate-600' : 'text-slate-400'
+                  isCurrent ? 'text-emerald-700 font-bold' : isCompleted ? 'text-slate-600' : 'text-slate-400'
                 )}>
                   {step.label}
                 </span>

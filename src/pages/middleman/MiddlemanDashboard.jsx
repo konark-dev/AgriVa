@@ -36,7 +36,7 @@ export default function MiddlemanDashboard() {
       <div className="flex items-center justify-between">
         <div>
           <h2 className="text-base font-bold text-slate-800 flex items-center space-x-2">
-            <Repeat className="w-5 h-5 text-[#1B5E20]" />
+            <Repeat className="w-5 h-5 text-[#2E7D32]" />
             <span>Middleman Trading & Logistics Hub</span>
           </h2>
           <p className="text-xs text-slate-500">Combined Buyer + Transporter Dual-Ledger</p>
@@ -48,7 +48,7 @@ export default function MiddlemanDashboard() {
         <button
           onClick={() => setActiveTab('browse')}
           className={`py-2 rounded-xl text-xs font-bold transition-colors ${
-            activeTab === 'browse' ? 'bg-[#1B5E20] text-white shadow' : 'text-slate-500 hover:text-slate-700'
+            activeTab === 'browse' ? 'bg-[#2E7D32] text-white shadow' : 'text-slate-500 hover:text-slate-700'
           }`}
         >
           Browse & Bid Crops
@@ -56,7 +56,7 @@ export default function MiddlemanDashboard() {
         <button
           onClick={() => setActiveTab('deals')}
           className={`py-2 rounded-xl text-xs font-bold transition-colors ${
-            activeTab === 'deals' ? 'bg-[#1B5E20] text-white shadow' : 'text-slate-500 hover:text-slate-700'
+            activeTab === 'deals' ? 'bg-[#2E7D32] text-white shadow' : 'text-slate-500 hover:text-slate-700'
           }`}
         >
           My Deals Dual-Ledger
@@ -74,14 +74,14 @@ export default function MiddlemanDashboard() {
                   <p className="text-xs text-slate-600">Farmer: {item.farmerName}</p>
                 </div>
                 <div className="text-right">
-                  <span className="text-base font-extrabold text-[#1B5E20]">₹{item.price}/kg</span>
+                  <span className="text-base font-extrabold text-[#2E7D32]">₹{item.price}/kg</span>
                   <div className="text-[10px] text-slate-500">{item.quantity} kg</div>
                 </div>
               </div>
 
               <button
                 onClick={() => setPromptTransportModal(item)}
-                className="w-full btn-touch py-2.5 rounded-xl bg-[#1B5E20] text-white font-bold text-xs shadow flex items-center justify-center space-x-1"
+                className="w-full btn-touch py-2.5 rounded-xl bg-[#2E7D32] text-white font-bold text-xs shadow flex items-center justify-center space-x-1"
               >
                 <ShoppingBag className="w-4 h-4" />
                 <span>Place Middleman Trade Bid</span>
@@ -96,7 +96,7 @@ export default function MiddlemanDashboard() {
         <div className="space-y-3">
           <div className="bg-gradient-to-r from-emerald-950/80 to-slate-900 border border-emerald-800/60 rounded-2xl p-4 space-y-3 shadow-md text-xs">
             <h3 className="font-bold text-sm text-slate-800 flex items-center space-x-1.5">
-              <ArrowRightLeft className="w-4 h-4 text-[#1B5E20]" />
+              <ArrowRightLeft className="w-4 h-4 text-[#2E7D32]" />
               <span>Two-Leg Financial Ledger</span>
             </h3>
 
@@ -113,7 +113,7 @@ export default function MiddlemanDashboard() {
             <div className="p-3 bg-white rounded-xl border border-slate-200 space-y-1">
               <div className="flex justify-between font-bold text-slate-700">
                 <span>Leg 2: Inflow from Mandi Buyer (Sale)</span>
-                <span className="text-[#1B5E20]">+ ₹90,000</span>
+                <span className="text-[#2E7D32]">+ ₹90,000</span>
               </div>
               <p className="text-[11px] text-slate-500">3000kg Onion @ ₹30/kg received on mandi delivery.</p>
             </div>
@@ -132,7 +132,7 @@ export default function MiddlemanDashboard() {
           <div className="bg-white border border-slate-200 rounded-t-2xl sm:rounded-2xl w-full max-w-md p-5 space-y-4 shadow-2xl text-xs">
             <h3 className="font-bold text-base text-slate-800">Transport Choice for Won Deal</h3>
             <p className="text-slate-600">
-              You won bid for <strong className="text-[#1B5E20]">{promptTransportModal.quantity}kg {promptTransportModal.crop}</strong>. Choose logistics assignment:
+              You won bid for <strong className="text-[#2E7D32]">{promptTransportModal.quantity}kg {promptTransportModal.crop}</strong>. Choose logistics assignment:
             </p>
 
             <div className="space-y-2">
@@ -141,7 +141,7 @@ export default function MiddlemanDashboard() {
                 className="w-full p-3 rounded-xl bg-slate-50 text-slate-700 hover:bg-slate-700 border border-slate-200 text-left flex items-center justify-between font-bold text-slate-800"
               >
                 <span>Self-Transport (My Vehicle: {currentUser.vehicleReg})</span>
-                <Truck className="w-4 h-4 text-[#1B5E20]" />
+                <Truck className="w-4 h-4 text-[#2E7D32]" />
               </button>
 
               <button

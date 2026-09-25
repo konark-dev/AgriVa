@@ -77,8 +77,8 @@ export default function FarmerDashboard() {
 
   // Color tokens
   const COLORS = {
-    primary: '#1B5E20', // green
-    orange: '#F57F17',   // accent / mic
+    primary: '#2E7D32', // green
+    orange: '#FF9800',   // accent / mic
     red: '#BF360C',      // danger
     bgLight: '#f9f8f3'   // main background
   };
@@ -112,7 +112,7 @@ export default function FarmerDashboard() {
         </div>
         <button 
           onClick={() => setShowTicker(true)}
-          className="text-xs font-medium text-[#1B5E20] hover:underline"
+          className="text-xs font-medium text-[#2E7D32] hover:underline"
         >
           सभी भाव / View More
         </button>
@@ -132,14 +132,14 @@ export default function FarmerDashboard() {
                   ❌ Unverified
                 </span>
               ) : (
-                <span className="ml-2 px-1.5 py-0.5 bg-emerald-100 text-emerald-800 rounded text-[9px] font-bold uppercase tracking-wider border border-emerald-200">
+                <span className="ml-2 px-1.5 py-0.5 bg-emerald-100 text-emerald-700 rounded text-[9px] font-bold uppercase tracking-wider border border-emerald-200">
                   {t(language, 'verified')}
                 </span>
               )
             )}
           </p>
         </div>
-        <button className="w-10 h-10 rounded-full bg-white border border-slate-200 shadow-sm flex items-center justify-center text-[#1B5E20] font-bold">
+        <button className="w-10 h-10 rounded-full bg-white border border-slate-200 shadow-sm flex items-center justify-center text-[#2E7D32] font-bold">
           {currentUser.name.charAt(0)}
         </button>
       </div>
@@ -151,7 +151,7 @@ export default function FarmerDashboard() {
           placeholder={t(language, "searchPlaceholder")}
           value={searchTerm}
           onChange={e => setSearchTerm(e.target.value)}
-          className="w-full pl-4 pr-12 py-2 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-[#1B5E20]"
+          className="w-full pl-4 pr-12 py-2 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-[#2E7D32]"
         />
         <button
           onClick={() => {
@@ -169,7 +169,7 @@ export default function FarmerDashboard() {
               try { rec.start(); } catch(e) { console.warn(e); }
             }
           }}
-          className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center justify-center w-8 h-8 bg-[#F57F17] rounded-full text-white"
+          className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center justify-center w-8 h-8 bg-[#FF9800] rounded-full text-white"
         >
           <Mic className="w-4 h-4" />
         </button>
@@ -177,16 +177,16 @@ export default function FarmerDashboard() {
 
       {!isUnverified && (<>
       {/* ---------- CTA: Sell My Crop (Icon Heavy) ---------- */}
-      <div className="p-4 bg-[#1B5E20] rounded-2xl shadow-md flex flex-col relative overflow-hidden items-center justify-center text-center">
+      <div className="p-4 bg-[#2E7D32] rounded-2xl shadow-md flex flex-col relative overflow-hidden items-center justify-center text-center">
         <div className="absolute top-0 right-0 w-32 h-32 bg-white opacity-10 rounded-full -mr-10 -mt-10 z-0"></div>
         <div className="absolute bottom-0 left-0 w-24 h-24 bg-white opacity-10 rounded-full -ml-8 -mb-8 z-0"></div>
         
         <div className="relative z-10 flex flex-col items-center w-full">
           <button
             onClick={() => setShowAddModal(true)}
-            className="w-full py-5 bg-white text-[#1B5E20] rounded-xl font-black text-xl shadow-lg flex flex-col justify-center items-center transform transition active:scale-95"
+            className="w-full py-5 bg-white text-[#2E7D32] rounded-xl font-black text-xl shadow-lg flex flex-col justify-center items-center transform transition active:scale-95"
           >
-            <PlusCircle className="w-12 h-12 mb-2 text-[#F57F17]" />
+            <PlusCircle className="w-12 h-12 mb-2 text-[#FF9800]" />
             {t(language, 'sellCrop')}
           </button>
           <div className="mt-3 inline-flex items-center px-3 py-1 bg-green-800 text-green-100 rounded-full text-xs font-bold border border-green-600">
@@ -224,7 +224,7 @@ export default function FarmerDashboard() {
                 {hideBalance ? <EyeOff className="w-3.5 h-3.5" /> : <Eye className="w-3.5 h-3.5" />}
               </button>
             </div>
-            <p className="text-2xl font-black text-[#1B5E20]">
+            <p className="text-2xl font-black text-[#2E7D32]">
               {hideBalance ? '₹ *******' : '₹ 1,48,500'}
             </p>
           </div>
@@ -243,7 +243,7 @@ export default function FarmerDashboard() {
           <AlertTriangle className="w-4 h-4 text-orange-600" />
         </div>
         <div>
-          <p className="font-bold text-sm text-orange-900">मंडी बंदी सूचना / Mandi Alert</p>
+          <p className="font-bold text-sm text-orange-800">मंडी बंदी सूचना / Mandi Alert</p>
           <p className="text-xs text-orange-700 leading-snug mt-0.5"></p>
         </div>
       </div>
@@ -252,13 +252,13 @@ export default function FarmerDashboard() {
       <div className="grid grid-cols-2 gap-2 bg-white rounded-2xl p-1 border border-slate-200">
         <button
           onClick={() => setActiveTab('crops')}
-          className={`py-2 rounded-xl text-xs font-semibold ${activeTab === 'crops' ? 'bg-[#1B5E20] text-white' : 'text-slate-600'}`}
+          className={`py-2 rounded-xl text-xs font-semibold ${activeTab === 'crops' ? 'bg-[#2E7D32] text-white' : 'text-slate-600'}`}
         >
           मेरी सूची ({myCount})
         </button>
         <button
           onClick={() => setActiveTab('sales')}
-          className={`py-2 rounded-xl text-xs font-semibold ${activeTab === 'sales' ? 'bg-[#1B5E20] text-white' : 'text-slate-600'}`}
+          className={`py-2 rounded-xl text-xs font-semibold ${activeTab === 'sales' ? 'bg-[#2E7D32] text-white' : 'text-slate-600'}`}
         >
           सक्रिय बिक्री ({mySalesCount})
         </button>
@@ -281,7 +281,7 @@ export default function FarmerDashboard() {
                   <div className="flex items-start justify-between">
                     <div>
                       <div className="flex items-center space-x-2">
-                        <span className="font-extrabold text-sm text-[#1B5E20]">{item.crop}</span>
+                        <span className="font-extrabold text-sm text-[#2E7D32]">{item.crop}</span>
                         <span className="px-2 py-0.5 bg-slate-100 text-slate-600 rounded-full text-xs">{item.quantity} kg</span>
                         {item.targetAvenue === 'fpo' && <span className="px-2 py-0.5 bg-blue-100 text-blue-700 rounded-full text-[10px] font-bold">🎯 Target: FPO</span>}
                         {item.targetAvenue === 'mandi' && <span className="px-2 py-0.5 bg-orange-100 text-orange-700 rounded-full text-[10px] font-bold">🎯 Target: Mandi</span>}
@@ -292,7 +292,7 @@ export default function FarmerDashboard() {
                       <p className="text-xs text-slate-500">भुगतान अपेक्षित: ₹{item.price || 0}/kg</p>
                     </div>
                     <div className="text-right">
-                      <span className="text-base font-bold text-[#1B5E20]">₹{item.price || 0}/kg</span>
+                      <span className="text-base font-bold text-[#2E7D32]">₹{item.price || 0}/kg</span>
                     </div>
                   </div>
 
@@ -306,7 +306,7 @@ export default function FarmerDashboard() {
 
                   {/* No‑bid suggestion */}
                   {hasNoBids && (
-                    <div className="mt-2 p-2 bg-amber-100 text-amber-800 rounded-md text-xs">
+                    <div className="mt-2 p-2 bg-amber-100 text-amber-700 rounded-md text-xs">
                       कोई बोली नहीं। कीमत थोड़ा घटाने से खरीदार आकर्षित हो सकते हैं।
                     </div>
                   )}
@@ -315,7 +315,7 @@ export default function FarmerDashboard() {
                   {itemBids.length > 0 && (
                     <div className="mt-4 border-t border-slate-200 pt-4">
                       <h4 className="text-sm font-bold text-slate-800 flex items-center space-x-1 mb-3">
-                        <Tag className="w-4 h-4 text-[#1B5E20]" />
+                        <Tag className="w-4 h-4 text-[#2E7D32]" />
                         <span>Received Offers ({itemBids.length})</span>
                       </h4>
                       <div className="space-y-3">
@@ -335,7 +335,7 @@ export default function FarmerDashboard() {
                             <div className="flex items-center justify-between mb-2">
                               <div>
                                 {idx === 0 && (
-                                  <span className="inline-block px-2 py-0.5 bg-[#1B5E20] text-white text-[10px] font-bold rounded-full mb-1">
+                                  <span className="inline-block px-2 py-0.5 bg-[#2E7D32] text-white text-[10px] font-bold rounded-full mb-1">
                                     🌟 Best Offer (Highest Net)
                                   </span>
                                 )}
@@ -343,7 +343,7 @@ export default function FarmerDashboard() {
                                 <p className="text-xs text-slate-500">Gross Bid: ₹{b.price}/kg</p>
                               </div>
                               <div className="text-right">
-                                <span className="block text-lg font-black text-[#1B5E20]">₹{b.payout.finalPayout.toLocaleString('en-IN')}</span>
+                                <span className="block text-lg font-black text-[#2E7D32]">₹{b.payout.finalPayout.toLocaleString('en-IN')}</span>
                                 <span className="text-[10px] text-slate-500 font-bold uppercase">Net Payout</span>
                               </div>
                             </div>
@@ -366,7 +366,7 @@ export default function FarmerDashboard() {
                             {(item.status === 'Listed' || item.status === 'Bid Received') && (
                               <button
                                 onClick={() => setSelectedBidModal({ listing: item, bid: b })}
-                                className={`w-full py-2 rounded-lg text-xs font-bold transition-colors ${idx === 0 ? 'bg-[#1B5E20] text-white hover:bg-[#144718]' : 'bg-white border border-[#1B5E20] text-[#1B5E20] hover:bg-emerald-50'}`}
+                                className={`w-full py-2 rounded-lg text-xs font-bold transition-colors ${idx === 0 ? 'bg-[#2E7D32] text-white hover:bg-[#1B5E20]' : 'bg-white border border-[#2E7D32] text-[#2E7D32] hover:bg-emerald-50'}`}
                               >
                                 {idx === 0 ? t(language, 'accept') + ' ⭐' : t(language, 'accept')}
                               </button>
@@ -401,12 +401,12 @@ export default function FarmerDashboard() {
                 <div key={item.id} className="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm">
                   <div className="flex items-center justify-between border-b border-slate-200 pb-2">
                     <div>
-                      <h4 className="font-bold text-sm text-[#1B5E20]">{item.crop} बिक्री</h4>
+                      <h4 className="font-bold text-sm text-[#2E7D32]">{item.crop} बिक्री</h4>
                       <p className="text-xs text-slate-500">{item.quantity} kg @ ₹{bidPrice}/kg</p>
                     </div>
                     <button
                       onClick={() => setPayoutModal(payout)}
-                      className="flex items-center space-x-1 text-xs text-[#1B5E20]"
+                      className="flex items-center space-x-1 text-xs text-[#2E7D32]"
                     >
                       <DollarSign className="w-4 h-4" />
                       <span>Payout Math</span>
@@ -439,8 +439,8 @@ export default function FarmerDashboard() {
             {activeTab === 'warehouse_booking' && (
         <div className="p-4 bg-amber-50 rounded-2xl border border-amber-200 shadow-sm flex flex-col space-y-3 mt-2">
           <div className="flex items-center justify-between mb-1">
-            <h3 className="text-lg font-extrabold text-amber-900">भंडारण / Warehouse</h3>
-            <span className="px-2 py-0.5 bg-amber-200 text-amber-900 border border-amber-300 rounded-full text-[10px] font-bold">WDRA Approved</span>
+            <h3 className="text-lg font-extrabold text-amber-800">भंडारण / Warehouse</h3>
+            <span className="px-2 py-0.5 bg-amber-200 text-amber-800 border border-amber-300 rounded-full text-[10px] font-bold">WDRA Approved</span>
           </div>
           <button
             onClick={() => triggerToast('Booking...', 'Booking Started', 'info')}
@@ -454,8 +454,8 @@ export default function FarmerDashboard() {
       {/* ---------- Help Center Card ---------- */}
       <div className="p-4 bg-amber-50 rounded-2xl border border-amber-200 shadow-sm flex flex-col space-y-3 mt-2">
         <div className="flex items-center justify-between mb-1">
-          <h3 className="text-lg font-extrabold text-amber-900">भंडारण / Warehouse Booking</h3>
-          <span className="px-2 py-0.5 bg-amber-200 text-amber-900 border border-amber-300 rounded-full text-[10px] font-bold">
+          <h3 className="text-lg font-extrabold text-amber-800">भंडारण / Warehouse Booking</h3>
+          <span className="px-2 py-0.5 bg-amber-200 text-amber-800 border border-amber-300 rounded-full text-[10px] font-bold">
             WDRA Approved
           </span>
         </div>
@@ -477,7 +477,7 @@ export default function FarmerDashboard() {
         <div className="fixed inset-0 z-50 bg-black/30 flex items-center justify-center p-4">
           <div className="bg-white rounded-2xl w-full max-w-md p-5 shadow-lg">
             <h3 className="font-bold text-lg mb-3">बोली स्वीकारें & डिलीवरी चयन</h3>
-            <p className="mb-2">बोली: <strong className="text-[#1B5E20]">₹{selectedBidModal.bid.price || 0}/kg</strong> द्वारा {selectedBidModal.bid.buyerName}</p>
+            <p className="mb-2">बोली: <strong className="text-[#2E7D32]">₹{selectedBidModal.bid.price || 0}/kg</strong> द्वारा {selectedBidModal.bid.buyerName}</p>
             <p className="text-sm text-slate-600 mb-4">डिलीवरी का प्रकार चुनें:</p>
             <div className="space-y-2">
               <button
@@ -485,7 +485,7 @@ export default function FarmerDashboard() {
                   acceptBid(selectedBidModal.listing.id, selectedBidModal.bid.id, 'direct');
                   setSelectedBidModal(null);
                 }}
-                className="w-full py-2 bg-[#1B5E20] text-white rounded-md"
+                className="w-full py-2 bg-[#2E7D32] text-white rounded-md"
               >
                 सीधा डिलीवरी (Fast)
               </button>
@@ -497,7 +497,7 @@ export default function FarmerDashboard() {
                     setSelectedBidModal(null);
                   }
                 }}
-                className={`w-full py-2 rounded-md ${hasLabAvailable ? 'bg-[#1B5E20] text-white' : 'bg-gray-300 text-gray-600 cursor-not-allowed'}`}
+                className={`w-full py-2 rounded-md ${hasLabAvailable ? 'bg-[#2E7D32] text-white' : 'bg-gray-300 text-gray-600 cursor-not-allowed'}`}
               >
                 प्रमाणित लैब डिलीवरी
               </button>
@@ -514,19 +514,19 @@ export default function FarmerDashboard() {
           <div className="bg-white rounded-2xl w-full max-w-md p-5 shadow-lg">
             <h3 className="font-bold text-lg mb-3">वितरण भुगतान विवरण</h3>
             <div className="space-y-1 text-sm">
-              <div className="flex justify-between"><span>स्थूल बोली कुल:</span> <span className="font-medium text-[#1B5E20]">₹{payoutModal.bidPriceTotal}</span></div>
+              <div className="flex justify-between"><span>स्थूल बोली कुल:</span> <span className="font-medium text-[#2E7D32]">₹{payoutModal.bidPriceTotal}</span></div>
               <div className="flex justify-between text-rose-600"><span>− ट्रांसपोर्ट लागत:</span> <span>₹{payoutModal.transportCost}</span></div>
               <div className="flex justify-between text-rose-600"><span>− मंडी शुल्क (1.5%):</span> <span>₹{payoutModal.mandiFee}</span></div>
               <div className="flex justify-between text-rose-600"><span>− प्लेटफ़ॉर्म शुल्क (1%):</span> <span>₹{payoutModal.platformFee}</span></div>
               {payoutModal.qualityDeduction > 0 && (
                 <div className="flex justify-between font-bold"><span>− गुणवत्ता छूट:</span> <span>₹{payoutModal.qualityDeduction}</span></div>
               )}
-              <div className="flex justify-between font-extrabold text-[#1B5E20] border-t pt-2">
+              <div className="flex justify-between font-extrabold text-[#2E7D32] border-t pt-2">
                 <span>कुल किसान नेट:</span>
                 <span>₹{payoutModal.finalPayout}</span>
               </div>
             </div>
-            <button onClick={() => setPayoutModal(null)} className="mt-3 w-full py-2 bg-[#1B5E20] text-white rounded-md">बंद करें</button>
+            <button onClick={() => setPayoutModal(null)} className="mt-3 w-full py-2 bg-[#2E7D32] text-white rounded-md">बंद करें</button>
           </div>
         </div>
       )}

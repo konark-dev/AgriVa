@@ -19,7 +19,7 @@ export default function AIDemandForecasting({ onBack }) {
       <div className="flex items-center justify-between p-4 bg-white shadow-sm sticky top-0 z-10">
         <div className="flex items-center gap-3">
           <button onClick={onBack} className="p-1">
-            <ArrowLeft className="w-6 h-6 text-[#1B5E20]" />
+            <ArrowLeft className="w-6 h-6 text-[#2E7D32]" />
           </button>
           <div>
             <h1 className="font-bold text-sm text-slate-900 leading-tight">मांग पूर्वानुमान / AI Demand<br/>Forecasting</h1>
@@ -27,7 +27,7 @@ export default function AIDemandForecasting({ onBack }) {
         </div>
         <button 
           onClick={() => speakText("यह एआई मांग पूर्वानुमान है। जयपुर में टमाटर की मांग 1,427 किलो है, जबकि उपलब्ध आपूर्ति 1,100 किलो है।")} 
-          className="flex items-center gap-1.5 bg-orange-100 text-[#F57F17] px-3 py-1.5 rounded-full text-xs font-bold"
+          className="flex items-center gap-1.5 bg-orange-100 text-[#FF9800] px-3 py-1.5 rounded-full text-xs font-bold"
         >
           <Volume2 className="w-4 h-4" />
           बोल कर सुनें
@@ -40,7 +40,7 @@ export default function AIDemandForecasting({ onBack }) {
           <div className="bg-[#F1F8EC] border border-[#C5E1A5] rounded-xl p-3 flex items-start gap-2.5 shadow-sm">
             <Info className="w-5 h-5 text-[#2E7D32] shrink-0 mt-0.5" />
             <div>
-              <p className="text-sm font-bold text-[#1B5E20] leading-snug">Agmarknet व क्षेत्रीय ऐतिहासिक डेटा पर आधारित पूर्वानुमान</p>
+              <p className="text-sm font-bold text-[#2E7D32] leading-snug">Agmarknet व क्षेत्रीय ऐतिहासिक डेटा पर आधारित पूर्वानुमान</p>
               <p className="text-[10px] text-slate-600 mt-1">Weekly batch forecast • Non real-time proxy for mandi trade planning</p>
             </div>
           </div>
@@ -89,10 +89,10 @@ export default function AIDemandForecasting({ onBack }) {
           <div className="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm">
             <div className="flex items-start justify-between mb-4">
               <div>
-                <h2 className="font-extrabold text-[#1B5E20] text-base">मांग एवं आपूर्ति सारांश</h2>
+                <h2 className="font-extrabold text-[#2E7D32] text-base">मांग एवं आपूर्ति सारांश</h2>
                 <p className="text-[10px] text-slate-500 font-medium mt-0.5">Forecast Summary (अगले {duration} दिनों के लिए अनुमानित आंकड़े)</p>
               </div>
-              <div className="bg-[#a5d6a7] text-[#1B5E20] px-3 py-1.5 rounded-lg text-xs font-bold text-center leading-tight">
+              <div className="bg-[#a5d6a7] text-[#2E7D32] px-3 py-1.5 rounded-lg text-xs font-bold text-center leading-tight">
                 Tomato<br/>(हाइब्रिड)
               </div>
             </div>
@@ -102,10 +102,10 @@ export default function AIDemandForecasting({ onBack }) {
               <div className="bg-[#f9f8f3] border border-slate-200 rounded-xl p-3">
                 <div className="flex items-center justify-between mb-1">
                   <span className="text-[11px] font-bold text-slate-600">अनुमानित मांग</span>
-                  <Package className="w-3.5 h-3.5 text-[#1B5E20]" />
+                  <Package className="w-3.5 h-3.5 text-[#2E7D32]" />
                 </div>
                 <div className="flex items-baseline gap-1">
-                  <span className="text-xl font-black text-[#1B5E20]">1,427</span>
+                  <span className="text-xl font-black text-[#2E7D32]">1,427</span>
                   <span className="text-xs font-bold text-slate-600">kg</span>
                 </div>
                 <p className="text-[9px] text-slate-500 mt-0.5">Expected Demand</p>
@@ -129,9 +129,9 @@ export default function AIDemandForecasting({ onBack }) {
             <div className="bg-[#f9f8f3] border border-slate-200 rounded-xl p-3 w-[calc(50%-6px)]">
               <div className="flex items-center justify-between mb-1">
                 <span className="text-[11px] font-bold text-slate-600">मांग का रुझान</span>
-                <TrendingUp className="w-3.5 h-3.5 text-[#1B5E20]" />
+                <TrendingUp className="w-3.5 h-3.5 text-[#2E7D32]" />
               </div>
-              <div className="text-[#1B5E20] font-black text-sm flex items-center gap-1">
+              <div className="text-[#2E7D32] font-black text-sm flex items-center gap-1">
                 ▲ तेज (High)
               </div>
               <p className="text-[9px] text-slate-500 mt-0.5">Increasing / बढ़ती मांग</p>
@@ -141,7 +141,7 @@ export default function AIDemandForecasting({ onBack }) {
 
         {/* Recommended Supply Matching */}
         <div className="bg-white border border-slate-200 rounded-2xl p-4 shadow-sm">
-          <h3 className="text-[10px] font-bold text-[#1B5E20] uppercase tracking-wider mb-1">Recommended Supply Matching</h3>
+          <h3 className="text-[10px] font-bold text-[#2E7D32] uppercase tracking-wider mb-1">Recommended Supply Matching</h3>
           <h2 className="font-extrabold text-slate-800 text-lg">अनुशंसित आपूर्ति मिलान</h2>
           <p className="text-[10px] text-slate-500 mb-4">नज़दीकी किसान उत्पादक संगठन (Verified FPO Supply)</p>
 
@@ -152,13 +152,13 @@ export default function AIDemandForecasting({ onBack }) {
                 <span className="text-[10px] text-slate-600 font-bold">(Fulfillment Ratio)</span>
               </div>
               <div className="text-right">
-                <span className="text-xs font-extrabold text-[#1B5E20] block">77% Covered (1,000 /</span>
-                <span className="text-xs font-extrabold text-[#1B5E20] block">1,427 kg)</span>
+                <span className="text-xs font-extrabold text-[#2E7D32] block">77% Covered (1,000 /</span>
+                <span className="text-xs font-extrabold text-[#2E7D32] block">1,427 kg)</span>
               </div>
             </div>
             
             <div className="w-full bg-slate-200 rounded-full h-2.5 mb-1.5 overflow-hidden flex">
-              <div className="bg-[#1B5E20] h-2.5 rounded-full" style={{ width: '77%' }}></div>
+              <div className="bg-[#2E7D32] h-2.5 rounded-full" style={{ width: '77%' }}></div>
             </div>
             <p className="text-[9px] text-slate-500">उपलब्ध FPO: 1,000 kg</p>
           </div>
@@ -173,8 +173,8 @@ export default function AIDemandForecasting({ onBack }) {
                   <div className="flex justify-between items-start">
                     <h4 className="font-bold text-slate-800 text-sm truncate pr-2">{fpo.name}</h4>
                     <div className="text-right shrink-0">
-                      <span className="font-black text-[#1B5E20] text-sm block leading-none">{fpo.qty}</span>
-                      <span className="text-[10px] font-bold text-[#1B5E20]">kg</span>
+                      <span className="font-black text-[#2E7D32] text-sm block leading-none">{fpo.qty}</span>
+                      <span className="text-[10px] font-bold text-[#2E7D32]">kg</span>
                     </div>
                   </div>
                   
@@ -200,13 +200,13 @@ export default function AIDemandForecasting({ onBack }) {
 
       {/* Fixed Bottom Bar */}
       <div className="fixed bottom-[60px] md:bottom-[72px] left-1/2 -translate-x-1/2 w-full max-w-md md:max-w-7xl mx-auto p-4 md:px-8 bg-white/95 backdrop-blur-md border-t border-slate-200 flex items-center gap-3 pb-6 shadow-[0_-4px_20px_rgba(0,0,0,0.05)]">
-        <button className="flex-1 bg-[#1B5E20] text-white py-3.5 rounded-xl font-bold text-sm shadow flex items-center justify-center gap-2 hover:bg-[#154c19] transition">
+        <button className="flex-1 bg-[#2E7D32] text-white py-3.5 rounded-xl font-bold text-sm shadow flex items-center justify-center gap-2 hover:bg-[#154c19] transition">
           <Phone className="w-4 h-4" />
           <span>FPO से संपर्क करें / Connect with FPOs</span>
         </button>
         <button 
           onClick={() => speakText("क्षमा करें, वॉयस एआई फिलहाल इस स्क्रीन पर उपलब्ध नहीं है। (Voice AI is currently not available on this screen.)")}
-          className="w-12 h-12 bg-[#F57F17] text-white rounded-full flex items-center justify-center shadow-lg shrink-0 hover:bg-[#e67300] transition"
+          className="w-12 h-12 bg-[#FF9800] text-white rounded-full flex items-center justify-center shadow-lg shrink-0 hover:bg-[#e67300] transition"
         >
           <Mic className="w-6 h-6" />
         </button>

@@ -390,7 +390,7 @@ export default function Onboarding({ onComplete }) {
                 <p className="text-xs text-slate-500 font-bold uppercase tracking-wider">अपनी भाषा चुनें</p>
                 <h2 className="text-xl font-extrabold text-slate-800">Choose Your Language</h2>
               </div>
-              <div className="w-10 h-10 bg-emerald-50 text-emerald-800 rounded-full flex items-center justify-center font-bold">
+              <div className="w-10 h-10 bg-emerald-50 text-emerald-700 rounded-full flex items-center justify-center font-bold">
                 A/अ
               </div>
             </div>
@@ -460,7 +460,7 @@ export default function Onboarding({ onComplete }) {
 
         <div className="px-4 pb-28 space-y-5 mt-4">
           <div>
-            <span className="text-xs font-bold text-emerald-800 uppercase tracking-wider">चरण 1/3 ⬢ मोबाइल सत्यापन</span>
+            <span className="text-xs font-bold text-emerald-700 uppercase tracking-wider">चरण 1/3 ⬢ मोबाइल सत्यापन</span>
             <h2 className="text-2xl font-extrabold text-slate-900 mt-1">अपना मोबाइल नंबर दर्ज करें,</h2>
             <p className="text-xs text-slate-500 mt-1">सुरक्षा e-KYC के लिए 6-अंक का OTP भेजा जाएगा</p>
           </div>
@@ -495,7 +495,7 @@ export default function Onboarding({ onComplete }) {
              </button>
           </div>
 
-          <div className="p-3.5 rounded-xl bg-emerald-50 border border-emerald-200 flex items-start text-xs text-emerald-900">
+          <div className="p-3.5 rounded-xl bg-emerald-50 border border-emerald-200 flex items-start text-xs text-emerald-700">
              <ShieldCheck className="w-5 h-5 text-emerald-700 mr-2 shrink-0 mt-0.5" />
              <div>
                 <strong className="block font-bold">DPDP अधिनियम 2023 के तहत 100% सुरक्षित</strong>
@@ -553,7 +553,7 @@ export default function Onboarding({ onComplete }) {
 
         <div className="px-4 pb-28 space-y-4 mt-4">
           <div className="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm">
-            <span className="text-xs font-bold text-emerald-800">चरण 2/3 ⬢ सुरक्षा पिन सत्यापन</span>
+            <span className="text-xs font-bold text-emerald-700">चरण 2/3 ⬢ सुरक्षा पिन सत्यापन</span>
             <h2 className="text-xl font-extrabold text-slate-900 mt-1">6-अंक का OTP दर्ज करके सत्यापित करें,</h2>
             <p className="text-xs text-slate-500 mt-1">+91 {phone || '98765 43210'} पर भेजा गया कोड दर्ज करें</p>
           </div>
@@ -578,7 +578,7 @@ export default function Onboarding({ onComplete }) {
                 <button
                    type="button"
                    onClick={() => setOtp(['1', '2', '3', '4', '5', '6'])}
-                   className="px-2.5 py-1 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 font-bold rounded-lg border border-emerald-200 transition"
+                   className="px-2.5 py-1 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 font-bold rounded-lg border border-emerald-200 transition"
                 >
                    123456 भरें
                 </button>
@@ -697,17 +697,17 @@ export default function Onboarding({ onComplete }) {
 
         <div className="px-4 pb-28 space-y-4 mt-4">
           <div>
-            <span className="text-xs font-bold text-emerald-800 uppercase tracking-wider">चरण 3/3 ⬢ भूमिका चयन</span>
+            <span className="text-xs font-bold text-emerald-700 uppercase tracking-wider">चरण 3/3 ⬢ भूमिका चयन</span>
             <h2 className="text-2xl font-extrabold text-slate-900 mt-1">आप कौन-सी भूमिका में हैं?</h2>
             <p className="text-xs text-slate-500 mt-1">प्लेटफ़ॉर्म पर अपनी उचित भूमिका (Actor) का चयन करें</p>
           </div>
 
           {/* STRUCTURAL GOVERNANCE RULE CALLOUT */}
-          <div className="bg-amber-50 border border-amber-300 rounded-xl p-3 flex items-start text-xs text-amber-900 shadow-sm">
+          <div className="bg-amber-50 border border-amber-300 rounded-xl p-3 flex items-start text-xs text-amber-800 shadow-sm">
              <ShieldCheck className="w-4 h-4 text-amber-700 mr-2 shrink-0 mt-0.5" />
              <div>
                 <strong>प्लेटफ़ॉर्म सुरक्षा नियम (Platform Governance Rule):</strong>
-                <p className="text-[11px] text-amber-800 mt-0.5">
+                <p className="text-[11px] text-amber-700 mt-0.5">
                   एडमिन (Admin) भूमिका को यहाँ से अनुमत नहीं किया जा सकता। यह केवल प्लेटफ़ॉर्म मास्टर द्वारा सुरक्षित प्रक्रिया से बनाए जाते हैं।
                 </p>
              </div>
@@ -725,7 +725,7 @@ export default function Onboarding({ onComplete }) {
                         isSelected ? `${borderGreen} ring-2 ring-[#185c25]/20 bg-[#f9fdf9]` : 'border-slate-200'
                       }`}
                    >
-                      <div className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 ${isSelected ? 'bg-emerald-100 text-emerald-800' : 'bg-slate-100 text-slate-600'}`}>
+                      <div className={`w-12 h-12 rounded-xl flex items-center justify-center shrink-0 ${isSelected ? 'bg-emerald-100 text-emerald-700' : 'bg-slate-100 text-slate-600'}`}>
                          <IconComponent className="w-6 h-6" />
                       </div>
                       <div className="flex-1">
@@ -786,7 +786,7 @@ export default function Onboarding({ onComplete }) {
           <button 
             type="button" 
             onClick={startFullFormVoiceInput} 
-            className={`w-full py-3.5 mb-2 rounded-xl border-2 shadow-sm font-bold flex items-center justify-center transition-all ${isVoiceInputActive ? 'bg-rose-100 border-rose-300 text-rose-700 animate-pulse' : 'bg-emerald-50 border-emerald-500 text-emerald-800'}`}
+            className={`w-full py-3.5 mb-2 rounded-xl border-2 shadow-sm font-bold flex items-center justify-center transition-all ${isVoiceInputActive ? 'bg-rose-100 border-rose-300 text-rose-700 animate-pulse' : 'bg-emerald-50 border-emerald-500 text-emerald-700'}`}
           >
             <Mic className={`w-5 h-5 mr-2 ${isVoiceInputActive ? 'animate-bounce' : ''}`} />
             {isVoiceInputActive ? 'सुन रहे हैं... (Listening...)' : 'बोलकर पूरा फॉर्म भरें / Auto-fill by Voice'}
@@ -805,8 +805,8 @@ export default function Onboarding({ onComplete }) {
           {/* ----------------- ACTOR: INDIVIDUAL FARMER ----------------- */}
           {selectedRole === 'farmer' && (
              <div className="space-y-4">
-                <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-3 text-xs text-emerald-900">
-                   <div className="flex items-center font-bold text-sm mb-1 text-emerald-800">
+                <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-3 text-xs text-emerald-700">
+                   <div className="flex items-center font-bold text-sm mb-1 text-emerald-700">
                       <Tractor className="w-4 h-4 mr-1.5" /> किसान सत्यापन विनिर्देश
                    </div>
                    <p>⬢ 12-अंक आधार चेकसम: Verhoeff एल्गोरिदम अनिवार्य।</p>
@@ -843,7 +843,7 @@ export default function Onboarding({ onComplete }) {
                         value={formData.aadhaarNumber}
                         onChange={e => handleFormChange('aadhaarNumber', e.target.value.replace(/\D/g, '').slice(0, 12))}
                         className={`w-full mt-1 p-3 rounded-xl border text-sm font-mono tracking-widest font-bold focus:outline-none ${
-                           validateAadhaarVerhoeff(formData.aadhaarNumber).valid ? 'border-emerald-500 bg-emerald-50/30 text-emerald-900' : 'border-slate-200 text-slate-800'
+                           validateAadhaarVerhoeff(formData.aadhaarNumber).valid ? 'border-emerald-500 bg-emerald-50/30 text-emerald-700' : 'border-slate-200 text-slate-800'
                         }`}
                         placeholder="12-digit Aadhaar (e.g. 999988887779)"
                         maxLength={12}
@@ -1037,8 +1037,8 @@ export default function Onboarding({ onComplete }) {
           {/* ----------------- ACTOR: BULK BUYER ----------------- */}
           {selectedRole === 'bulk_buyer' && (
              <div className="space-y-4">
-                <div className="bg-amber-50 border border-amber-200 rounded-xl p-3 text-xs text-amber-900">
-                   <div className="flex items-center font-bold text-sm mb-1 text-amber-800">
+                <div className="bg-amber-50 border border-amber-200 rounded-xl p-3 text-xs text-amber-800">
+                   <div className="flex items-center font-bold text-sm mb-1 text-amber-700">
                       <Store className="w-4 h-4 mr-1.5" /> थोक व्यापारी विनिर्देश
                    </div>
                    <p>⬢ 15-अंक GSTIN प्रारूप सत्यापन अनिवार्य।</p>
@@ -1048,7 +1048,7 @@ export default function Onboarding({ onComplete }) {
 
                 <div className="bg-white rounded-2xl p-4 border border-slate-200 space-y-3 shadow-sm">
                    <div>
-                      <label className="text-xs font-bold text-slate-700 block mb-2">Buyer Category (Tier) *</label><div className="grid grid-cols-2 gap-2 mb-4"><label className={`flex items-center space-x-2 p-2 rounded-lg border cursor-pointer ${formData.buyerTier === 'bulk' ? 'bg-amber-50 border-amber-300 text-amber-900' : 'bg-slate-50 border-slate-200 text-slate-600'}`}><input type="radio" name="buyerTier" value="bulk" checked={formData.buyerTier === 'bulk'} onChange={e => handleFormChange('buyerTier', e.target.value)} className="text-amber-600" /><div className="text-xs font-bold">Bulk Buyer<br/><span className="text-[9px] font-normal opacity-80">Full Truckloads</span></div></label><label className={`flex items-center space-x-2 p-2 rounded-lg border cursor-pointer ${formData.buyerTier === 'retailer' ? 'bg-amber-50 border-amber-300 text-amber-900' : 'bg-slate-50 border-slate-200 text-slate-600'}`}><input type="radio" name="buyerTier" value="retailer" checked={formData.buyerTier === 'retailer'} onChange={e => handleFormChange('buyerTier', e.target.value)} className="text-amber-600" /><div className="text-xs font-bold">Retailer<br/><span className="text-[9px] font-normal opacity-80">20-200kg Batched</span></div></label></div><label className="text-xs font-bold text-slate-700">Business Name *</label>
+                      <label className="text-xs font-bold text-slate-700 block mb-2">Buyer Category (Tier) *</label><div className="grid grid-cols-2 gap-2 mb-4"><label className={`flex items-center space-x-2 p-2 rounded-lg border cursor-pointer ${formData.buyerTier === 'bulk' ? 'bg-amber-50 border-amber-300 text-amber-800' : 'bg-slate-50 border-slate-200 text-slate-600'}`}><input type="radio" name="buyerTier" value="bulk" checked={formData.buyerTier === 'bulk'} onChange={e => handleFormChange('buyerTier', e.target.value)} className="text-amber-600" /><div className="text-xs font-bold">Bulk Buyer<br/><span className="text-[9px] font-normal opacity-80">Full Truckloads</span></div></label><label className={`flex items-center space-x-2 p-2 rounded-lg border cursor-pointer ${formData.buyerTier === 'retailer' ? 'bg-amber-50 border-amber-300 text-amber-800' : 'bg-slate-50 border-slate-200 text-slate-600'}`}><input type="radio" name="buyerTier" value="retailer" checked={formData.buyerTier === 'retailer'} onChange={e => handleFormChange('buyerTier', e.target.value)} className="text-amber-600" /><div className="text-xs font-bold">Retailer<br/><span className="text-[9px] font-normal opacity-80">20-200kg Batched</span></div></label></div><label className="text-xs font-bold text-slate-700">Business Name *</label>
                       <input 
                         type="text"
                         value={formData.businessName}
@@ -1295,8 +1295,8 @@ export default function Onboarding({ onComplete }) {
           {/* ----------------- ACTOR: WAREHOUSE OWNER (EXPANDED) ----------------- */}
           {selectedRole === 'warehouse' && (
              <div className="space-y-4">
-                <div className="bg-orange-50 border border-orange-200 rounded-xl p-3 text-xs text-orange-900">
-                   <div className="flex items-center font-bold text-sm mb-1 text-orange-800">
+                <div className="bg-orange-50 border border-orange-200 rounded-xl p-3 text-xs text-orange-800">
+                   <div className="flex items-center font-bold text-sm mb-1 text-orange-700">
                       <Store className="w-4 h-4 mr-1.5" /> गोदाम मालिक सत्यापन विनिर्देश
                    </div>
                    <p>⬢ WDRA (वेयरहाउस डेवलपमेंट एंड रेगुलेटरी अथॉरिटी) पंजीकरण अनिवार्य।</p>
@@ -1444,7 +1444,7 @@ export default function Onboarding({ onComplete }) {
                  <p className="text-xs text-slate-600 leading-relaxed">
                     आपके क्रेडेंशियल्स का सत्यापन हो गया है। एग्रीवा प्लेटफ़ॉर्म मंडी में आपका स्वागत है।
                  </p>
-                 <div className="p-3 bg-emerald-50 rounded-xl text-left text-xs text-emerald-900 border border-emerald-200 space-y-1">
+                 <div className="p-3 bg-emerald-50 rounded-xl text-left text-xs text-emerald-700 border border-emerald-200 space-y-1">
                     <p><strong>खाता:</strong> {submissionResult.profile?.name}</p>
                     <p><strong>भूमिका:</strong> {submissionResult.profile?.role?.toUpperCase()}</p>
                     {submissionResult.profile?.sellerBadge && (
@@ -1463,7 +1463,7 @@ export default function Onboarding({ onComplete }) {
                  <p className="text-xs text-slate-600 leading-relaxed">
                     आपका पंजीकरण प्रारूप मान्य हो गया है, मात्र सुरक्षा कानूनी जाँच के कारण यह अभी <strong>एडमिन अनुमोदन कतार (Admin Approval Queue)</strong> में जमा कर दिया गया है।
                  </p>
-                 <div className="p-3 bg-amber-50 rounded-xl text-left text-xs text-amber-900 border border-amber-200 space-y-1">
+                 <div className="p-3 bg-amber-50 rounded-xl text-left text-xs text-amber-800 border border-amber-200 space-y-1">
                     <p><strong>संस्था:</strong> {submissionResult.profile?.name}</p>
                     <p><strong>स्थिति:</strong> Pending Admin Review</p>
                     <p><strong>टिप्पणी:</strong> {submissionResult.profile?.verificationNotes || 'MCA/GSTN Public Database Verification Path'}</p>

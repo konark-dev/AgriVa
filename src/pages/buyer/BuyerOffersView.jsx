@@ -45,7 +45,7 @@ export default function BuyerOffersView({ requirement, onBack }) {
   };
 
   const getSellerBadge = (type) => {
-    if (type === 'Verified') return <span className="text-xs bg-green-900 text-white px-2 py-0.5 rounded-full">● अति सत्यापित</span>;
+    if (type === 'Verified') return <span className="text-xs bg-green-700 text-white px-2 py-0.5 rounded-full">● अति सत्यापित</span>;
     if (type === 'FPO') return <span className="text-xs border border-blue-500 text-blue-600 px-2 py-0.5 rounded-full">▶ FPO प्रोफ़ाइल</span>;
     return <span className="text-xs border border-gray-400 text-gray-600 px-2 py-0.5 rounded-full">◎ Self-declared</span>;
   };
@@ -60,7 +60,7 @@ export default function BuyerOffersView({ requirement, onBack }) {
           </button>
           <h1 className="font-bold text-lg text-slate-800">AgriVa / Offers</h1>
         </div>
-        <button className="bg-[#F57F17] text-white px-3 py-1.5 rounded-full text-xs font-semibold flex items-center gap-1" onClick={() => speakText('\u0915\u093f\u0938\u093e\u0928\u094b\u0902 \u0926\u094d\u0935\u093e\u0930\u093e \u0926\u093f\u090f \u0917\u090f \u092a\u094d\u0930\u0938\u094d\u0924\u093e\u0935 \u092f\u0939\u093e\u0902 \u0926\u0947\u0916\u0947\u0902\u0964 \u0938\u092c\u0938\u0947 \u092c\u0947\u0939\u0924\u0930 \u0911\u092b\u0930 \u0915\u094b \u0938\u094d\u0935\u0940\u0915\u093e\u0930 \u0915\u0930\u0947\u0902\u0964', 'hi-IN')}>
+        <button className="bg-[#FF9800] text-white px-3 py-1.5 rounded-full text-xs font-semibold flex items-center gap-1" onClick={() => speakText('\u0915\u093f\u0938\u093e\u0928\u094b\u0902 \u0926\u094d\u0935\u093e\u0930\u093e \u0926\u093f\u090f \u0917\u090f \u092a\u094d\u0930\u0938\u094d\u0924\u093e\u0935 \u092f\u0939\u093e\u0902 \u0926\u0947\u0916\u0947\u0902\u0964 \u0938\u092c\u0938\u0947 \u092c\u0947\u0939\u0924\u0930 \u0911\u092b\u0930 \u0915\u094b \u0938\u094d\u0935\u0940\u0915\u093e\u0930 \u0915\u0930\u0947\u0902\u0964', 'hi-IN')}>
           <Volume2 className="w-4 h-4" />
           बोल कर सुनें
         </button>
@@ -81,7 +81,7 @@ export default function BuyerOffersView({ requirement, onBack }) {
             <p className="text-sm text-slate-500">
               {req.variety} • ₹ {req.indicativePrice} / क्विंटल guide
             </p>
-            <span className="bg-[#F57F17] text-white text-xs px-2 py-1 rounded-full font-medium flex items-center gap-1">
+            <span className="bg-[#FF9800] text-white text-xs px-2 py-1 rounded-full font-medium flex items-center gap-1">
               <Star className="w-3 h-3 fill-white" />
               {reqOffers.length} Offers
             </span>
@@ -96,7 +96,7 @@ export default function BuyerOffersView({ requirement, onBack }) {
           </div>
           <div className="h-3 rounded-full bg-slate-100 mb-2 overflow-hidden">
             <div 
-              className="h-full bg-[#1B5E20] rounded-full transition-all duration-300" 
+              className="h-full bg-[#2E7D32] rounded-full transition-all duration-300" 
               style={{ width: `${pct}%` }}
             ></div>
           </div>
@@ -104,7 +104,7 @@ export default function BuyerOffersView({ requirement, onBack }) {
             <span className="text-slate-500">
               {totalFulfilled} / {req.targetQty} क्विंटल ({acceptedCount} farmers)
             </span>
-            <span className="text-[#F57F17] font-medium">
+            <span className="text-[#FF9800] font-medium">
               {gap} क्विंटल (Gap Remaining)
             </span>
           </div>
@@ -116,7 +116,7 @@ export default function BuyerOffersView({ requirement, onBack }) {
           <button 
             onClick={() => setSortBy('price')}
             className={`px-3 py-1.5 rounded-full text-xs font-medium flex items-center gap-1 whitespace-nowrap transition-colors ${
-              sortBy === 'price' ? 'bg-[#1B5E20] text-white' : 'border border-slate-300 text-slate-600'
+              sortBy === 'price' ? 'bg-[#2E7D32] text-white' : 'border border-slate-300 text-slate-600'
             }`}
           >
             {sortBy === 'price' && '✓'} भाव कम से ज़्यादा (Price: Low)
@@ -124,7 +124,7 @@ export default function BuyerOffersView({ requirement, onBack }) {
           <button 
             onClick={() => setSortBy('date')}
             className={`px-3 py-1.5 rounded-full text-xs font-medium flex items-center gap-1 whitespace-nowrap transition-colors ${
-              sortBy === 'date' ? 'bg-[#1B5E20] text-white' : 'border border-slate-300 text-slate-600'
+              sortBy === 'date' ? 'bg-[#2E7D32] text-white' : 'border border-slate-300 text-slate-600'
             }`}
           >
             {sortBy === 'date' && '✓'} तारीख (Date)
@@ -136,7 +136,7 @@ export default function BuyerOffersView({ requirement, onBack }) {
 
         {/* Yellow Tip Banner */}
         {gap > 0 && (
-          <div className="bg-amber-50 border border-amber-200 rounded-xl p-3 text-amber-800 text-sm flex items-start gap-2">
+          <div className="bg-amber-50 border border-amber-200 rounded-xl p-3 text-amber-700 text-sm flex items-start gap-2">
             <span>💡</span>
             <p>पूरी मांग पूरी नहीं होगी एक किसान से... यह बोली आंशिक (Partial Fulfillment) में सहायक होगी।</p>
           </div>
@@ -152,12 +152,12 @@ export default function BuyerOffersView({ requirement, onBack }) {
               <div 
                 key={offer.id} 
                 className={`rounded-2xl border-2 p-4 transition-all ${
-                  isSelected ? 'border-[#1B5E20] bg-green-50' : 'border-slate-200 bg-white'
+                  isSelected ? 'border-[#2E7D32] bg-green-50' : 'border-slate-200 bg-white'
                 }`}
               >
                 <div className="flex justify-between items-start mb-3">
                   <div className="flex items-center gap-2">
-                    <button onClick={() => toggleSelect(offer.id)} className="text-[#1B5E20]">
+                    <button onClick={() => toggleSelect(offer.id)} className="text-[#2E7D32]">
                       {isSelected ? <CheckSquare className="w-5 h-5" /> : <Square className="w-5 h-5 text-slate-600" />}
                     </button>
                     {isSelected && (
@@ -190,7 +190,7 @@ export default function BuyerOffersView({ requirement, onBack }) {
                   </div>
                   <div className="bg-slate-50/50 p-2 rounded-lg border border-slate-100">
                     <div className="text-xs text-slate-500 mb-1">प्रदायित भाव / Rate</div>
-                    <div className="font-bold text-[#1B5E20]">₹ {offer.pricePerUnit} / क्विंटल</div>
+                    <div className="font-bold text-[#2E7D32]">₹ {offer.pricePerUnit} / क्विंटल</div>
                   </div>
                 </div>
 
@@ -202,7 +202,7 @@ export default function BuyerOffersView({ requirement, onBack }) {
                 <div>
                   {isSelected ? (
                     <div className="flex justify-between items-center">
-                      <span className="text-[#1B5E20] font-medium flex items-center gap-1 text-sm">
+                      <span className="text-[#2E7D32] font-medium flex items-center gap-1 text-sm">
                         ✓ चयनित / Selected <ChevronDown className="w-4 h-4" />
                       </span>
                       <button className="border border-slate-300 text-slate-700 px-3 py-1.5 rounded-lg text-sm font-medium flex items-center gap-1">
@@ -212,7 +212,7 @@ export default function BuyerOffersView({ requirement, onBack }) {
                   ) : (
                     <button 
                       onClick={() => toggleSelect(offer.id)}
-                      className="w-full border border-[#1B5E20] text-[#1B5E20] rounded-xl py-2 font-medium hover:bg-green-50 transition-colors"
+                      className="w-full border border-[#2E7D32] text-[#2E7D32] rounded-xl py-2 font-medium hover:bg-green-50 transition-colors"
                     >
                       + स्वीकार करें / Accept
                     </button>
@@ -235,7 +235,7 @@ export default function BuyerOffersView({ requirement, onBack }) {
           onClick={handleAccept}
           disabled={selectedIds.length === 0 || loading}
           className={`w-full rounded-2xl py-4 font-bold text-base flex flex-col items-center justify-center transition-all
-            ${selectedIds.length > 0 ? 'bg-[#1B5E20] text-white shadow-lg active:scale-[0.98]' : 'bg-slate-200 text-slate-500 cursor-not-allowed'}
+            ${selectedIds.length > 0 ? 'bg-[#2E7D32] text-white shadow-lg active:scale-[0.98]' : 'bg-slate-200 text-slate-500 cursor-not-allowed'}
           `}
         >
           <span>

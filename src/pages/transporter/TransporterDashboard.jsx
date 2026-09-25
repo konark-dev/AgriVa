@@ -89,7 +89,7 @@ export default function TransporterDashboard() {
       <div className="flex items-center justify-between">
         <div>
           <h2 className="text-base font-bold text-slate-800 flex items-center space-x-2">
-            <Truck className="w-5 h-5 text-[#1B5E20]" />
+            <Truck className="w-5 h-5 text-[#2E7D32]" />
             <span>Transporter Logistics Hub</span>
           </h2>
           <p className="text-xs text-slate-500">Multi-Pickup Route Optimization & Inspection</p>
@@ -101,7 +101,7 @@ export default function TransporterDashboard() {
         <button
           onClick={() => setActiveTab('pickups')}
           className={`flex-1 py-1.5 text-xs font-bold rounded-lg transition-colors ${
-            activeTab === 'pickups' ? 'bg-[#1B5E20] text-white shadow-sm' : 'text-slate-600'
+            activeTab === 'pickups' ? 'bg-[#2E7D32] text-white shadow-sm' : 'text-slate-600'
           }`}
         >
           Pickups ({deliveries.length})
@@ -109,7 +109,7 @@ export default function TransporterDashboard() {
         <button
           onClick={() => setActiveTab('route_optimizer')}
           className={`flex-1 py-1.5 text-xs font-bold rounded-lg transition-colors ${
-            activeTab === 'route_optimizer' ? 'bg-[#1B5E20] text-white shadow-sm' : 'text-slate-600'
+            activeTab === 'route_optimizer' ? 'bg-[#2E7D32] text-white shadow-sm' : 'text-slate-600'
           }`}
         >
           Optimization
@@ -117,7 +117,7 @@ export default function TransporterDashboard() {
         <button
           onClick={() => setActiveTab('route_comparison')}
           className={`flex-1 py-1.5 text-xs font-bold rounded-lg transition-colors ${
-            activeTab === 'route_comparison' ? 'bg-[#1B5E20] text-white shadow-sm' : 'text-slate-600'
+            activeTab === 'route_comparison' ? 'bg-[#2E7D32] text-white shadow-sm' : 'text-slate-600'
           }`}
         >
           AgriQ Routes
@@ -131,7 +131,7 @@ export default function TransporterDashboard() {
             
             <div className="space-y-4">
               <div className="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm relative overflow-hidden">
-                <div className="absolute top-0 right-0 bg-[#1B5E20] text-white text-[9px] font-black px-3 py-1 rounded-bl-xl tracking-wider uppercase">
+                <div className="absolute top-0 right-0 bg-[#2E7D32] text-white text-[9px] font-black px-3 py-1 rounded-bl-xl tracking-wider uppercase">
                   My Fleet
                 </div>
                 <h3 className="font-bold text-sm text-slate-800 mb-3 flex items-center">
@@ -177,8 +177,8 @@ export default function TransporterDashboard() {
                     <h4 className="font-bold text-xs text-slate-800">120 Tons Wheat (Bulk Order)</h4>
                     <p className="text-[10px] text-slate-500 mb-2">Panipat Hub &rarr; Britannia Mills, Delhi</p>
                     <div className="flex justify-between items-center text-xs">
-                      <span className="font-black text-[#1B5E20]">₹14,500</span>
-                      <button onClick={() => triggerToast('Bid submitted for Load #8902', 'Bid Placed', 'success')} className="px-3 py-1 bg-[#1B5E20] text-white rounded font-semibold text-[10px]">
+                      <span className="font-black text-[#2E7D32]">₹14,500</span>
+                      <button onClick={() => triggerToast('Bid submitted for Load #8902', 'Bid Placed', 'success')} className="px-3 py-1 bg-[#2E7D32] text-white rounded font-semibold text-[10px]">
                         Accept Load
                       </button>
                     </div>
@@ -188,8 +188,8 @@ export default function TransporterDashboard() {
                     <h4 className="font-bold text-xs text-slate-800">40 Tons Tomato (Requires Cold Storage)</h4>
                     <p className="text-[10px] text-slate-500 mb-2">Karnal Farms &rarr; Azadpur Mandi</p>
                     <div className="flex justify-between items-center text-xs">
-                      <span className="font-black text-[#1B5E20]">₹5,200</span>
-                      <button onClick={() => triggerToast('Bid submitted for Load #8903', 'Bid Placed', 'success')} className="px-3 py-1 bg-[#1B5E20] text-white rounded font-semibold text-[10px]">
+                      <span className="font-black text-[#2E7D32]">₹5,200</span>
+                      <button onClick={() => triggerToast('Bid submitted for Load #8903', 'Bid Placed', 'success')} className="px-3 py-1 bg-[#2E7D32] text-white rounded font-semibold text-[10px]">
                         Accept Load
                       </button>
                     </div>
@@ -212,7 +212,7 @@ export default function TransporterDashboard() {
                     </div>
 
                     <div className="text-right">
-                      <div className="text-sm font-extrabold text-[#1B5E20]">₹{transportFee}</div>
+                      <div className="text-sm font-extrabold text-[#2E7D32]">₹{transportFee}</div>
                       <div className="text-[10px] text-slate-500">Guaranteed Transport Fee</div>
                     </div>
                   </div>
@@ -243,7 +243,7 @@ export default function TransporterDashboard() {
                             setSelectedPickupCheck(del);
                             setActualWeightInput(del.quantity.toString());
                           }}
-                          className="btn-touch flex-1 py-2 rounded-xl bg-[#1B5E20] text-white text-xs font-bold shadow flex items-center justify-center space-x-1"
+                          className="btn-touch flex-1 py-2 rounded-xl bg-[#2E7D32] text-white text-xs font-bold shadow flex items-center justify-center space-x-1"
                         >
                           <Camera className="w-4 h-4" />
                           <span>Do Quality & Weight Check</span>
@@ -262,7 +262,7 @@ export default function TransporterDashboard() {
                         </button>
                         <button
                           onClick={() => updateDeliveryStatus(del.id, 'In Transit')}
-                          className="btn-touch flex-1 py-2 rounded-xl bg-[#1B5E20] text-white text-xs font-bold shadow"
+                          className="btn-touch flex-1 py-2 rounded-xl bg-[#2E7D32] text-white text-xs font-bold shadow"
                         >
                           Mark In Transit
                         </button>
@@ -280,7 +280,7 @@ export default function TransporterDashboard() {
                         </button>
                           <button
                             onClick={() => completeTransporterDelivery(del.id)}
-                            className="btn-touch flex-1 py-2.5 rounded-xl bg-[#1B5E20] text-white text-xs font-bold shadow"
+                            className="btn-touch flex-1 py-2.5 rounded-xl bg-[#2E7D32] text-white text-xs font-bold shadow"
                           >
                             Scan & Complete (Release Payout)
                           </button>
@@ -300,7 +300,7 @@ export default function TransporterDashboard() {
           <div className="bg-emerald-50 border border-emerald-200 rounded-2xl p-4 space-y-3 shadow-lg">
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-2">
-                <Navigation className="w-5 h-5 text-[#1B5E20]" />
+                <Navigation className="w-5 h-5 text-[#2E7D32]" />
                 <h3 className="text-xs font-bold text-slate-800 uppercase tracking-wide">
                   Nearest Neighbor Route Calculation
                 </h3>
@@ -314,7 +314,7 @@ export default function TransporterDashboard() {
               Calculated using Haversine Great-Circle distance formula across latitude/longitude points:
             </p>
 
-            <div className="p-3 bg-white/90 rounded-xl border border-slate-200 font-mono text-[11px] text-[#1B5E20] flex items-center justify-between">
+            <div className="p-3 bg-white/90 rounded-xl border border-slate-200 font-mono text-[11px] text-[#2E7D32] flex items-center justify-between">
               <span>Total Estimated Trip Distance:</span>
               <span className="text-sm font-extrabold text-white">{routeResult.totalDistanceKm} KM</span>
             </div>
@@ -325,7 +325,7 @@ export default function TransporterDashboard() {
               {routeResult.orderedRoute.map((stop, idx) => (
                 <div key={stop.id} className="bg-white border border-slate-200 rounded-xl p-3 flex items-center justify-between text-xs">
                   <div className="flex items-center space-x-2.5">
-                    <div className="w-6 h-6 rounded-full bg-[#1B5E20] flex items-center justify-center font-extrabold text-white text-[11px]">
+                    <div className="w-6 h-6 rounded-full bg-[#2E7D32] flex items-center justify-center font-extrabold text-white text-[11px]">
                       {idx + 1}
                     </div>
                     <div>
@@ -333,7 +333,7 @@ export default function TransporterDashboard() {
                       <div className="text-[10px] text-slate-500">{stop.crop} • {stop.quantity} kg</div>
                     </div>
                   </div>
-                  <div className="text-right text-[11px] text-[#1B5E20] font-semibold">
+                  <div className="text-right text-[11px] text-[#2E7D32] font-semibold">
                     +{stop.legDistanceKm} km
                   </div>
                 </div>
@@ -362,7 +362,7 @@ export default function TransporterDashboard() {
                       qualityCondition === cond
                         ? cond === 'Poor'
                           ? 'bg-rose-950 border-rose-600 text-rose-300'
-                          : 'bg-[#1B5E20] text-white border-emerald-500'
+                          : 'bg-[#2E7D32] text-white border-emerald-500'
                         : 'bg-slate-100 text-slate-700 border-slate-200 text-slate-600'
                     }`}
                   >
@@ -380,7 +380,7 @@ export default function TransporterDashboard() {
                 onClick={() => setPhotoSelected(true)}
                 className={`w-full py-3 rounded-xl border border-dashed text-xs font-bold flex items-center justify-center space-x-2 transition-colors ${
                   photoSelected
-                    ? 'bg-emerald-50 border-emerald-500 text-[#1B5E20]'
+                    ? 'bg-emerald-50 border-emerald-500 text-[#2E7D32]'
                     : 'bg-slate-100 text-slate-700 border-slate-200 text-slate-500 hover:text-slate-700'
                 }`}
               >
@@ -412,7 +412,7 @@ export default function TransporterDashboard() {
               </button>
               <button
                 type="submit"
-                className="flex-1 py-3 rounded-xl bg-[#1B5E20] text-white text-xs font-bold shadow"
+                className="flex-1 py-3 rounded-xl bg-[#2E7D32] text-white text-xs font-bold shadow"
               >
                 Complete Pickup
               </button>

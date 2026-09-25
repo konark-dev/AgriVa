@@ -61,7 +61,7 @@ export default function Sidebar({ activeTab, setActiveTab }) {
   return (
     <aside className="hidden md:flex flex-col w-64 bg-white border-r border-slate-200 h-screen sticky top-0 py-6 px-4">
       <div className="mb-8 px-2 flex items-center space-x-2">
-        <div className="w-8 h-8 rounded-full bg-[#1B5E20] flex items-center justify-center">
+        <div className="w-8 h-8 rounded-full bg-[#2E7D32] flex items-center justify-center">
           <span className="font-bold text-white text-sm">KS</span>
         </div>
         <h1 className="text-xl font-bold text-slate-800 tracking-tight">AgriVa</h1>
@@ -77,7 +77,7 @@ export default function Sidebar({ activeTab, setActiveTab }) {
               <button
                 key={item.id}
                 onClick={() => setActiveTab(item.id)}
-                className="btn-touch w-full flex items-center space-x-3 px-4 py-3 mt-4 rounded-xl bg-[#1B5E20] text-white shadow-lg shadow-emerald-900/50"
+                className="btn-touch w-full flex items-center space-x-3 px-4 py-3 mt-4 rounded-xl bg-[#2E7D32] text-white shadow-lg shadow-emerald-900/50"
               >
                 <Icon className="w-5 h-5" />
                 <span className="text-sm font-bold">{item.label}</span>
@@ -91,11 +91,11 @@ export default function Sidebar({ activeTab, setActiveTab }) {
               onClick={() => setActiveTab(item.id)}
               className={`btn-touch w-full flex items-center space-x-3 px-4 py-3 rounded-xl transition-colors ${
                 isActive
-                  ? 'bg-slate-50 text-[#1B5E20] font-semibold'
+                  ? 'bg-slate-50 text-[#2E7D32] font-semibold'
                   : 'text-slate-500 hover:bg-slate-50 hover:text-slate-700'
               }`}
             >
-              <Icon className={`w-5 h-5 ${isActive ? 'text-[#1B5E20]' : 'text-slate-500'}`} />
+              <Icon className={`w-5 h-5 ${isActive ? 'text-[#2E7D32]' : 'text-slate-500'}`} />
               <span className="text-sm tracking-tight">{item.label}</span>
             </button>
           );
@@ -104,7 +104,7 @@ export default function Sidebar({ activeTab, setActiveTab }) {
       
       <div className="pt-4 border-t border-slate-200 mt-auto">
         <div className="flex items-center space-x-3 px-2">
-          <div className="w-10 h-10 rounded-full bg-slate-50 text-slate-700 flex flex-shrink-0 items-center justify-center font-bold text-[#1B5E20] border border-slate-200">
+          <div className="w-10 h-10 rounded-full bg-slate-50 text-slate-700 flex flex-shrink-0 items-center justify-center font-bold text-[#2E7D32] border border-slate-200">
             {currentUser.name.charAt(0)}
           </div>
           <div className="overflow-hidden text-left">

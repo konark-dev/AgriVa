@@ -64,7 +64,7 @@ export default function MandiDashboard() {
       <div className="flex items-center justify-between">
         <div>
           <h2 className="text-base font-bold text-slate-800 flex items-center space-x-2">
-            <Building2 className="w-5 h-5 text-[#1B5E20]" />
+            <Building2 className="w-5 h-5 text-[#2E7D32]" />
             <span>Mandi Operations & Gate Entry</span>
           </h2>
           <p className="text-xs text-slate-500">APMC Gate Pass & Auction Settlement</p>
@@ -72,7 +72,7 @@ export default function MandiDashboard() {
         <div className="flex flex-col items-end gap-2">
           <button
             onClick={() => setShowGateModal(true)}
-            className="btn-touch px-3 py-2 rounded-xl bg-[#1B5E20] text-white text-xs font-bold flex items-center space-x-1 shadow"
+            className="btn-touch px-3 py-2 rounded-xl bg-[#2E7D32] text-white text-xs font-bold flex items-center space-x-1 shadow"
             disabled={mandiStatus === 'closed'}
           >
             <PlusCircle className="w-4 h-4" />
@@ -103,7 +103,7 @@ export default function MandiDashboard() {
         <button
           onClick={() => setActiveTab('lots')}
           className={`py-2 rounded-xl text-[11px] font-bold transition-colors ${
-            activeTab === 'lots' ? 'bg-[#1B5E20] text-white shadow' : 'text-slate-500 hover:text-slate-700'
+            activeTab === 'lots' ? 'bg-[#2E7D32] text-white shadow' : 'text-slate-500 hover:text-slate-700'
           }`}
         >
           Expected Lots ({totalLots})
@@ -111,7 +111,7 @@ export default function MandiDashboard() {
         <button
           onClick={() => setActiveTab('auctions')}
           className={`py-2 rounded-xl text-[11px] font-bold transition-colors ${
-            activeTab === 'auctions' ? 'bg-[#1B5E20] text-white shadow' : 'text-slate-500 hover:text-slate-700'
+            activeTab === 'auctions' ? 'bg-[#2E7D32] text-white shadow' : 'text-slate-500 hover:text-slate-700'
           }`}
         >
           Mandi Auctions
@@ -119,7 +119,7 @@ export default function MandiDashboard() {
         <button
           onClick={() => setActiveTab('reports')}
           className={`py-2 rounded-xl text-[11px] font-bold transition-colors ${
-            activeTab === 'reports' ? 'bg-[#1B5E20] text-white shadow' : 'text-slate-500 hover:text-slate-700'
+            activeTab === 'reports' ? 'bg-[#2E7D32] text-white shadow' : 'text-slate-500 hover:text-slate-700'
           }`}
         >
           Daily Reports
@@ -143,7 +143,7 @@ export default function MandiDashboard() {
                   <div className="flex items-start justify-between">
                     <div>
                       <div className="flex items-center space-x-2">
-                        <span className="font-extrabold text-sm text-[#1B5E20]">{lot.lotId}</span>
+                        <span className="font-extrabold text-sm text-[#2E7D32]">{lot.lotId}</span>
                         <span className="px-2 py-0.5 rounded bg-slate-50 text-slate-700 text-slate-600 text-[10px] font-bold border border-slate-200">
                           {lot.crop}
                         </span>
@@ -154,7 +154,7 @@ export default function MandiDashboard() {
 
                     <div className="text-right">
                       {cert ? (
-                        <span className="px-2.5 py-1 rounded-full bg-emerald-950 text-[#1B5E20] border border-emerald-800 text-[10px] font-bold flex items-center space-x-1">
+                        <span className="px-2.5 py-1 rounded-full bg-emerald-950 text-[#2E7D32] border border-emerald-800 text-[10px] font-bold flex items-center space-x-1">
                           <CheckCircle2 className="w-3 h-3" />
                           <span>Lab Verified ✅</span>
                         </span>
@@ -176,7 +176,7 @@ export default function MandiDashboard() {
                   <div className="pt-2 border-t border-slate-200 flex items-center justify-between">
                     <button
                       onClick={() => setActiveAuctionLot(lot)}
-                      className="btn-touch px-3 py-1.5 rounded-xl bg-slate-50 text-slate-700 border border-slate-200 text-[#1B5E20] text-xs font-bold flex items-center space-x-1"
+                      className="btn-touch px-3 py-1.5 rounded-xl bg-slate-50 text-slate-700 border border-slate-200 text-[#2E7D32] text-xs font-bold flex items-center space-x-1"
                     >
                       <Gavel className="w-3.5 h-3.5" />
                       <span>Open Mandi Auction</span>
@@ -184,7 +184,7 @@ export default function MandiDashboard() {
                     {lot.gatePassIssued && (
                       <button
                         onClick={() => setGatePassLot(lot)}
-                        className="btn-touch px-3 py-1.5 rounded-xl bg-[#1B5E20] text-white text-xs font-bold flex items-center space-x-1 shadow"
+                        className="btn-touch px-3 py-1.5 rounded-xl bg-[#2E7D32] text-white text-xs font-bold flex items-center space-x-1 shadow"
                       >
                         <FileText className="w-3.5 h-3.5" />
                         <span>View Gate Pass</span>
@@ -213,7 +213,7 @@ export default function MandiDashboard() {
                   </div>
                   <span className={`px-2.5 py-1 rounded-full text-[10px] font-bold ${
                     lot.auctionStatus === 'Admin Hold' ? 'bg-rose-100 text-rose-700 border border-rose-200' :
-                    lot.auctionStatus === 'Closed' ? 'bg-slate-50 text-slate-500' : 'bg-emerald-50 text-[#1B5E20] border border-emerald-200'
+                    lot.auctionStatus === 'Closed' ? 'bg-slate-50 text-slate-500' : 'bg-emerald-50 text-[#2E7D32] border border-emerald-200'
                   }`}>
                     {lot.auctionStatus || 'Open'}
                   </span>
@@ -237,7 +237,7 @@ export default function MandiDashboard() {
                     </div>
                     <div className="text-right">
                       <span className="text-slate-500">Highest Bid:</span>
-                      <div className="text-sm font-extrabold text-[#1B5E20]">₹{lot.winningBid || 0}/kg</div>
+                      <div className="text-sm font-extrabold text-[#2E7D32]">₹{lot.winningBid || 0}/kg</div>
                     </div>
                   </div>
                 )}
@@ -245,7 +245,7 @@ export default function MandiDashboard() {
                 {lot.auctionStatus !== 'Closed' && lot.auctionStatus !== 'Admin Hold' && !lot.blockPayment && (
                   <button
                     onClick={() => handleCloseAuction(lot)}
-                    className="w-full btn-touch py-2 rounded-xl bg-[#1B5E20] text-white text-xs font-bold shadow"
+                    className="w-full btn-touch py-2 rounded-xl bg-[#2E7D32] text-white text-xs font-bold shadow"
                   >
                     Accept Highest Bid & Close Auction
                   </button>
@@ -271,7 +271,7 @@ export default function MandiDashboard() {
           <div className="grid grid-cols-2 gap-3">
             <div className="p-3 bg-white rounded-xl border border-slate-200">
               <span className="text-slate-500">Total Arrivals:</span>
-              <div className="text-lg font-extrabold text-[#1B5E20] mt-0.5">{totalLots} Vehicles</div>
+              <div className="text-lg font-extrabold text-[#2E7D32] mt-0.5">{totalLots} Vehicles</div>
             </div>
             <div className="p-3 bg-white rounded-xl border border-slate-200">
               <span className="text-slate-500">Volume Processed:</span>
@@ -286,7 +286,7 @@ export default function MandiDashboard() {
           {/* Update Prices Panel */}
           <div className="mt-6 border-t border-slate-200 pt-4">
             <h3 className="font-bold text-sm text-slate-800 mb-3 flex items-center">
-              <TrendingUp className="w-4 h-4 mr-1.5 text-[#F57F17]" /> Update Live Mandi Prices
+              <TrendingUp className="w-4 h-4 mr-1.5 text-[#FF9800]" /> Update Live Mandi Prices
             </h3>
             <p className="text-[11px] text-slate-500 mb-3">Push manual price updates to the Live Ticker.</p>
             
@@ -312,7 +312,7 @@ export default function MandiDashboard() {
               />
               <button
                 onClick={handleUpdatePrice}
-                className="bg-[#1B5E20] text-white px-4 py-2.5 rounded-xl font-bold shadow-sm"
+                className="bg-[#2E7D32] text-white px-4 py-2.5 rounded-xl font-bold shadow-sm"
               >
                 Push
               </button>
@@ -372,7 +372,7 @@ export default function MandiDashboard() {
               <button type="button" onClick={() => setShowGateModal(false)} className="flex-1 py-2.5 rounded-xl bg-slate-50 text-slate-700 text-slate-500 font-semibold">
                 Cancel
               </button>
-              <button type="submit" className="flex-1 py-2.5 rounded-xl bg-[#1B5E20] text-white font-bold shadow">
+              <button type="submit" className="flex-1 py-2.5 rounded-xl bg-[#2E7D32] text-white font-bold shadow">
                 Generate Lot ID
               </button>
             </div>
@@ -394,11 +394,11 @@ export default function MandiDashboard() {
               <div className="flex justify-between"><span className="text-slate-500">Vehicle:</span><span className="font-bold text-slate-800">{gatePassLot.vehicleNumber}</span></div>
               <div className="flex justify-between"><span className="text-slate-500">Farmer:</span><span className="font-bold text-slate-800">{gatePassLot.farmerName}</span></div>
               <div className="flex justify-between"><span className="text-slate-500">Commodity:</span><span className="font-bold text-slate-800">{gatePassLot.crop}</span></div>
-              <div className="flex justify-between"><span className="text-slate-500">Verified Weight:</span><span className="font-bold text-[#1B5E20]">{gatePassLot.actualWeight} kg</span></div>
-              <div className="flex justify-between"><span className="text-slate-500">Accepted Price:</span><span className="font-bold text-[#1B5E20]">₹{gatePassLot.winningBid}/kg</span></div>
+              <div className="flex justify-between"><span className="text-slate-500">Verified Weight:</span><span className="font-bold text-[#2E7D32]">{gatePassLot.actualWeight} kg</span></div>
+              <div className="flex justify-between"><span className="text-slate-500">Accepted Price:</span><span className="font-bold text-[#2E7D32]">₹{gatePassLot.winningBid}/kg</span></div>
             </div>
 
-            <button onClick={() => setGatePassLot(null)} className="w-full btn-touch py-2.5 rounded-xl bg-[#1B5E20] text-white font-bold">
+            <button onClick={() => setGatePassLot(null)} className="w-full btn-touch py-2.5 rounded-xl bg-[#2E7D32] text-white font-bold">
               Close Gate Pass
             </button>
           </div>

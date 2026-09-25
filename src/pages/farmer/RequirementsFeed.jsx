@@ -73,7 +73,7 @@ export default function RequirementsFeed({ onMakeOffer }) {
           <h1 className="font-bold text-lg text-slate-900">AgriVa ⬢ मांग फीड</h1>
           <p className="text-xs text-slate-500">Requirements Near You</p>
         </div>
-        <button className="bg-orange-50 text-[#F57F17] flex items-center gap-1 px-3 py-1.5 rounded-full text-sm font-medium" onClick={() => speakText('\u0906\u092a\u0915\u0947 \u0906\u0938 \u092a\u093e\u0938 \u0916\u0930\u0940\u0926\u0926\u093e\u0930\u094b\u0902 \u0915\u0940 \u0938\u0915\u094d\u0930\u093f\u092f \u092e\u093e\u0902\u0917 \u0909\u092a\u0932\u092c\u094d\u0927 \u0939\u0948\u0964 \u0928\u0940\u091a\u0947 \u0926\u0940 \u0917\u0908 \u0938\u0942\u091a\u0940 \u0938\u0947 \u0905\u092a\u0928\u0940 \u092b\u0938\u0932 \u0915\u0947 \u0932\u093f\u090f \u092c\u094b\u0932\u0940 \u0932\u0917\u093e\u090f\u0902\u0964', 'hi-IN')}>
+        <button className="bg-orange-50 text-[#FF9800] flex items-center gap-1 px-3 py-1.5 rounded-full text-sm font-medium" onClick={() => speakText('\u0906\u092a\u0915\u0947 \u0906\u0938 \u092a\u093e\u0938 \u0916\u0930\u0940\u0926\u0926\u093e\u0930\u094b\u0902 \u0915\u0940 \u0938\u0915\u094d\u0930\u093f\u092f \u092e\u093e\u0902\u0917 \u0909\u092a\u0932\u092c\u094d\u0927 \u0939\u0948\u0964 \u0928\u0940\u091a\u0947 \u0926\u0940 \u0917\u0908 \u0938\u0942\u091a\u0940 \u0938\u0947 \u0905\u092a\u0928\u0940 \u092b\u0938\u0932 \u0915\u0947 \u0932\u093f\u090f \u092c\u094b\u0932\u0940 \u0932\u0917\u093e\u090f\u0902\u0964', 'hi-IN')}>
           <Volume2 size={16} />
           <span>बोल कर सुनें</span>
         </button>
@@ -83,7 +83,7 @@ export default function RequirementsFeed({ onMakeOffer }) {
         {/* Sub-header */}
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-sm font-semibold text-slate-800">आपके आस-पास खरीदारों की मांग / Traders & millers</h2>
-          <div className="bg-orange-100 p-2 rounded-full text-[#F57F17]">
+          <div className="bg-orange-100 p-2 rounded-full text-[#FF9800]">
             <Truck size={16} />
           </div>
         </div>
@@ -98,7 +98,7 @@ export default function RequirementsFeed({ onMakeOffer }) {
         <div className="flex gap-2 overflow-x-auto mb-4 pb-1">
           <button 
             onClick={() => setCropFilter('all')}
-            className={`whitespace-nowrap px-4 py-1.5 rounded-full text-sm font-medium ${cropFilter === 'all' ? 'bg-[#1B5E20] text-white' : 'bg-white text-slate-700 border border-slate-200'}`}
+            className={`whitespace-nowrap px-4 py-1.5 rounded-full text-sm font-medium ${cropFilter === 'all' ? 'bg-[#2E7D32] text-white' : 'bg-white text-slate-700 border border-slate-200'}`}
           >
             🌾 सभी फसलें /All Crops
           </button>
@@ -106,7 +106,7 @@ export default function RequirementsFeed({ onMakeOffer }) {
             <button
               key={crop}
               onClick={() => setCropFilter(crop)}
-              className={`whitespace-nowrap px-4 py-1.5 rounded-full text-sm font-medium ${cropFilter === crop ? 'bg-[#1B5E20] text-white' : 'bg-white text-slate-700 border border-slate-200'}`}
+              className={`whitespace-nowrap px-4 py-1.5 rounded-full text-sm font-medium ${cropFilter === crop ? 'bg-[#2E7D32] text-white' : 'bg-white text-slate-700 border border-slate-200'}`}
             >
               {getCropEmoji(crop)} {crop}
             </button>
@@ -115,7 +115,7 @@ export default function RequirementsFeed({ onMakeOffer }) {
 
         {/* Count row */}
         <div className="flex items-center justify-between mb-4">
-          <span className="text-[#1B5E20] font-bold text-sm">
+          <span className="text-[#2E7D32] font-bold text-sm">
             {filtered.length} सक्रिय मांग उपलब्ध ({filtered.length} Active Needs)
           </span>
           <button className="flex items-center gap-1 border border-slate-300 bg-white rounded-lg px-2 py-1 text-xs text-slate-600 font-medium">
@@ -156,7 +156,7 @@ export default function RequirementsFeed({ onMakeOffer }) {
               {/* Buyer row */}
               <div className="flex items-center gap-2 mb-4">
                 <span className="font-bold text-slate-800 text-sm">{buyerName}</span>
-                <span className="bg-[#1B5E20] text-white text-[10px] px-1.5 py-0.5 rounded font-medium">सत्यापित</span>
+                <span className="bg-[#2E7D32] text-white text-[10px] px-1.5 py-0.5 rounded font-medium">सत्यापित</span>
                 <span className="flex items-center text-xs text-slate-600 font-medium">
                   <Star size={12} className="text-yellow-400 fill-yellow-400 mr-0.5" /> 4.9
                 </span>
@@ -167,8 +167,8 @@ export default function RequirementsFeed({ onMakeOffer }) {
                 <div>
                   <div className="text-xs text-slate-500 font-medium mb-1">संभावित भाव (GUIDE PRICE)</div>
                   <div className="flex items-end gap-1">
-                    <span className="text-[#1B5E20] font-bold text-xl">₹ {price.toLocaleString('en-IN')}</span>
-                    <span className="text-[#1B5E20] text-sm font-medium">/ क्विंटल</span>
+                    <span className="text-[#2E7D32] font-bold text-xl">₹ {price.toLocaleString('en-IN')}</span>
+                    <span className="text-[#2E7D32] text-sm font-medium">/ क्विंटल</span>
                   </div>
                   <div className="text-[10px] text-green-600 flex items-center font-medium mt-0.5">
                     <TrendingUp size={10} className="mr-0.5" /> {trend} पिछले हफ्ते
@@ -185,10 +185,10 @@ export default function RequirementsFeed({ onMakeOffer }) {
               <div className="mb-4">
                 <div className="flex justify-between items-center text-xs mb-1">
                   <span className="text-slate-600 font-medium">{fulfilledPct}% मांग पूरी / {fulfilledPct}% Fulfilled</span>
-                  <span className="text-[#F57F17] font-bold">{remainingQty.toLocaleString('en-IN')} Qt</span>
+                  <span className="text-[#FF9800] font-bold">{remainingQty.toLocaleString('en-IN')} Qt</span>
                 </div>
                 <div className="h-1.5 bg-slate-100 rounded-full w-full overflow-hidden mb-1 flex">
-                  <div className="h-full bg-[#1B5E20] rounded-full" style={{ width: `${fulfilledPct}%` }}></div>
+                  <div className="h-full bg-[#2E7D32] rounded-full" style={{ width: `${fulfilledPct}%` }}></div>
                 </div>
                 <div className="text-[10px] text-slate-500">{((quantity * fulfilledPct)/100).toLocaleString('en-IN')} / {quantity.toLocaleString('en-IN')} Qt</div>
               </div>
@@ -208,7 +208,7 @@ export default function RequirementsFeed({ onMakeOffer }) {
               {/* CTA button */}
               <button 
                 onClick={() => onMakeOffer && onMakeOffer(req)}
-                className="w-full bg-[#1B5E20] text-white rounded-xl py-3 font-bold flex items-center justify-center gap-1 hover:bg-[#144718]"
+                className="w-full bg-[#2E7D32] text-white rounded-xl py-3 font-bold flex items-center justify-center gap-1 hover:bg-[#1B5E20]"
               >
                 अपनी बोली लगाएं / Make an Offer ➔
               </button>
@@ -219,7 +219,7 @@ export default function RequirementsFeed({ onMakeOffer }) {
         {/* Empty state orange card */}
         <div className="bg-orange-50 border border-orange-200 rounded-2xl p-4 mt-2">
           <p className="text-sm text-slate-800 leading-relaxed font-medium">फसल का भाव नहीं मिल रहा? माइक दबाएं और बोलें - मंडी मित्र आपकी मांग को पास के व्यापारियों और FPO समूहों को भेजेगा।</p>
-          <button className="mt-2 bg-[#F57F17] text-white rounded-xl px-4 py-2 font-medium text-sm flex items-center gap-2"><Mic size={16} /> बोल कर खोजें</button>
+          <button className="mt-2 bg-[#FF9800] text-white rounded-xl px-4 py-2 font-medium text-sm flex items-center gap-2"><Mic size={16} /> बोल कर खोजें</button>
         </div>
       </div>
     </div>

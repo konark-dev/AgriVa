@@ -70,8 +70,8 @@ export default function PostRequirementForm({ onBack }) {
         {/* Success Banner */}
         {submitted && (
           <div className="bg-green-50 border border-green-200 rounded-lg p-3 mb-4 flex items-start gap-2">
-            <CheckCircle className="w-5 h-5 text-[#1B5E20] shrink-0 mt-0.5" />
-            <div className="text-sm text-green-900 leading-tight">
+            <CheckCircle className="w-5 h-5 text-[#2E7D32] shrink-0 mt-0.5" />
+            <div className="text-sm text-green-800 leading-tight">
               <span className="font-semibold block mb-1">✅ आपकी मांग दर्ज हुई!</span>
               आपके आसपास के 12 किसानों को सूचित किया गया<br/>
               Notified 12 nearby farmers
@@ -88,7 +88,7 @@ export default function PostRequirementForm({ onBack }) {
           </div>
           <button 
             onClick={() => setShowAI(true)}
-            className="flex items-center gap-1.5 bg-[#F1F8EC] border border-[#C5E1A5] text-[#1B5E20] px-3 py-2 rounded-xl shadow-sm hover:bg-[#E8F5E9] transition"
+            className="flex items-center gap-1.5 bg-[#F1F8EC] border border-[#C5E1A5] text-[#2E7D32] px-3 py-2 rounded-xl shadow-sm hover:bg-[#E8F5E9] transition"
           >
             <BrainCircuit className="w-4 h-4" />
             <div className="text-left">
@@ -100,7 +100,7 @@ export default function PostRequirementForm({ onBack }) {
 
         {/* §1 Crop Selection */}
         <div className="mb-6 relative">
-          <div className="absolute -top-3 right-0 bg-green-100 text-[#1B5E20] text-xs font-bold px-2 py-0.5 rounded-md">
+          <div className="absolute -top-3 right-0 bg-green-100 text-[#2E7D32] text-xs font-bold px-2 py-0.5 rounded-md">
             आवश्यक
           </div>
           <h3 className="font-bold text-slate-800 mb-3 text-sm">1. फसल चुनें / Select Crop</h3>
@@ -112,11 +112,11 @@ export default function PostRequirementForm({ onBack }) {
                   key={c.id}
                   onClick={() => setSelectedCrop(c.id)}
                   className={`relative flex flex-col items-center justify-center p-3 rounded-xl bg-white shadow-sm transition-all ${
-                    isSelected ? 'border-2 border-[#1B5E20]' : 'border border-slate-200'
+                    isSelected ? 'border-2 border-[#2E7D32]' : 'border border-slate-200'
                   }`}
                 >
                   {isSelected && (
-                    <div className="absolute -top-1.5 -right-1.5 bg-[#1B5E20] rounded-full p-0.5 shadow-sm">
+                    <div className="absolute -top-1.5 -right-1.5 bg-[#2E7D32] rounded-full p-0.5 shadow-sm">
                       <CheckCircle className="w-4 h-4 text-white" />
                     </div>
                   )}
@@ -139,7 +139,7 @@ export default function PostRequirementForm({ onBack }) {
                 placeholder="0"
                 value={quantity}
                 onChange={(e) => setQuantity(e.target.value)}
-                className="w-full text-2xl font-bold border-b-2 border-slate-300 focus:border-[#1B5E20] outline-none py-2 pr-12 text-slate-900 bg-transparent"
+                className="w-full text-2xl font-bold border-b-2 border-slate-300 focus:border-[#2E7D32] outline-none py-2 pr-12 text-slate-900 bg-transparent"
               />
               <span className="absolute right-0 top-1/2 -translate-y-1/2 text-slate-500 font-medium">Qty</span>
             </div>
@@ -148,7 +148,7 @@ export default function PostRequirementForm({ onBack }) {
                 const match = t.match(/\d+/);
                 if (match) setQuantity(match[0]);
               }, null, null, 'hi-IN').start();
-            }} className="p-2 bg-orange-100 text-[#F57F17] rounded-full shrink-0">
+            }} className="p-2 bg-orange-100 text-[#FF9800] rounded-full shrink-0">
               <Mic className="w-5 h-5" />
             </button>
           </div>
@@ -156,7 +156,7 @@ export default function PostRequirementForm({ onBack }) {
             <button
               onClick={() => setUnit('quintal')}
               className={`flex-1 py-2 px-3 rounded-lg text-sm font-medium transition-colors ${
-                unit === 'quintal' ? 'bg-[#1B5E20] text-white' : 'border border-slate-300 text-slate-700 bg-white'
+                unit === 'quintal' ? 'bg-[#2E7D32] text-white' : 'border border-slate-300 text-slate-700 bg-white'
               }`}
             >
               {unit === 'quintal' && '✓ '}क्विंटल/Quintal
@@ -164,7 +164,7 @@ export default function PostRequirementForm({ onBack }) {
             <button
               onClick={() => setUnit('kg')}
               className={`flex-1 py-2 px-3 rounded-lg text-sm font-medium transition-colors ${
-                unit === 'kg' ? 'bg-[#1B5E20] text-white' : 'border border-slate-300 text-slate-700 bg-white'
+                unit === 'kg' ? 'bg-[#2E7D32] text-white' : 'border border-slate-300 text-slate-700 bg-white'
               }`}
             >
               {unit === 'kg' && '✓ '}किलो/Kg
@@ -177,7 +177,7 @@ export default function PostRequirementForm({ onBack }) {
           <h3 className="font-bold text-slate-800 text-sm">3. सांकेतिक भाव (वैकल्पिक) / Indicative Price</h3>
           <p className="text-xs text-slate-500 mb-3">आपका अनुमानित भाव (अंतिम नहीं) / Your guide price (not final)</p>
           <div className="flex items-center gap-2">
-            <div className="relative flex-1 flex items-center border border-slate-300 rounded-lg overflow-hidden bg-slate-50 focus-within:border-[#1B5E20] focus-within:bg-white transition-colors">
+            <div className="relative flex-1 flex items-center border border-slate-300 rounded-lg overflow-hidden bg-slate-50 focus-within:border-[#2E7D32] focus-within:bg-white transition-colors">
               <span className="pl-3 text-slate-500 font-medium text-lg">₹</span>
               <input
                 type="number"
@@ -193,7 +193,7 @@ export default function PostRequirementForm({ onBack }) {
                 const match = t.match(/\d+/);
                 if (match) setIndicativePrice(match[0]);
               }, null, null, 'hi-IN').start();
-            }} className="p-2 bg-orange-100 text-[#F57F17] rounded-full shrink-0">
+            }} className="p-2 bg-orange-100 text-[#FF9800] rounded-full shrink-0">
               <Mic className="w-5 h-5" />
             </button>
           </div>
@@ -202,7 +202,7 @@ export default function PostRequirementForm({ onBack }) {
         {/* §4 Delivery Location */}
         <div className="mb-6 bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
           <h3 className="font-bold text-slate-800 mb-3 text-sm">4. डिलीवरी स्थान / Delivery Location</h3>
-          <button className="w-full flex items-center justify-center gap-2 bg-green-50 text-[#1B5E20] py-2.5 rounded-lg border border-green-200 font-medium text-sm mb-3">
+          <button className="w-full flex items-center justify-center gap-2 bg-green-50 text-[#2E7D32] py-2.5 rounded-lg border border-green-200 font-medium text-sm mb-3">
             <MapPin className="w-4 h-4" />
             📍 मेरा स्थान चुनें / Use my location
           </button>
@@ -212,13 +212,13 @@ export default function PostRequirementForm({ onBack }) {
               value={deliveryLocation}
               onChange={(e) => setDeliveryLocation(e.target.value)}
               placeholder="सांवेर रोड वेयरहाउस, इंदौर (Sanwer..."
-              className="w-full border border-slate-300 rounded-lg py-3 px-3 outline-none focus:border-[#1B5E20] text-sm pr-10"
+              className="w-full border border-slate-300 rounded-lg py-3 px-3 outline-none focus:border-[#2E7D32] text-sm pr-10"
             />
             <button 
               onClick={() => {
                 initSpeechRecognition((t) => setDeliveryLocation(t), null, null, 'hi-IN').start();
               }}
-              className="absolute right-2 top-1/2 -translate-y-1/2 text-[#F57F17] p-1"
+              className="absolute right-2 top-1/2 -translate-y-1/2 text-[#FF9800] p-1"
             >
               <Mic className="w-5 h-5" />
             </button>
@@ -233,13 +233,13 @@ export default function PostRequirementForm({ onBack }) {
                <Calendar className="w-4 h-4 text-slate-500" />
                <span className="text-sm font-medium text-slate-800">18 नवंबर 2024 • 7 दिनों में / Within 7 days</span>
              </div>
-             <button className="text-[#1B5E20] text-xs font-bold">बदलें</button>
+             <button className="text-[#2E7D32] text-xs font-bold">बदलें</button>
           </div>
           <div className="flex flex-wrap gap-2">
              <button
               onClick={() => setUrgency('urgent')}
               className={`py-1.5 px-4 rounded-full text-xs font-medium transition-colors border ${
-                urgency === 'urgent' ? 'bg-[#1B5E20] text-white border-[#1B5E20]' : 'border-slate-300 text-slate-700 bg-white'
+                urgency === 'urgent' ? 'bg-[#2E7D32] text-white border-[#2E7D32]' : 'border-slate-300 text-slate-700 bg-white'
               }`}
              >
                {urgency === 'urgent' && '✓ '}तुरंत/Urgent
@@ -247,7 +247,7 @@ export default function PostRequirementForm({ onBack }) {
              <button
               onClick={() => setUrgency('3days')}
               className={`py-1.5 px-4 rounded-full text-xs font-medium transition-colors border ${
-                urgency === '3days' ? 'bg-[#1B5E20] text-white border-[#1B5E20]' : 'border-slate-300 text-slate-700 bg-white'
+                urgency === '3days' ? 'bg-[#2E7D32] text-white border-[#2E7D32]' : 'border-slate-300 text-slate-700 bg-white'
               }`}
              >
                {urgency === '3days' && '✓ '}3 दिन/3 Days
@@ -255,7 +255,7 @@ export default function PostRequirementForm({ onBack }) {
              <button
               onClick={() => setUrgency('7days')}
               className={`py-1.5 px-4 rounded-full text-xs font-medium transition-colors border ${
-                urgency === '7days' ? 'bg-[#1B5E20] text-white border-[#1B5E20]' : 'border-slate-300 text-slate-700 bg-white'
+                urgency === '7days' ? 'bg-[#2E7D32] text-white border-[#2E7D32]' : 'border-slate-300 text-slate-700 bg-white'
               }`}
              >
                {urgency === '7days' && '✓ '}7 दिन/7 Days
@@ -274,7 +274,7 @@ export default function PostRequirementForm({ onBack }) {
         <button
           onClick={handleSubmit}
           disabled={loading || submitted}
-          className="w-full flex items-center justify-center gap-2 bg-[#1B5E20] text-white py-4 rounded-xl font-bold shadow-sm active:scale-[0.98] transition-transform disabled:opacity-70 disabled:active:scale-100"
+          className="w-full flex items-center justify-center gap-2 bg-[#2E7D32] text-white py-4 rounded-xl font-bold shadow-sm active:scale-[0.98] transition-transform disabled:opacity-70 disabled:active:scale-100"
         >
           {loading ? (
              <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
@@ -296,7 +296,7 @@ export default function PostRequirementForm({ onBack }) {
         onClick={() => {
           speakText("कृपया फॉर्म भरने के लिए माइक का उपयोग करें।");
         }}
-        className="fixed bottom-6 right-6 w-14 h-14 bg-[#F57F17] text-white rounded-full flex items-center justify-center shadow-lg hover:bg-orange-600 transition-colors z-20"
+        className="fixed bottom-6 right-6 w-14 h-14 bg-[#FF9800] text-white rounded-full flex items-center justify-center shadow-lg hover:bg-orange-600 transition-colors z-20"
       >
         <Mic className="w-6 h-6" />
       </button>
