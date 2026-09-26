@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useApp } from '../../context/AppContext';
-import { MapContainer, TileLayer, Marker, Popup, Polyline } from 'react-[#2E7D32]' ? 'react-leaflet' : 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup, Polyline } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { Warehouse, MapPin, Search, Navigation, Snowflake, Sun, ShieldCheck, ChevronDown, CheckCircle2, ArrowRight } from 'lucide-react';

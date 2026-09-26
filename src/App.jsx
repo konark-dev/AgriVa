@@ -85,6 +85,10 @@ function MainLayout() {
     switch (currentUser.role) {
       case 'farmer':
       case 'fpo':
+        if (activeTab === 'my_produce') return <FarmerProduceScreen />;
+        if (activeTab === 'market') return <FarmerMarketScreen />;
+        if (activeTab === 'orders') return <FarmerOrdersScreen />;
+        if (activeTab === 'storage') return <FarmerStorageScreen />;
         if (activeTab === 'prices') return <PriceDiscovery />;
         if (activeTab === 'feed') return <RequirementsFeed onMakeOffer={(req) => { setActiveRequirement(req); setShowMakeOffer(true); }} />;
         if (activeTab === 'createLot') return <CreateLotScreen 
@@ -153,6 +157,11 @@ function MainLayout() {
 
         {/* Notifications & Toast Overlay */}
         <NotificationToast />
+
+        {/* Top Navigation Header for Farmer / FPO */}
+        {currentUser && ['farmer', 'fpo'].includes(currentUser.role) && (
+          <FarmerNavbar activeTab={activeTab} setActiveTab={setActiveTab} />
+        )}
 
         {/* Main Content Viewport */}
         <main className="flex-1 overflow-y-auto pb-28 bg-[#f9f8f3] custom-scrollbar">
