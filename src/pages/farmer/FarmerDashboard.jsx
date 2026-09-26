@@ -5,6 +5,7 @@ import GlobalVoiceNavigator from '../../components/GlobalVoiceNavigator';
 import VisualStepper from '../../components/VisualStepper';
 import EmptyState from '../../components/EmptyState';
 import AddListingModal from './AddListingModal';
+import EditListingModal from './EditListingModal';
 import LiveMandiPrices from '../shared/LiveMandiPrices';
 import FpoIntelligenceWidget from '../../components/FpoIntelligenceWidget';
 import RatingStars from '../../components/RatingStars';
@@ -26,7 +27,8 @@ import {
   ArrowRight,
   Eye,
   EyeOff,
-  AlertCircle
+  AlertCircle,
+  Edit
 } from 'lucide-react';
 
 export default function FarmerDashboard() {
@@ -55,6 +57,7 @@ export default function FarmerDashboard() {
   const [searchTerm, setSearchTerm] = useState('');
   const [hideBalance, setHideBalance] = useState(false);
   const [showListingModal, setShowListingModal] = useState(false);
+  const [editingListing, setEditingListing] = useState(null);
   const [showTicker, setShowTicker] = useState(false);
 
   // Derived data
@@ -297,8 +300,15 @@ export default function FarmerDashboard() {
                       <p className="text-xs text-slate-500">स्थान: {item.location?.name || 'सोनिपत फ़ार्म'}</p>
                       <p className="text-xs text-slate-500">भुगतान अपेक्षित: ₹{item.price || 0}/kg</p>
                     </div>
-                    <div className="text-right">
+                    <div className="text-right flex flex-col items-end gap-1">
                       <span className="text-base font-bold text-[#2E7D32]">₹{item.price || 0}/kg</span>
+                      <button
+                        onClick={() => setEditingListing(item)}
+                        className="px-2.5 py-1 bg-slate-100 hover:bg-emerald-50 text-slate-700 hover:text-emerald-800 border border-slate-200 rounded-lg text-xs font-bold transition flex items-center gap-1 mt-1"
+                      >
+                        <Edit className="w-3 h-3 text-emerald-700" />
+                        Edit
+                      </button>
                     </div>
                   </div>
 
@@ -522,6 +532,7 @@ export default function FarmerDashboard() {
 
       {/* ---------- Modals ---------- */}
       {showAddModal && <AddListingModal onClose={() => setShowAddModal(false)} />}
+      {editingListing && <EditListingModal listing={editingListing} onClose={() => setEditingListing(null)} />}
 
       {selectedBidModal && (
         <div className="fixed inset-0 z-50 bg-black/30 flex items-center justify-center p-4">

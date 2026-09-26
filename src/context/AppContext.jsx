@@ -373,6 +373,22 @@ export const AppProvider = ({ children }) => {
     triggerToast(`Crop listing for ${listingData.crop} created successfully!`, "Listing Published", "success");
   };
 
+  const updateListing = async (listingId, updatedFields) => {
+    await updateDocumentFields('listings', listingId, {
+      ...updatedFields,
+      updatedAt: new Date().toISOString()
+    });
+    triggerToast(`Listing for ${updatedFields.crop || 'crop'} updated successfully!`, "Listing Updated", "success");
+  };
+
+  const deleteListing = async (listingId) => {
+    await updateDocumentFields('listings', listingId, {
+      status: "Withdrawn",
+      deletedAt: new Date().toISOString()
+    });
+    triggerToast(`Listing withdrawn successfully!`, "Listing Withdrawn", "info");
+  };
+
     const submitInspectorVerification = async (lotId, inspectorData) => {
     const lot = farmerLots.find(l => l.id === lotId);
     if (!lot) return;
@@ -949,6 +965,8 @@ export const AppProvider = ({ children }) => {
       activeToast,
       triggerToast,
       createListing,
+      updateListing,
+      deleteListing,
       placeBid,
       acceptBid,
       updateDeliveryStatus,

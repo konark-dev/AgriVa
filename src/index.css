@@ -1,43 +1,57 @@
 @import "tailwindcss";
 
 @layer base {
+  :root {
+    --github-bg-default: #0d1117;
+    --github-bg-overlay: #161b22;
+    --github-bg-subtle: #21262d;
+    --github-border-default: #30363d;
+    --github-text-primary: #f0f6fc;
+    --github-text-secondary: #8b949e;
+    --agriva-green: #2E7D32;
+    --agriva-green-hover: #1b5e20;
+    --agriva-green-accent: #10b981;
+  }
+
   body {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
     -webkit-tap-highlight-color: transparent;
+    background-color: var(--github-bg-default);
+    color: var(--github-text-primary);
   }
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Outfit', sans-serif;
   }
 }
 
-/* Custom Design Tokens & Utility Classes */
+/* Custom Design Tokens & GitHub Slate + AgriVa Green Utility Classes */
 .bg-glass {
-  background: rgba(15, 23, 42, 0.75);
+  background: rgba(22, 27, 34, 0.85);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--github-border-default);
 }
 
 .bg-glass-card {
-  background: rgba(30, 41, 59, 0.7);
+  background: rgba(33, 38, 45, 0.75);
   backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--github-border-default);
 }
 
 .gradient-emerald {
-  background: linear-gradient(135deg, #059669 0%, #047857 50%, #064e3b 100%);
+  background: linear-gradient(135deg, #2E7D32 0%, #1b5e20 50%, #0d1117 100%);
 }
 
 .gradient-amber {
-  background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+  background: linear-gradient(135deg, #d29922 0%, #9e6a03 100%);
 }
 
 .gradient-accent {
-  background: linear-gradient(135deg, #10b981 0%, #0284c7 100%);
+  background: linear-gradient(135deg, #2E7D32 0%, #238636 50%, #10b981 100%);
 }
 
 .text-gradient {
-  background: linear-gradient(135deg, #34d399 0%, #38bdf8 100%);
+  background: linear-gradient(135deg, #4ade80 0%, #58a6ff 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -57,15 +71,18 @@
   transform: scale(0.96);
 }
 
-/* Custom Scrollbars */
+/* Custom GitHub-styled Scrollbars */
 ::-webkit-scrollbar {
-  width: 4px;
-  height: 4px;
+  width: 6px;
+  height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: rgba(15, 23, 42, 0.5);
+  background: #0d1117;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(51, 65, 85, 0.8);
+  background: #30363d;
   border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #8b949e;
 }
