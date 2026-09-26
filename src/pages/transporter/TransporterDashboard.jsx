@@ -347,7 +347,7 @@ export default function TransporterDashboard() {
 
       {/* Physical Quality & Weight Inspection Modal */}
       {selectedPickupCheck && (
-        <div className="fixed inset-0 z-50 bg-white/90/80 backdrop-blur-sm flex items-end sm:items-center justify-center p-0 sm:p-4">
+        <div className="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm flex items-end sm:items-center justify-center p-0 sm:p-4">
           <form onSubmit={handleCompletePickup} className="bg-white border border-slate-200 rounded-t-2xl sm:rounded-2xl w-full max-w-md p-5 space-y-4 shadow-2xl">
             <h3 className="font-bold text-base text-slate-800">Physical Quality & Weight Check</h3>
 
@@ -363,9 +363,9 @@ export default function TransporterDashboard() {
                     className={`py-2 rounded-xl text-xs font-bold border transition-colors ${
                       qualityCondition === cond
                         ? cond === 'Poor'
-                          ? 'bg-rose-950 border-rose-600 text-rose-300'
-                          : 'bg-[#2E7D32] text-white border-emerald-500'
-                        : 'bg-slate-100 text-slate-700 border-slate-200 text-slate-600'
+                          ? 'bg-rose-100 border-rose-400 text-rose-800'
+                          : 'bg-emerald-600 text-white border-emerald-600 font-bold shadow-xs'
+                        : 'bg-slate-100 text-slate-700 border-slate-200'
                     }`}
                   >
                     {cond}
@@ -425,7 +425,7 @@ export default function TransporterDashboard() {
 
       {/* Delay Modal */}
       {delayModal && (
-        <div className="fixed inset-0 z-50 bg-white/90/80 backdrop-blur-sm flex items-end sm:items-center justify-center p-0 sm:p-4">
+        <div className="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm flex items-end sm:items-center justify-center p-0 sm:p-4">
           <form onSubmit={handleReportDelay} className="bg-white border border-slate-200 rounded-t-2xl sm:rounded-2xl w-full max-w-md p-5 space-y-4 shadow-2xl">
             <h3 className="font-bold text-base text-slate-800">Report In-Transit Delay</h3>
             

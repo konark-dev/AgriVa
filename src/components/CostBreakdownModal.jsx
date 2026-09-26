@@ -17,19 +17,19 @@ export default function CostBreakdownModal({
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/60 backdrop-blur-xs p-4 animate-in fade-in duration-200">
       <div className="bg-white rounded-3xl shadow-2xl max-w-lg w-full overflow-hidden border border-slate-200">
         {/* Header */}
-        <div className="bg-slate-900 text-white px-6 py-4 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-emerald-50 via-teal-50 to-emerald-100 text-slate-900 px-6 py-4 border-b border-emerald-200 flex items-center justify-between">
           <div>
-            <h3 className="text-lg font-bold flex items-center gap-2">
-              <DollarSign className="w-5 h-5 text-emerald-400" />
+            <h3 className="text-lg font-bold flex items-center gap-2 text-slate-900">
+              <DollarSign className="w-5 h-5 text-emerald-600" />
               Logistics Cost Breakdown
             </h3>
-            <p className="text-xs text-slate-300">
+            <p className="text-xs text-slate-600">
               Computed from route distance ({totalDistanceKm} km) & duration ({Math.floor(totalDurationMinutes / 60)}h {totalDurationMinutes % 60}m)
             </p>
           </div>
           <button
             onClick={onClose}
-            className="text-slate-400 hover:text-white text-xl font-bold p-1 rounded-full hover:bg-slate-800 transition"
+            className="text-slate-500 hover:text-slate-800 text-xl font-bold p-1 rounded-full hover:bg-emerald-200/50 transition"
           >
             <X className="w-5 h-5" />
           </button>

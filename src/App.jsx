@@ -150,15 +150,15 @@ function MainLayout() {
         <NotificationToast />
 
         {/* Main Content Viewport */}
-        <main className="flex-1 overflow-y-auto pb-20 bg-[#f9f8f3] custom-scrollbar">
+        <main className="flex-1 overflow-y-auto pb-28 bg-[#f9f8f3] custom-scrollbar">
           {renderActiveScreen()}
         </main>
 
         {/* Bottom Role-Aware Navigation Bar */}
         <BottomNav activeTab={activeTab} setActiveTab={setActiveTab} />
 
-        {/* Floating AI Assistant Trigger & Modal (Only for specific roles) */}
-        {currentUser && ['buyer', 'consumer', 'bulk_buyer', 'admin', 'mandi', 'middleman', 'lender'].includes(currentUser.role) && (
+        {/* Floating AI Assistant Trigger & Modal */}
+        {currentUser && (
           <AIAssistantModal />
         )}
       </div>

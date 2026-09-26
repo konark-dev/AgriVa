@@ -172,19 +172,19 @@ export default function RouteOptimizationDashboard() {
   return (
     <div className="space-y-8 text-slate-800 font-sans p-2 sm:p-4 leading-relaxed">
       {/* Header Banner */}
-      <div className="bg-gradient-to-r from-slate-900 via-slate-800 to-emerald-950 text-white p-6 sm:p-8 rounded-3xl shadow-xl border border-slate-800 flex flex-wrap items-center justify-between gap-6">
+      <div className="bg-gradient-to-r from-emerald-50 via-teal-50 to-emerald-100/80 text-slate-900 p-6 sm:p-8 rounded-3xl shadow-sm border border-emerald-200 flex flex-wrap items-center justify-between gap-6">
         <div className="flex items-center gap-4">
-          <div className="w-14 h-14 rounded-2xl bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center font-bold text-3xl shadow-inner text-emerald-400 shrink-0">
+          <div className="w-14 h-14 rounded-2xl bg-emerald-100 border border-emerald-300 flex items-center justify-center font-bold text-3xl shadow-inner text-emerald-800 shrink-0">
             🌾
           </div>
           <div className="space-y-1">
             <div className="flex items-center gap-3 flex-wrap">
-              <h1 className="text-2xl sm:text-3xl font-black tracking-tight">KisanRoute Optima</h1>
-              <span className="text-xs bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 font-bold px-3 py-1 rounded-full">
+              <h1 className="text-2xl sm:text-3xl font-black tracking-tight text-slate-900">KisanRoute Optima</h1>
+              <span className="text-xs bg-emerald-100 text-emerald-800 border border-emerald-300 font-bold px-3 py-1 rounded-full">
                 Multi-Vehicle Agriculture Solver
               </span>
             </div>
-            <p className="text-sm text-slate-400 leading-normal">
+            <p className="text-sm text-slate-600 leading-normal">
               Combinatorial Vehicle Fleet Capacity Batching & Road Geometry Engine
             </p>
           </div>
@@ -193,16 +193,16 @@ export default function RouteOptimizationDashboard() {
         <div className="flex items-center gap-3 flex-wrap">
           <button
             onClick={() => setIsAdminBenchmarkOpen(true)}
-            className="flex items-center gap-2 px-4 py-2.5 bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 border border-amber-500/40 rounded-2xl text-xs font-bold transition shadow-sm"
+            className="flex items-center gap-2 px-4 py-2.5 bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-300 rounded-2xl text-xs font-bold transition shadow-sm"
           >
-            <Zap className="w-4 h-4 text-amber-400" />
+            <Zap className="w-4 h-4 text-amber-600" />
             Before/After Benchmark
           </button>
           <button
             onClick={() => setIsCostModalOpen(true)}
-            className="flex items-center gap-2 px-4 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 rounded-2xl text-xs font-bold transition shadow-sm"
+            className="flex items-center gap-2 px-4 py-2.5 bg-white hover:bg-slate-50 text-slate-700 border border-slate-300 rounded-2xl text-xs font-bold transition shadow-sm"
           >
-            <DollarSign className="w-4 h-4 text-emerald-400" />
+            <DollarSign className="w-4 h-4 text-emerald-600" />
             Cost Parameters
           </button>
         </div>

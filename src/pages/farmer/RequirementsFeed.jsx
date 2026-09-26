@@ -162,7 +162,7 @@ export default function RequirementsFeed({ onMakeOffer }) {
                     Verified Buyer
                   </span>
                 ) : (
-                  <span className="bg-[#2E7D32] text-white text-[10px] px-1.5 py-0.5 rounded font-medium">सत्यापित</span>
+                  <span className="bg-emerald-100 text-emerald-800 border border-emerald-300 text-[10px] px-2 py-0.5 rounded font-bold">सत्यापित</span>
                 )}
                 <span className="flex items-center text-xs text-slate-600 font-medium">
                   <Star size={12} className="text-yellow-400 fill-yellow-400 mr-0.5" /> 4.9
@@ -174,8 +174,8 @@ export default function RequirementsFeed({ onMakeOffer }) {
                 <div>
                   <div className="text-xs text-slate-500 font-medium mb-1">संभावित भाव (GUIDE PRICE)</div>
                   <div className="flex items-end gap-1">
-                    <span className="text-[#2E7D32] font-bold text-xl">₹ {price.toLocaleString('en-IN')}</span>
-                    <span className="text-[#2E7D32] text-sm font-medium">/ क्विंटल</span>
+                    <span className="text-emerald-700 font-bold text-xl">₹ {price.toLocaleString('en-IN')}</span>
+                    <span className="text-emerald-700 text-sm font-medium">/ क्विंटल</span>
                   </div>
                   <div className="text-[10px] text-green-600 flex items-center font-medium mt-0.5">
                     <TrendingUp size={10} className="mr-0.5" /> {trend} पिछले हफ्ते
@@ -195,7 +195,7 @@ export default function RequirementsFeed({ onMakeOffer }) {
                   <span className="text-[#FF9800] font-bold">{remainingQty.toLocaleString('en-IN')} Qt</span>
                 </div>
                 <div className="h-1.5 bg-slate-100 rounded-full w-full overflow-hidden mb-1 flex">
-                  <div className="h-full bg-[#2E7D32] rounded-full" style={{ width: `${fulfilledPct}%` }}></div>
+                  <div className="h-full bg-emerald-600 rounded-full" style={{ width: `${fulfilledPct}%` }}></div>
                 </div>
                 <div className="text-[10px] text-slate-500">{((quantity * fulfilledPct)/100).toLocaleString('en-IN')} / {quantity.toLocaleString('en-IN')} Qt</div>
               </div>
@@ -215,7 +215,7 @@ export default function RequirementsFeed({ onMakeOffer }) {
               {/* CTA button */}
               <button 
                 onClick={() => onMakeOffer && onMakeOffer(req)}
-                className="w-full bg-[#2E7D32] text-white rounded-xl py-3 font-bold flex items-center justify-center gap-1 hover:bg-[#1B5E20]"
+                className="w-full bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl py-3 font-bold flex items-center justify-center gap-1 transition-colors"
               >
                 अपनी बोली लगाएं / Make an Offer ➔
               </button>

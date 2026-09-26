@@ -57,7 +57,7 @@ export default function Navbar() {
           </button>
 
           {/* Voice Listen Button */}
-          <button className="px-3 py-1.5 rounded-full border border-[#FF9800] text-[#FF9800] bg-orange-50 font-medium text-xs flex items-center space-x-1">
+          <button className="px-3 py-1.5 rounded-full border border-amber-300 text-amber-600 bg-amber-50 font-medium text-xs flex items-center space-x-1">
             <Volume2 className="w-4 h-4" />
             <span className="hidden sm:inline">बोल कर सुनें</span>
           </button>

@@ -148,7 +148,7 @@ export default function PostRequirementForm({ onBack }) {
                 const match = t.match(/\d+/);
                 if (match) setQuantity(match[0]);
               }, null, null, 'hi-IN').start();
-            }} className="p-2 bg-orange-100 text-[#FF9800] rounded-full shrink-0">
+            }} className="p-2 bg-amber-100 text-amber-600 rounded-full shrink-0">
               <Mic className="w-5 h-5" />
             </button>
           </div>
@@ -193,7 +193,7 @@ export default function PostRequirementForm({ onBack }) {
                 const match = t.match(/\d+/);
                 if (match) setIndicativePrice(match[0]);
               }, null, null, 'hi-IN').start();
-            }} className="p-2 bg-orange-100 text-[#FF9800] rounded-full shrink-0">
+            }} className="p-2 bg-amber-100 text-amber-600 rounded-full shrink-0">
               <Mic className="w-5 h-5" />
             </button>
           </div>
@@ -218,7 +218,7 @@ export default function PostRequirementForm({ onBack }) {
               onClick={() => {
                 initSpeechRecognition((t) => setDeliveryLocation(t), null, null, 'hi-IN').start();
               }}
-              className="absolute right-2 top-1/2 -translate-y-1/2 text-[#FF9800] p-1"
+              className="absolute right-2 top-1/2 -translate-y-1/2 text-amber-600 p-1"
             >
               <Mic className="w-5 h-5" />
             </button>
@@ -296,7 +296,7 @@ export default function PostRequirementForm({ onBack }) {
         onClick={() => {
           speakText("कृपया फॉर्म भरने के लिए माइक का उपयोग करें।");
         }}
-        className="fixed bottom-6 right-6 w-14 h-14 bg-[#FF9800] text-white rounded-full flex items-center justify-center shadow-lg hover:bg-orange-600 transition-colors z-20"
+        className="fixed bottom-6 right-6 w-14 h-14 bg-amber-400 text-slate-900 rounded-full flex items-center justify-center shadow-lg hover:bg-amber-500 transition-colors z-20"
       >
         <Mic className="w-6 h-6" />
       </button>

@@ -111,16 +111,16 @@ export default function TrackingMapModal({ delivery, onClose }) {
     <div className="fixed inset-0 z-50 bg-black/30 backdrop-blur-sm flex items-end sm:items-center justify-center p-0 sm:p-4">
       <div className="bg-white border border-slate-200 rounded-t-2xl sm:rounded-2xl w-full max-w-md h-[85vh] flex flex-col overflow-hidden shadow-2xl animate-in slide-in-from-bottom">
         {/* Header */}
-        <div className="p-4 border-b border-slate-200 flex items-center justify-between bg-[#2E7D32] text-white shrink-0">
+        <div className="p-4 border-b border-emerald-200 flex items-center justify-between bg-gradient-to-r from-emerald-50 via-teal-50 to-emerald-100 text-slate-900 shrink-0">
           <div className="flex items-center space-x-2">
-            <Navigation className="w-5 h-5 animate-pulse text-amber-300" />
+            <Navigation className="w-5 h-5 animate-pulse text-emerald-600" />
             <div>
-              <h3 className="font-bold text-sm">Live Vehicle Tracking</h3>
-              <p className="text-[10px] text-emerald-100 opacity-90">{delivery.transporterName || 'Transporter'}</p>
+              <h3 className="font-bold text-sm text-slate-900">Live Vehicle Tracking</h3>
+              <p className="text-[10px] text-slate-600 font-medium">{delivery.transporterName || 'Transporter'}</p>
             </div>
           </div>
-          <button onClick={onClose} className="p-1 rounded-full hover:bg-white/20 transition-colors">
-            <X className="w-5 h-5" />
+          <button onClick={onClose} className="p-1 rounded-full hover:bg-emerald-200/60 transition-colors">
+            <X className="w-5 h-5 text-slate-700" />
           </button>
         </div>
 
@@ -169,7 +169,7 @@ export default function TrackingMapModal({ delivery, onClose }) {
               <MapPin className="w-4 h-4 text-rose-400" />
               <span className="font-semibold">Status:</span>
             </div>
-            <span className="text-[#2E7D32] font-bold">{delivery.status || 'In Transit'}</span>
+            <span className="text-emerald-700 font-bold bg-emerald-50 px-2 py-0.5 rounded-lg border border-emerald-200">{delivery.status || 'In Transit'}</span>
           </div>
           <div className="flex justify-between text-[10px] text-slate-500 px-1">
             <span>From: {safeLocationName(delivery.pickupLocation, '—')}</span>

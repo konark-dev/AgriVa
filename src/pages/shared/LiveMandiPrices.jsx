@@ -139,7 +139,7 @@ export default function LiveMandiPrices({ onBack }) {
       </div>
 
       {/* Horizontal Ticker */}
-      <div className="bg-slate-900 text-white text-xs py-2 overflow-hidden flex whitespace-nowrap shadow-inner relative z-10">
+      <div className="bg-gradient-to-r from-emerald-50 via-teal-50 to-emerald-100 text-slate-900 border-y border-emerald-200 text-xs py-2 overflow-hidden flex whitespace-nowrap shadow-xs relative z-10">
         <div className="animate-[ticker_20s_linear_infinite] flex space-x-6 px-4">
           {tickerItems.map(item => {
             const diff = item.pricePerUnit - item.previousPrice;
@@ -147,11 +147,11 @@ export default function LiveMandiPrices({ onBack }) {
             const down = diff < 0;
             return (
               <div key={`tick-${item.id}`} className="flex items-center space-x-1.5 font-medium">
-                <span className="text-slate-300">{item.crop}</span>
-                <span className="font-bold text-white">₹{item.pricePerUnit}</span>
-                {up ? <TrendingUp className="w-3 h-3 text-emerald-400" /> : 
-                 down ? <TrendingDown className="w-3 h-3 text-rose-400" /> : 
-                 <Minus className="w-3 h-3 text-slate-500" />}
+                <span className="text-slate-600">{item.crop}</span>
+                <span className="font-bold text-slate-900">₹{item.pricePerUnit}</span>
+                {up ? <TrendingUp className="w-3 h-3 text-emerald-600" /> : 
+                 down ? <TrendingDown className="w-3 h-3 text-rose-500" /> : 
+                 <Minus className="w-3 h-3 text-slate-400" />}
               </div>
             )
           })}

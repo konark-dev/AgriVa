@@ -155,7 +155,7 @@ export default function AIAssistantModal() {
       {/* Floating AI Helper Trigger Button */}
       <button
         onClick={() => setIsOpen(true)}
-        className="btn-touch absolute bottom-20 right-4 z-40 w-14 h-14 rounded-full bg-gradient-to-r from-emerald-600 to-teal-700 text-white shadow-xl flex items-center justify-center ring-4 ring-emerald-400/30 hover:scale-105 transition-transform"
+        className="btn-touch fixed bottom-20 right-4 md:right-[calc(50%-23rem)] z-40 w-14 h-14 rounded-full bg-gradient-to-r from-emerald-600 to-teal-700 text-white shadow-xl flex items-center justify-center ring-4 ring-emerald-400/30 hover:scale-105 transition-transform"
         aria-label="AI Assistant"
         title="AgriVa AI Assistant (Gemini Powered)"
       >

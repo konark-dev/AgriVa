@@ -89,8 +89,8 @@ export default function BuyerOffersView({ requirement, onBack }) {
             <p className="text-sm text-slate-500">
               {req.variety} • ₹ {req.indicativePrice} / क्विंटल guide
             </p>
-            <span className="bg-[#FF9800] text-white text-xs px-2 py-1 rounded-full font-medium flex items-center gap-1">
-              <Star className="w-3 h-3 fill-white" />
+            <span className="bg-amber-400 text-slate-900 text-xs px-2 py-1 rounded-full font-medium flex items-center gap-1">
+              <Star className="w-3 h-3 fill-slate-900" />
               {reqOffers.length} Offers
             </span>
           </div>
@@ -112,7 +112,7 @@ export default function BuyerOffersView({ requirement, onBack }) {
             <span className="text-slate-500">
               {totalFulfilled} / {req.targetQty} क्विंटल ({acceptedCount} farmers)
             </span>
-            <span className="text-[#FF9800] font-medium">
+            <span className="text-amber-600 font-medium">
               {gap} क्विंटल (Gap Remaining)
             </span>
           </div>

@@ -178,7 +178,7 @@ export default function FarmerDashboard() {
               try { rec.start(); } catch(e) { console.warn(e); }
             }
           }}
-          className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center justify-center w-8 h-8 bg-[#FF9800] rounded-full text-white"
+          className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center justify-center w-8 h-8 bg-amber-400 rounded-full text-slate-900"
         >
           <Mic className="w-4 h-4" />
         </button>
@@ -195,7 +195,7 @@ export default function FarmerDashboard() {
             onClick={() => setShowAddModal(true)}
             className="w-full py-5 bg-white text-[#2E7D32] rounded-xl font-black text-xl shadow-lg flex flex-col justify-center items-center transform transition active:scale-95"
           >
-            <PlusCircle className="w-12 h-12 mb-2 text-[#FF9800]" />
+            <PlusCircle className="w-12 h-12 mb-2 text-amber-500" />
             {t(language, 'sellCrop')}
           </button>
           <div className="mt-3 inline-flex items-center px-3 py-1 bg-green-800 text-green-100 rounded-full text-xs font-bold border border-green-600">
@@ -496,22 +496,7 @@ export default function FarmerDashboard() {
         </div>
       )}
 
-            {activeTab === 'warehouse_booking' && (
-        <div className="p-4 bg-amber-50 rounded-2xl border border-amber-200 shadow-sm flex flex-col space-y-3 mt-2">
-          <div className="flex items-center justify-between mb-1">
-            <h3 className="text-lg font-extrabold text-amber-800">भंडारण / Warehouse</h3>
-            <span className="px-2 py-0.5 bg-amber-200 text-amber-800 border border-amber-300 rounded-full text-[10px] font-bold">WDRA Approved</span>
-          </div>
-          <button
-            onClick={() => triggerToast('Booking...', 'Booking Started', 'info')}
-            className="w-full py-4 bg-amber-600 hover:bg-amber-700 text-white rounded-xl font-bold shadow flex justify-center items-center transition-colors"
-          >
-            <CheckCircle2 className="w-6 h-6 mr-2" /> सुरक्षित गोदाम बुक करें
-          </button>
-        </div>
-      )}
-
-      {/* ---------- Help Center Card ---------- */}
+      {/* ---------- Warehouse Booking Card ---------- */}
       <div className="p-4 bg-amber-50 rounded-2xl border border-amber-200 shadow-sm flex flex-col space-y-3 mt-2">
         <div className="flex items-center justify-between mb-1">
           <h3 className="text-lg font-extrabold text-amber-800">भंडारण / Warehouse Booking</h3>

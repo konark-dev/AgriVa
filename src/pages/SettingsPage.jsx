@@ -62,8 +62,8 @@ export default function SettingsPage() {
               onClick={() => switchRole(r.key)}
               className={`p-2.5 rounded-xl text-left border font-semibold transition-colors ${
                 currentUser.role === r.key
-                  ? 'bg-emerald-950 border-emerald-500 text-[#2E7D32] font-bold'
-                  : 'bg-slate-50 text-slate-700 border-slate-200 text-slate-600'
+                  ? 'bg-emerald-100 border-emerald-500 text-emerald-900 font-bold shadow-xs'
+                  : 'bg-slate-50 text-slate-700 border-slate-200'
               }`}
             >
               {r.label}
@@ -73,12 +73,12 @@ export default function SettingsPage() {
       </div>
 
       {/* Explicit FUTURE SCOPE Section */}
-      <div className="bg-gradient-to-r from-slate-900 to-emerald-950 border border-emerald-800 rounded-2xl p-4 space-y-3 shadow-lg">
-        <h3 className="font-bold text-sm text-white flex items-center space-x-2">
-          <Sparkles className="w-4 h-4 text-amber-400" />
+      <div className="bg-gradient-to-r from-emerald-50 via-teal-50 to-emerald-100 border border-emerald-200 rounded-2xl p-4 space-y-3 shadow-xs">
+        <h3 className="font-bold text-sm text-slate-900 flex items-center space-x-2">
+          <Sparkles className="w-4 h-4 text-amber-600" />
           <span>Future Scope & Production Roadmap</span>
         </h3>
-        <p className="text-xs text-slate-300 leading-relaxed font-medium">
+        <p className="text-xs text-slate-600 leading-relaxed font-medium">
           The following enterprise integrations are intentionally explicitly reserved for future production phases:
         </p>
 

@@ -2,56 +2,56 @@
 
 @layer base {
   :root {
-    --github-bg-default: #0d1117;
-    --github-bg-overlay: #161b22;
-    --github-bg-subtle: #21262d;
-    --github-border-default: #30363d;
-    --github-text-primary: #f0f6fc;
-    --github-text-secondary: #8b949e;
-    --agriva-green: #2E7D32;
-    --agriva-green-hover: #1b5e20;
+    --github-bg-default: #f8fafc;
+    --github-bg-overlay: #ffffff;
+    --github-bg-subtle: #f1f5f9;
+    --github-border-default: #e2e8f0;
+    --github-text-primary: #0f172a;
+    --github-text-secondary: #64748b;
+    --agriva-green: #059669;
+    --agriva-green-hover: #047857;
     --agriva-green-accent: #10b981;
   }
 
   body {
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
     -webkit-tap-highlight-color: transparent;
-    background-color: var(--github-bg-default);
-    color: var(--github-text-primary);
+    background-color: #f8fafc;
+    color: #0f172a;
   }
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Outfit', sans-serif;
   }
 }
 
-/* Custom Design Tokens & GitHub Slate + AgriVa Green Utility Classes */
+/* Custom Design Tokens & AgriVa Light Utility Classes */
 .bg-glass {
-  background: rgba(22, 27, 34, 0.85);
+  background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--github-border-default);
+  border: 1px solid #e2e8f0;
 }
 
 .bg-glass-card {
-  background: rgba(33, 38, 45, 0.75);
+  background: rgba(248, 250, 252, 0.9);
   backdrop-filter: blur(8px);
-  border: 1px solid var(--github-border-default);
+  border: 1px solid #e2e8f0;
 }
 
 .gradient-emerald {
-  background: linear-gradient(135deg, #2E7D32 0%, #1b5e20 50%, #0d1117 100%);
+  background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 50%, #ccfbf1 100%);
 }
 
 .gradient-amber {
-  background: linear-gradient(135deg, #d29922 0%, #9e6a03 100%);
+  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
 }
 
 .gradient-accent {
-  background: linear-gradient(135deg, #2E7D32 0%, #238636 50%, #10b981 100%);
+  background: linear-gradient(135deg, #059669 0%, #10b981 100%);
 }
 
 .text-gradient {
-  background: linear-gradient(135deg, #4ade80 0%, #58a6ff 100%);
+  background: linear-gradient(135deg, #059669 0%, #0d9488 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -71,18 +71,18 @@
   transform: scale(0.96);
 }
 
-/* Custom GitHub-styled Scrollbars */
+/* Custom Light Scrollbars */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #0d1117;
+  background: #f1f5f9;
 }
 ::-webkit-scrollbar-thumb {
-  background: #30363d;
+  background: #cbd5e1;
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #8b949e;
+  background: #94a3b8;
 }

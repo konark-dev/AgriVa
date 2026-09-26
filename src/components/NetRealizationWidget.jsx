@@ -78,7 +78,7 @@ export default function NetRealizationWidget({ price, quantity, grade, crop, sel
         }`}
       >
         {isBest && !isSelected && (
-          <span className="absolute -top-2.5 -right-2 bg-[#FF9800] text-white text-[9px] font-bold px-2 py-0.5 rounded-md shadow-sm">
+          <span className="absolute -top-2.5 -right-2 bg-amber-400 text-slate-900 text-[9px] font-bold px-2 py-0.5 rounded-md shadow-sm">
             {t(language, 'bestYield')}
           </span>
         )}
@@ -110,12 +110,12 @@ export default function NetRealizationWidget({ price, quantity, grade, crop, sel
 
   return (
     <div className="bg-slate-50 rounded-xl border border-slate-300 mt-5 shadow-sm overflow-hidden">
-      <div className="bg-[#2E7D32] p-3 flex items-center justify-between text-white">
-        <div className="flex items-center font-bold text-xs">
-          <Calculator className="w-4 h-4 mr-1.5" />
+      <div className="bg-gradient-to-r from-emerald-50 via-teal-50 to-emerald-100 p-3 flex items-center justify-between text-slate-900 border-b border-emerald-200">
+        <div className="flex items-center font-bold text-xs text-slate-900">
+          <Calculator className="w-4 h-4 mr-1.5 text-emerald-700" />
           <span>{t(language, 'aiNetRealization')}</span>
         </div>
-        <span className="text-[9px] bg-emerald-600 px-2 py-0.5 rounded-full border border-emerald-400 tracking-wider">
+        <span className="text-[9px] bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-full border border-emerald-300 font-bold tracking-wider">
           {t(language, 'chooseOne')}
         </span>
       </div>

@@ -27,7 +27,7 @@ export default function AIDemandForecasting({ onBack }) {
         </div>
         <button 
           onClick={() => speakText("यह एआई मांग पूर्वानुमान है। जयपुर में टमाटर की मांग 1,427 किलो है, जबकि उपलब्ध आपूर्ति 1,100 किलो है।")} 
-          className="flex items-center gap-1.5 bg-orange-100 text-[#FF9800] px-3 py-1.5 rounded-full text-xs font-bold"
+          className="flex items-center gap-1.5 bg-amber-100 text-amber-700 px-3 py-1.5 rounded-full text-xs font-bold"
         >
           <Volume2 className="w-4 h-4" />
           बोल कर सुनें
@@ -206,7 +206,7 @@ export default function AIDemandForecasting({ onBack }) {
         </button>
         <button 
           onClick={() => speakText("क्षमा करें, वॉयस एआई फिलहाल इस स्क्रीन पर उपलब्ध नहीं है। (Voice AI is currently not available on this screen.)")}
-          className="w-12 h-12 bg-[#FF9800] text-white rounded-full flex items-center justify-center shadow-lg shrink-0 hover:bg-[#e67300] transition"
+          className="w-12 h-12 bg-amber-400 text-slate-900 rounded-full flex items-center justify-center shadow-lg shrink-0 hover:bg-amber-500 transition"
         >
           <Mic className="w-6 h-6" />
         </button>

@@ -9,11 +9,11 @@ export default function OrderDetailScreen({ order, onBack, onDispute, onNavigate
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col">
       {/* Header */}
-      <div className="bg-[#2E7D32] text-white px-4 py-4 flex items-center shadow-md sticky top-0 z-50">
-        <button onClick={onBack} className="mr-3 p-1 rounded-full hover:bg-white/20 transition-colors">
-          <ArrowLeft size={24} />
+      <div className="bg-gradient-to-r from-emerald-50 via-teal-50 to-emerald-100 text-slate-900 border-b border-emerald-200 px-4 py-4 flex items-center shadow-sm sticky top-0 z-50">
+        <button onClick={onBack} className="mr-3 p-1 rounded-full hover:bg-emerald-200/60 transition-colors">
+          <ArrowLeft size={24} className="text-emerald-950" />
         </button>
-        <h1 className="text-xl font-bold">Order Details</h1>
+        <h1 className="text-xl font-bold text-slate-900">Order Details</h1>
       </div>
 
       <div className="flex-1 p-4 pb-24 overflow-y-auto space-y-4">

@@ -104,7 +104,7 @@ export default function WarehouseDashboard() {
       {/* Action Button */}
       <button 
         onClick={() => setShowAddForm(!showAddForm)}
-        className="w-full py-3 bg-[#2E7D32] text-white rounded-2xl shadow-sm flex justify-center items-center hover:bg-emerald-600 transition-colors text-sm font-bold"
+        className="w-full py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-2xl shadow-sm flex justify-center items-center transition-colors text-sm font-bold"
       >
         <Plus className="w-4 h-4 mr-2" />
         {t(language, 'addNewStorage')}
@@ -140,7 +140,7 @@ export default function WarehouseDashboard() {
             <button type="button" onClick={() => setShowAddForm(false)} className="flex-1 py-2 rounded-xl border border-slate-200 text-slate-600 text-xs font-semibold hover:bg-slate-50">
               {t(language, 'cancel')}
             </button>
-            <button type="submit" className="flex-1 py-2 rounded-xl bg-[#2E7D32] text-white text-xs font-bold shadow-sm hover:bg-emerald-600">
+            <button type="submit" className="flex-1 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold shadow-sm transition-colors">
               {t(language, 'registerBtn')}
             </button>
           </div>
@@ -151,13 +151,13 @@ export default function WarehouseDashboard() {
       <div className="grid grid-cols-2 gap-2 bg-white rounded-2xl p-1 border border-slate-200">
         <button
           onClick={() => setActiveTab('inventory')}
-          className={"py-2.5 rounded-xl text-xs font-bold transition-colors " + (activeTab === 'inventory' ? 'bg-[#2E7D32] text-white shadow-sm' : 'text-slate-600 hover:bg-slate-50')}
+          className={"py-2.5 rounded-xl text-xs font-bold transition-colors " + (activeTab === 'inventory' ? 'bg-emerald-600 text-white shadow-sm' : 'text-slate-600 hover:bg-slate-50')}
         >
           {t(language, 'myGodowns')} ({spaces.length})
         </button>
         <button
           onClick={() => setActiveTab('requests')}
-          className={"py-2.5 rounded-xl text-xs font-bold transition-colors " + (activeTab === 'requests' ? 'bg-[#2E7D32] text-white shadow-sm' : 'text-slate-600 hover:bg-slate-50')}
+          className={"py-2.5 rounded-xl text-xs font-bold transition-colors " + (activeTab === 'requests' ? 'bg-emerald-600 text-white shadow-sm' : 'text-slate-600 hover:bg-slate-50')}
         >
           {t(language, 'bookingRequests')} ({requests.filter(r => r.status === 'Pending').length})
         </button>
@@ -241,7 +241,7 @@ export default function WarehouseDashboard() {
                     </button>
                     <button 
                       onClick={() => handleApprove(req.id)}
-                      className="py-2 bg-[#2E7D32] hover:bg-emerald-600 text-white rounded-xl text-xs font-bold flex justify-center items-center shadow-sm transition-colors"
+                      className="py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold flex justify-center items-center shadow-sm transition-colors"
                     >
                       <CheckCircle2 className="w-3.5 h-3.5 mr-1" /> Approve
                     </button>

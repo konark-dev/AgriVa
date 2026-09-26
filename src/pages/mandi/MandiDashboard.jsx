@@ -312,7 +312,7 @@ export default function MandiDashboard() {
               />
               <button
                 onClick={handleUpdatePrice}
-                className="bg-[#2E7D32] text-white px-4 py-2.5 rounded-xl font-bold shadow-sm"
+                className="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2.5 rounded-xl font-bold shadow-sm transition"
               >
                 Push
               </button>
