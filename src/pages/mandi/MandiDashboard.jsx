@@ -286,7 +286,7 @@ export default function MandiDashboard() {
           {/* Update Prices Panel */}
           <div className="mt-6 border-t border-slate-200 pt-4">
             <h3 className="font-bold text-sm text-slate-800 mb-3 flex items-center">
-              <TrendingUp className="w-4 h-4 mr-1.5 text-[#FF9800]" /> Update Live Mandi Prices
+              <TrendingUp className="w-4 h-4 mr-1.5 text-amber-500" /> Update Live Mandi Prices
             </h3>
             <p className="text-[11px] text-slate-500 mb-3">Push manual price updates to the Live Ticker.</p>
             

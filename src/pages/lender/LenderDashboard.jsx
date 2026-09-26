@@ -546,7 +546,7 @@ export default function LenderDashboard() {
           <Download className="w-4 h-4 mr-2" />
           Download No-Dues Statement
         </button>
-        <button className="px-6 py-2.5 rounded-xl bg-[#FF9800] text-white hover:bg-orange-600 font-medium transition-colors shadow-sm">
+        <button className="px-6 py-2.5 rounded-xl bg-amber-400 text-slate-900 hover:bg-amber-500 font-bold transition-colors shadow-sm">
           Pay Now / तुरंत भुगतान करें
         </button>
       </div>

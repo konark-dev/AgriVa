@@ -73,7 +73,7 @@ export default function RequirementsFeed({ onMakeOffer }) {
           <h1 className="font-bold text-lg text-slate-900">AgriVa ⬢ मांग फीड</h1>
           <p className="text-xs text-slate-500">Requirements Near You</p>
         </div>
-        <button className="bg-orange-50 text-[#FF9800] flex items-center gap-1 px-3 py-1.5 rounded-full text-sm font-medium" onClick={() => speakText('\u0906\u092a\u0915\u0947 \u0906\u0938 \u092a\u093e\u0938 \u0916\u0930\u0940\u0926\u0926\u093e\u0930\u094b\u0902 \u0915\u0940 \u0938\u0915\u094d\u0930\u093f\u092f \u092e\u093e\u0902\u0917 \u0909\u092a\u0932\u092c\u094d\u0927 \u0939\u0948\u0964 \u0928\u0940\u091a\u0947 \u0926\u0940 \u0917\u0908 \u0938\u0942\u091a\u0940 \u0938\u0947 \u0905\u092a\u0928\u0940 \u092b\u0938\u0932 \u0915\u0947 \u0932\u093f\u090f \u092c\u094b\u0932\u0940 \u0932\u0917\u093e\u090f\u0902\u0964', 'hi-IN')}>
+        <button className="bg-amber-50 text-amber-600 flex items-center gap-1 px-3 py-1.5 rounded-full text-sm font-medium" onClick={() => speakText('\u0906\u092a\u0915\u0947 \u0906\u0938 \u092a\u093e\u0938 \u0916\u0930\u0940\u0926\u0926\u093e\u0930\u094b\u0902 \u0915\u0940 \u0938\u0915\u094d\u0930\u093f\u092f \u092e\u093e\u0902\u0917 \u0909\u092a\u0932\u092c\u094d\u0927 \u0939\u0948\u0964 \u0928\u0940\u091a\u0947 \u0926\u0940 \u0917\u0908 \u0938\u0942\u091a\u0940 \u0938\u0947 \u0905\u092a\u0928\u0940 \u092b\u0938\u0932 \u0915\u0947 \u0932\u093f\u090f \u092c\u094b\u0932\u0940 \u0932\u0917\u093e\u090f\u0902\u0964', 'hi-IN')}>
           <Volume2 size={16} />
           <span>बोल कर सुनें</span>
         </button>
@@ -83,7 +83,7 @@ export default function RequirementsFeed({ onMakeOffer }) {
         {/* Sub-header */}
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-sm font-semibold text-slate-800">आपके आस-पास खरीदारों की मांग / Traders & millers</h2>
-          <div className="bg-orange-100 p-2 rounded-full text-[#FF9800]">
+          <div className="bg-amber-100 p-2 rounded-full text-amber-600">
             <Truck size={16} />
           </div>
         </div>
@@ -192,7 +192,7 @@ export default function RequirementsFeed({ onMakeOffer }) {
               <div className="mb-4">
                 <div className="flex justify-between items-center text-xs mb-1">
                   <span className="text-slate-600 font-medium">{fulfilledPct}% मांग पूरी / {fulfilledPct}% Fulfilled</span>
-                  <span className="text-[#FF9800] font-bold">{remainingQty.toLocaleString('en-IN')} Qt</span>
+                  <span className="text-amber-600 font-bold">{remainingQty.toLocaleString('en-IN')} Qt</span>
                 </div>
                 <div className="h-1.5 bg-slate-100 rounded-full w-full overflow-hidden mb-1 flex">
                   <div className="h-full bg-emerald-600 rounded-full" style={{ width: `${fulfilledPct}%` }}></div>
@@ -224,9 +224,9 @@ export default function RequirementsFeed({ onMakeOffer }) {
         })}
 
         {/* Empty state orange card */}
-        <div className="bg-orange-50 border border-orange-200 rounded-2xl p-4 mt-2">
+        <div className="bg-amber-50 border border-amber-200 rounded-2xl p-4 mt-2">
           <p className="text-sm text-slate-800 leading-relaxed font-medium">फसल का भाव नहीं मिल रहा? माइक दबाएं और बोलें - मंडी मित्र आपकी मांग को पास के व्यापारियों और FPO समूहों को भेजेगा।</p>
-          <button className="mt-2 bg-[#FF9800] text-white rounded-xl px-4 py-2 font-medium text-sm flex items-center gap-2"><Mic size={16} /> बोल कर खोजें</button>
+          <button className="mt-2 bg-amber-400 text-slate-900 hover:bg-amber-500 rounded-xl px-4 py-2 font-bold text-sm flex items-center gap-2"><Mic size={16} /> बोल कर खोजें</button>
         </div>
       </div>
     </div>

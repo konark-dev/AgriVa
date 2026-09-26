@@ -9,10 +9,13 @@ import PaymentGatewayModal from '../../components/PaymentGatewayModal';
 import { calculateSurplusRescue } from '../../utils/qualityEngine';
 import { t } from '../../utils/translations';
 import OrderDetailScreen from '../shared/OrderDetailScreen';
-import { Search, Filter, ShoppingBag, Clock, ShieldCheck, Tag, DollarSign, CheckCircle2, Map, AlertOctagon, CheckCircle, AlertTriangle } from 'lucide-react';
+import PostRequirementForm from './PostRequirementForm';
+import EditRequirementModal from './EditRequirementModal';
+import BuyerOffersView from './BuyerOffersView';
+import { Search, Filter, ShoppingBag, Clock, ShieldCheck, Tag, DollarSign, CheckCircle2, Map, AlertOctagon, CheckCircle, AlertTriangle, Plus, Edit, Trash2, Eye, Package, ClipboardList } from 'lucide-react';
 
 export default function BuyerMarketplace() {
-  const { listings, orders, deliveries, bids, placeBid, confirmBuyerDelivery, raiseDispute, currentUser, triggerToast, language } = useApp();
+  const { listings, orders, deliveries, bids, placeBid, confirmBuyerDelivery, raiseDispute, currentUser, triggerToast, language, requirements = [], deleteRequirement } = useApp();
   const [selectedCropFilter, setSelectedCropFilter] = useState('All');
   const [activeTab, setActiveTab] = useState('browse');
   const [selectedOrder, setSelectedOrder] = useState(null);
@@ -23,11 +26,18 @@ export default function BuyerMarketplace() {
   const [payingListing, setPayingListing] = useState(null);
   const [disputeListing, setDisputeListing] = useState(null);
   const [disputeCategory, setDisputeCategory] = useState('quality_spoilage');
+  const [showPostForm, setShowPostForm] = useState(false);
+  const [editingReq, setEditingReq] = useState(null);
+  const [viewingOffersReq, setViewingOffersReq] = useState(null);
 
   const filteredListings = listings.filter(l => {
     if (selectedCropFilter !== 'All' && l.crop.toLowerCase() !== selectedCropFilter.toLowerCase()) return false;
     return true;
   });
+
+  const myRequirements = requirements.filter(r => 
+    !currentUser || r.buyerId === currentUser.uid || currentUser.role === 'buyer' || currentUser.role === 'bulk_buyer'
+  );
 
   const handlePlaceBid = (e) => {
     e.preventDefault();
@@ -43,39 +53,69 @@ export default function BuyerMarketplace() {
     setPayingListing(null);
   };
 
+  const handleDeleteReq = async (reqId, cropName) => {
+    if (window.confirm(`Are you sure you want to withdraw requirement for ${cropName}?`)) {
+      await deleteRequirement(reqId);
+    }
+  };
+
+  if (showPostForm) {
+    return <PostRequirementForm onBack={() => setShowPostForm(false)} />;
+  }
+
+  if (viewingOffersReq) {
+    return <BuyerOffersView requirement={viewingOffersReq} onBack={() => setViewingOffersReq(null)} />;
+  }
+
   if (selectedOrder) {
     return <OrderDetailScreen order={selectedOrder} onBack={() => setSelectedOrder(null)} onDispute={(ord) => setDisputeListing(ord)} />;
   }
   
   return (
-    <div className="space-y-4 p-4 pb-24 max-w-4xl mx-auto">
+    <div className="space-y-4 p-4 pb-24 max-w-4xl mx-auto font-sans leading-relaxed">
       <ProfileHeader />
 
       {/* Top Header */}
-      <div className="flex items-center justify-between">
+      <div className="bg-gradient-to-r from-emerald-50 via-teal-50 to-emerald-100 p-4 rounded-2xl border border-emerald-200 shadow-sm flex flex-wrap items-center justify-between gap-3">
         <div>
-          <h2 className="text-base font-bold text-slate-800 flex items-center space-x-2">
-            <ShoppingBag className="w-5 h-5 text-[#2E7D32]" />
+          <h2 className="text-base font-bold text-slate-900 flex items-center space-x-2">
+            <ShoppingBag className="w-5 h-5 text-emerald-700" />
             <span>{t(language, 'buyerMarketplace')}</span>
           </h2>
-          <p className="text-xs text-slate-500">Direct FPO/Farmer Bidding & Consumer Batching</p>
+          <p className="text-xs text-slate-600">Direct FPO/Farmer Bidding, Bulk Buying & Procurement Tenders</p>
         </div>
+
+        <button
+          onClick={() => setShowPostForm(true)}
+          className="px-4 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold flex items-center gap-1.5 shadow-sm transition cursor-pointer"
+        >
+          <Plus className="w-4 h-4" />
+          Post Buy Requirement (फसल खरीद मांग)
+        </button>
       </div>
 
       {/* Tabs */}
-      <div className="grid grid-cols-2 gap-2 bg-white p-1 rounded-2xl border border-slate-200">
+      <div className="grid grid-cols-3 gap-2 bg-white p-1 rounded-2xl border border-slate-200">
         <button
           onClick={() => setActiveTab('browse')}
           className={`py-2 rounded-xl text-xs font-bold transition-colors ${
-            activeTab === 'browse' ? 'bg-[#2E7D32] text-white shadow' : 'text-slate-500 hover:text-slate-700'
+            activeTab === 'browse' ? 'bg-emerald-600 text-white shadow' : 'text-slate-500 hover:text-slate-700'
           }`}
         >
           Browse Marketplace ({filteredListings.length})
         </button>
         <button
+          onClick={() => setActiveTab('my_requirements')}
+          className={`py-2 rounded-xl text-xs font-bold transition-colors ${
+            activeTab === 'my_requirements' ? 'bg-emerald-600 text-white shadow' : 'text-slate-500 hover:text-slate-700'
+          }`}
+        >
+          My Buy Listings ({myRequirements.length})
+        </button>
+        <button
           onClick={() => setActiveTab('my_orders')}
           className={`py-2 rounded-xl text-xs font-bold transition-colors ${
-            activeTab === 'my_orders' ? 'bg-[#2E7D32] text-white shadow' : 'text-slate-500 hover:text-slate-700'
+            activeTab === 'my_orders' ? 'bg-emerald-600 text-white shadow' : 'text-slate-500 hover:text-slate-700'
           }`}
         >
           My Orders & Escrow
@@ -468,6 +508,130 @@ export default function BuyerMarketplace() {
             </div>
           </div>
         </div>
+      )}
+      {activeTab === 'my_requirements' && (
+        <div className="space-y-4">
+          <div className="flex items-center justify-between px-1">
+            <h3 className="font-bold text-sm text-slate-900 flex items-center gap-2">
+              <ClipboardList className="w-4 h-4 text-emerald-600" />
+              Your Active Crop Buy Listings (आपकी फसल खरीद मांगें)
+            </h3>
+            <button
+              onClick={() => setShowPostForm(true)}
+              className="text-xs font-bold text-emerald-700 hover:text-emerald-800 flex items-center gap-1"
+            >
+              <Plus className="w-3.5 h-3.5" /> + Post Buy Listing
+            </button>
+          </div>
+
+          {myRequirements.length === 0 ? (
+            <div className="bg-white p-8 rounded-3xl border border-slate-200 text-center space-y-3 shadow-xs">
+              <div className="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center mx-auto">
+                <Package className="w-6 h-6" />
+              </div>
+              <h4 className="font-bold text-slate-800 text-sm">No Buy Requirements Listed Yet</h4>
+              <p className="text-xs text-slate-500 max-w-sm mx-auto">
+                Post what crops you need to buy and target quantities so verified farmers can submit bids directly to you.
+              </p>
+              <button
+                onClick={() => setShowPostForm(true)}
+                className="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold shadow-sm transition"
+              >
+                + List Crop Buy Requirement
+              </button>
+            </div>
+          ) : (
+            <div className="space-y-3">
+              {myRequirements.map((req) => {
+                const fulfilled = req.fulfilledQty || 0;
+                const target = req.targetQty || 100;
+                const pct = Math.min(100, Math.round((fulfilled / target) * 100));
+
+                return (
+                  <div key={req.id} className="bg-white rounded-3xl border border-slate-200 p-5 shadow-sm hover:border-emerald-300 transition space-y-3">
+                    <div className="flex flex-wrap items-start justify-between gap-3">
+                      <div>
+                        <div className="flex items-center gap-2 mb-1">
+                          <span className="font-black text-slate-900 text-base">
+                            🌾 {req.crop} {req.variety ? `- ${req.variety}` : ''}
+                          </span>
+                          <span className={`text-[10px] font-bold px-2.5 py-0.5 rounded-full border ${
+                            req.status === 'Closed' ? 'bg-slate-100 text-slate-600 border-slate-200' :
+                            fulfilled > 0 ? 'bg-amber-100 text-amber-800 border-amber-300' :
+                            'bg-emerald-100 text-emerald-800 border-emerald-300'
+                          }`}>
+                            {req.status === 'Closed' ? 'Closed' : (fulfilled > 0 ? `Partial (${pct}%)` : 'Open')}
+                          </span>
+                        </div>
+                        <p className="text-xs text-slate-500 flex items-center gap-3">
+                          <span>📍 {typeof req.deliveryLocation === 'string' ? req.deliveryLocation : (req.deliveryLocation?.name || 'Local Mandi')}</span>
+                          <span>📅 Needed: {req.neededByDate || 'Within 7 Days'}</span>
+                        </p>
+                      </div>
+
+                      <div className="text-right">
+                        <div className="text-lg font-black text-emerald-700">
+                          {req.indicativePrice ? `₹${req.indicativePrice.toLocaleString()}/${req.unit || 'qtl'}` : 'Open Guide Price'}
+                        </div>
+                        <div className="text-xs text-slate-500 font-bold">
+                          Target Qty: {target.toLocaleString()} {req.unit || 'quintals'}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Progress */}
+                    <div className="space-y-1">
+                      <div className="flex justify-between items-center text-[11px] font-medium text-slate-600">
+                        <span>Fulfilled: {fulfilled.toLocaleString()} / {target.toLocaleString()} {req.unit || 'quintals'}</span>
+                        <span className="font-bold text-emerald-700">{pct}%</span>
+                      </div>
+                      <div className="w-full h-2 rounded-full bg-slate-100 overflow-hidden">
+                        <div className="h-full bg-emerald-600 rounded-full transition-all duration-500" style={{ width: `${pct}%` }}></div>
+                      </div>
+                    </div>
+
+                    {/* Actions */}
+                    <div className="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-slate-100">
+                      <button
+                        onClick={() => setViewingOffersReq(req)}
+                        className="px-4 py-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 rounded-xl text-xs font-bold flex items-center gap-1.5 transition"
+                      >
+                        <Eye className="w-3.5 h-3.5 text-emerald-600" />
+                        View Farmer Offers
+                      </button>
+
+                      <div className="flex items-center gap-2">
+                        <button
+                          onClick={() => setEditingReq(req)}
+                          className="px-3.5 py-2 bg-slate-50 hover:bg-slate-100 text-slate-700 border border-slate-200 rounded-xl text-xs font-bold flex items-center gap-1 transition"
+                        >
+                          <Edit className="w-3.5 h-3.5 text-slate-500" />
+                          Edit Listing
+                        </button>
+                        <button
+                          onClick={() => handleDeleteReq(req.id, req.crop)}
+                          className="px-3 py-2 bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200 rounded-xl text-xs font-bold flex items-center gap-1 transition"
+                        >
+                          <Trash2 className="w-3.5 h-3.5 text-rose-500" />
+                          Withdraw
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* Edit Requirement Modal */}
+      {editingReq && (
+        <EditRequirementModal
+          requirement={editingReq}
+          isOpen={!!editingReq}
+          onClose={() => setEditingReq(null)}
+        />
       )}
     </div>
   );

@@ -789,11 +789,27 @@ export const AppProvider = ({ children }) => {
     };
     await saveDocument('requirements', id, newReq);
     triggerToast(
-      `आपकी मांग दर्ज हुई! ${requirementData.crop} के लिए ${requirementData.targetQty} ${requirementData.unit} की मांग 12 किसानों को भेजी गई।`,
+      `आपकी मांग दर्ज हुई! ${requirementData.crop} के लिए ${requirementData.targetQty} ${requirementData.unit || 'quintal'} की मांग किसानों को भेजी गई।`,
       'मांग पोस्ट हो गई / Requirement Posted',
       'success'
     );
     return newReq;
+  };
+
+  const updateRequirement = async (requirementId, updatedFields) => {
+    await updateDocumentFields('requirements', requirementId, {
+      ...updatedFields,
+      updatedAt: new Date().toISOString()
+    });
+    triggerToast(`Requirement for ${updatedFields.crop || 'crop'} updated successfully!`, "Requirement Updated", "success");
+  };
+
+  const deleteRequirement = async (requirementId) => {
+    await updateDocumentFields('requirements', requirementId, {
+      status: "Closed",
+      deletedAt: new Date().toISOString()
+    });
+    triggerToast(`Requirement closed/withdrawn successfully!`, "Requirement Withdrawn", "info");
   };
 
   /**
@@ -986,6 +1002,8 @@ export const AppProvider = ({ children }) => {
       offers,
       orders,
       postRequirement,
+      updateRequirement,
+      deleteRequirement,
       makeOffer,
       acceptOffer,
       withdrawOffer,
@@ -1030,6 +1048,8 @@ export const useApp = () => {
       rejectBulkBuyer: async () => {},
       resolveFlaggedRegistration: async () => {},
       suspendTransporter: async () => {},
+      updateRequirement: async () => {},
+      deleteRequirement: async () => {},
       reinstateTransporter: async () => {},
       // Requirement / Offer / Order module
       requirements: INITIAL_REQUIREMENTS,

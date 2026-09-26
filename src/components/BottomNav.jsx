@@ -12,11 +12,11 @@ export default function BottomNav({ activeTab, setActiveTab }) {
       case 'farmer':
       case 'fpo':
         return [
-          { id: 'dashboard', label: t(language, 'home'), icon: Home },
-          { id: 'feed', label: t(language, 'feed'), icon: Bell },
-          { id: 'createLot', label: 'New Lot', icon: Package },
-          { id: 'prices', label: t(language, 'sell'), icon: Store },
-          { id: 'settings', label: t(language, 'profile'), icon: User }
+          { id: 'dashboard', label: 'Home', icon: Home },
+          { id: 'my_produce', label: 'My Produce', icon: Package },
+          { id: 'market', label: 'Market', icon: Store },
+          { id: 'orders', label: 'Orders', icon: Bell },
+          { id: 'storage', label: 'Storage', icon: Building2 }
         ];
       case 'buyer':
       case 'consumer':

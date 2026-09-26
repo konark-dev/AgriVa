@@ -10,6 +10,11 @@ import AIAssistantModal from './components/AIAssistantModal';
 
 import Onboarding from './pages/auth/Onboarding';
 import FarmerDashboard from './pages/farmer/FarmerDashboard';
+import FarmerNavbar from './components/FarmerNavbar';
+import FarmerProduceScreen from './pages/farmer/FarmerProduceScreen';
+import FarmerMarketScreen from './pages/farmer/FarmerMarketScreen';
+import FarmerOrdersScreen from './pages/farmer/FarmerOrdersScreen';
+import FarmerStorageScreen from './pages/farmer/FarmerStorageScreen';
 import PriceDiscovery from './pages/farmer/PriceDiscovery';
 import RequirementsFeed from './pages/farmer/RequirementsFeed';
 import MakeOfferModal from './pages/farmer/MakeOfferModal';

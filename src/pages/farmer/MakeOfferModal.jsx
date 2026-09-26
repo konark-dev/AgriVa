@@ -50,7 +50,7 @@ export default function MakeOfferModal({ requirement, onClose }) {
           <ArrowLeft className="w-6 h-6 text-slate-800" />
         </button>
         <h1 className="text-lg font-bold text-slate-800">बोली लगाएं / Make an Offer</h1>
-        <button onClick={handleListenScreen} className="flex items-center gap-1 bg-orange-100 text-[#FF9800] px-3 py-1 rounded-full text-xs font-medium">
+        <button onClick={handleListenScreen} className="flex items-center gap-1 bg-amber-100 text-amber-700 px-3 py-1 rounded-full text-xs font-medium">
           <Volume2 className="w-3 h-3" />
           बोल कर सुनें
         </button>
@@ -119,7 +119,7 @@ export default function MakeOfferModal({ requirement, onClose }) {
               />
               <span className="pr-4 text-slate-500 font-medium">क्विंटल/Qtl</span>
             </div>
-            <button onClick={() => handleMicInput(setOfferedQty)} className="bg-orange-100 p-3 rounded-2xl text-[#FF9800]">
+            <button onClick={() => handleMicInput(setOfferedQty)} className="bg-amber-100 p-3 rounded-2xl text-amber-600">
               <Mic className="w-6 h-6" />
             </button>
           </div>
@@ -165,7 +165,7 @@ export default function MakeOfferModal({ requirement, onClose }) {
               />
               <span className="pr-4 text-slate-500 font-medium">/ क्विंटल</span>
             </div>
-            <button onClick={() => handleMicInput(setPricePerUnit)} className="bg-orange-100 p-3 rounded-2xl text-[#FF9800]">
+            <button onClick={() => handleMicInput(setPricePerUnit)} className="bg-amber-100 p-3 rounded-2xl text-amber-600">
               <Mic className="w-6 h-6" />
             </button>
           </div>

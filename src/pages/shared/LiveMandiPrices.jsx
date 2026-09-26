@@ -97,7 +97,7 @@ export default function LiveMandiPrices({ onBack }) {
 
           <div className="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm">
             <h3 className="text-sm font-bold text-slate-700 mb-4 flex items-center">
-              <Activity className="w-4 h-4 mr-1.5 text-[#FF9800]" /> 7-Day Agmarknet Trend
+              <Activity className="w-4 h-4 mr-1.5 text-amber-500" /> 7-Day Agmarknet Trend
             </h3>
             
             <div className="h-40 flex items-end justify-between space-x-2 pt-4">
@@ -131,7 +131,7 @@ export default function LiveMandiPrices({ onBack }) {
         )}
         <div>
           <h2 className="font-bold text-slate-800 text-lg flex items-center">
-            <Activity className="w-5 h-5 text-[#FF9800] mr-1.5" />
+            <Activity className="w-5 h-5 text-amber-500 mr-1.5" />
             Live Mandi Prices
           </h2>
           <p className="text-xs text-slate-500">Stock-market style watchlist</p>
